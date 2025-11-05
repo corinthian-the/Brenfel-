@@ -21,3 +21,32 @@ p {
   font-size: 1.2em;
   color: #ccc;
 }
+.container {
+  animation: fadeIn 2s ease-in-out;
+}
+
+.logo {
+  width: 100px;
+  margin-bottom: 20px;
+}
+
+button {
+  background-color: #00bcd4;
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  font-size: 1em;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background-color: #0288a7;
+  transform: scale(1.05);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
