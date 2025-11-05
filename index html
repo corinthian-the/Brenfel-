@@ -1,19 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="stylesheet" href="style.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brenfel App</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brenfel App</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-<body style="font-family: Arial; background-color: #111; color: #fff; text-align: center;">
-    <h1>Welcome to Brenfel!</h1>
-    <p>Your first GitHub app page 🚀</p>
-</body>
 <body>
   <div class="container">
     <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" alt="Brenfel Logo" class="logo">
-    <h1>Welcome to Brenfel</h1>
+    <h1>Welcome to Brenfel!</h1>
     <p>Your first GitHub app page 🚀</p>
     <button onclick="greetUser()">Click Me</button>
   </div>
@@ -24,5 +20,5 @@
     }
   </script>
 </body>
-
 </html>
+
