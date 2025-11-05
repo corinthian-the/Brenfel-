@@ -10,4 +10,19 @@
     <h1>Welcome to Brenfel!</h1>
     <p>Your first GitHub app page 🚀</p>
 </body>
+<body>
+  <div class="container">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" alt="Brenfel Logo" class="logo">
+    <h1>Welcome to Brenfel</h1>
+    <p>Your first GitHub app page 🚀</p>
+    <button onclick="greetUser()">Click Me</button>
+  </div>
+
+  <script>
+    function greetUser() {
+      alert("Hello from Brenfel! 💫 You’re officially learning GitHub app creation!");
+    }
+  </script>
+</body>
+
 </html>
