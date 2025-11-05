@@ -1,0 +1,23 @@
+/* style.css */
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
+  color: #fff;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+h1 {
+  font-size: 2.5em;
+  color: #00bcd4;
+}
+
+p {
+  font-size: 1.2em;
+  color: #ccc;
+}
