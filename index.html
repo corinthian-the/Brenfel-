@@ -1,62 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Brenfel | The Matrix Experience</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brenfel | The Silent System</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <canvas id="matrixBackground"></canvas>
+  <canvas id="matrix-bg"></canvas>
 
-  <div class="overlay">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" alt="Logo" class="logo" />
-    <h1 class="title">Welcome to <span>Brenfel</span></h1>
-    <p class="subtitle">Your first step into digital elegance 💫</p>
-    <button onclick="greetUser()">Click Me</button>
+  <div class="center-content">
+    <h1 class="typing-text"></h1>
+    <div class="buttons">
+      <button onclick="activateEffect()">⚡ Activate Brenfel</button>
+      <button onclick="revealMessage()">🧠 System Insight</button>
+    </div>
   </div>
 
   <script>
-    // Matrix Effect
-    const canvas = document.getElementById('matrixBackground');
+    // Matrix Rain Effect
+    const canvas = document.getElementById('matrix-bg');
     const ctx = canvas.getContext('2d');
-
     canvas.height = window.innerHeight;
     canvas.width = window.innerWidth;
 
-    const chars = "01";
+    const chars = '1010101010101010101010BRENFEL010101010101010';
     const fontSize = 16;
     const columns = canvas.width / fontSize;
     const drops = Array(Math.floor(columns)).fill(1);
 
     function drawMatrix() {
-      ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = "#00bcd4";
-      ctx.font = fontSize + "px monospace";
+      ctx.fillStyle = '#00bcd4';
+      ctx.font = fontSize + 'px monospace';
 
       for (let i = 0; i < drops.length; i++) {
         const text = chars.charAt(Math.floor(Math.random() * chars.length));
         ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975)
           drops[i] = 0;
-        }
         drops[i]++;
       }
     }
+    setInterval(drawMatrix, 40);
 
-    setInterval(drawMatrix, 33);
+    // Typing Animation
+    const typingText = document.querySelector('.typing-text');
+    const text = "WELCOME TO BRENFEL — A WORLD BEYOND THE CODE_";
+    let index = 0;
 
-    window.addEventListener("resize", () => {
-      canvas.height = window.innerHeight;
-      canvas.width = window.innerWidth;
-    });
+    function typeText() {
+      if (index < text.length) {
+        typingText.innerHTML += text.charAt(index);
+        index++;
+        setTimeout(typeText, 80);
+      }
+    }
+    window.onload = typeText;
 
-    // Greeting
-    function greetUser() {
-      alert("💠 Welcome to Brenfel — where luxury meets code.");
+    // Button Actions
+    function activateEffect() {
+      alert("⚡ Brenfel Core Online. Matrix Synced.");
+    }
+
+    function revealMessage() {
+      alert("🧠 Brenfel Insight: ‘Order is found in controlled chaos.’");
     }
   </script>
 </body>
