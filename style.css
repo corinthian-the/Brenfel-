@@ -121,3 +121,25 @@ html, body {
   font-family: 'Courier New', monospace;
   font-size: 1.2em;
 }
+/* ===== Brenfel Top-Left Logo ===== */
+.brand-logo {
+  position: fixed;
+  top: 20px;
+  left: 30px;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 600;
+  font-size: 1.8em;
+  color: #00eaff;
+  letter-spacing: 3px;
+  text-shadow: 0 0 8px #00eaff, 0 0 15px #00ffff, 0 0 25px #00bcd4;
+  z-index: 20;
+  animation: flicker 3s infinite;
+  cursor: default;
+}
+
+/* Elegant glow animation */
+@keyframes flicker {
+  0%, 100% { opacity: 1; text-shadow: 0 0 10px #00eaff, 0 0 20px #00ffff; }
+  50% { opacity: 0.8; text-shadow: 0 0 5px #00bcd4, 0 0 10px #00ffff; }
+}
+
