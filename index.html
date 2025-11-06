@@ -6,9 +6,12 @@
   <title>Brenfel — The Silent Pulse</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-  <div id="matrix"></div>
 
+<body>
+  <!-- Matrix Canvas Background -->
+  <canvas id="matrix"></canvas>
+
+  <!-- Intro Section -->
   <div class="intro">
     <h1 id="typed-text"></h1>
     <div class="buttons">
@@ -17,6 +20,7 @@
     </div>
   </div>
 
+  <!-- Main Content -->
   <div id="main-content" class="hidden">
     <div class="logo-container">
       <div class="glow-circle"></div>
@@ -25,9 +29,12 @@
     <p class="status">Access Granted — Welcome, Architect.</p>
   </div>
 
-  <audio id="ambient" src="https://cdn.pixabay.com/audio/2023/05/31/audio_b9c63c43c2.mp3" loop></audio>
-  <audio id="click" src="https://cdn.pixabay.com/audio/2022/03/15/audio_c9a9d32771.mp3"></audio>
+  <!-- Audio Files -->
+  <audio id="ambient" src="https://cdn.pixabay.com/download/audio/2023/05/31/audio_b9c63c43c2.mp3?filename=futuristic-ambience.mp3" loop></audio>
+  <audio id="click" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c9a9d32771.mp3?filename=futuristic-click.mp3"></audio>
 
+  <!-- Script -->
   <script src="script.js"></script>
 </body>
 </html>
+
