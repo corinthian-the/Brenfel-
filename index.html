@@ -1,24 +1,20 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Brenfel — The Silent Pulse</title>
-
-  <!-- Stylish Orbitron Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
-
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-  <!-- Top-left BRENFEL Logo -->
-  <div class="brand-logo">BRENFEL</div>
-
-  <!-- Matrix Canvas Background -->
+  <!-- MATRIX BACKGROUND -->
   <canvas id="matrix"></canvas>
 
-  <!-- Intro Section -->
+  <!-- TOP-LEFT LOGO -->
+  <div class="top-logo">BRENFEL</div>
+
+  <!-- INTRO SECTION -->
   <div class="intro">
     <h1 id="typed-text"></h1>
     <div class="buttons">
@@ -27,21 +23,37 @@
     </div>
   </div>
 
-  <!-- Main Content -->
+  <!-- MAIN SYSTEM PANEL -->
   <div id="main-content" class="hidden">
     <div class="logo-container">
       <div class="glow-circle"></div>
       <h2 class="logo-text">BRENFEL SYSTEM ONLINE_</h2>
     </div>
     <p class="status">Access Granted — Welcome, Architect.</p>
+
+    <!-- INTERACTIVE MODULES -->
+    <div class="modules">
+      <div class="module" id="core">CORE SYSTEM</div>
+      <div class="module" id="security">SECURITY</div>
+      <div class="module" id="network">NETWORK</div>
+      <div class="module" id="logs">ACTIVITY LOGS</div>
+      <div class="module" id="ai">AI CONSOLE</div>
+      <div class="module" id="settings">SETTINGS</div>
+    </div>
+
+    <!-- MODULE CONTENT AREA -->
+    <div id="module-content" class="hidden">
+      <h3 id="module-title"></h3>
+      <p id="module-text"></p>
+      <button id="back-btn">⬅ RETURN</button>
+    </div>
   </div>
 
-  <!-- Audio Files -->
+  <!-- AUDIO FILES -->
   <audio id="ambient" src="https://cdn.pixabay.com/download/audio/2023/05/31/audio_b9c63c43c2.mp3?filename=futuristic-ambience.mp3" loop></audio>
   <audio id="click" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c9a9d32771.mp3?filename=futuristic-click.mp3"></audio>
 
-  <!-- Script -->
+  <!-- SCRIPT -->
   <script src="script.js"></script>
 </body>
-
-
+</html>
