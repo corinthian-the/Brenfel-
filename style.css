@@ -1,16 +1,18 @@
-/* ===== MATRIX + CINEMATIC LUXURY THEME ===== */
+/* === GLOBAL SETTINGS === */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@300;400&display=swap');
+
 html, body {
   margin: 0;
   padding: 0;
   overflow: hidden;
   font-family: 'Poppins', sans-serif;
   background: black;
-  color: #00ffff;
+  color: #00eaff;
   height: 100vh;
 }
 
-/* ===== MATRIX CANVAS ===== */
-#matrix {
+/* === MATRIX BACKGROUND === */
+canvas#matrix {
   position: fixed;
   top: 0;
   left: 0;
@@ -19,62 +21,52 @@ html, body {
   z-index: 0;
 }
 
-/* ===== STYLISH TOP-LEFT LOGO ===== */
-.top-logo {
-  position: absolute;
-  top: 20px;
-  left: 40px;
+/* === TOP LEFT LOGO === */
+.top-left-logo {
+  position: fixed;
+  top: 25px;
+  left: 30px;
   font-family: 'Orbitron', sans-serif;
-  font-size: 1.5em;
-  letter-spacing: 3px;
+  font-size: 1.8em;
   color: #00eaff;
-  text-shadow: 0 0 10px #00eaff, 0 0 30px #00eaff, 0 0 60px #00eaff;
-  z-index: 5;
-  animation: flicker 3s infinite;
+  text-shadow: 0 0 10px #00eaff, 0 0 25px #00eaff;
+  z-index: 20;
+  letter-spacing: 2px;
+  transition: all 0.3s ease;
 }
-@keyframes flicker {
-  0%, 18%, 22%, 25%, 53%, 57%, 100% {
-    text-shadow: 0 0 10px #00eaff, 0 0 20px #00eaff, 0 0 40px #00eaff;
-  }
-  20%, 24%, 55% {
-    text-shadow: none;
-  }
+.top-left-logo:hover {
+  transform: scale(1.05);
+  text-shadow: 0 0 15px #00ffff, 0 0 30px #00ffff;
 }
 
-/* ===== INTRO SECTION ===== */
+/* === INTRO SCREEN === */
 .intro {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-  color: cyan;
-  z-index: 2;
-  animation: introGlow 4s ease-in-out infinite alternate;
-}
-@keyframes introGlow {
-  from { text-shadow: 0 0 10px #00eaff; }
-  to { text-shadow: 0 0 40px #00eaff; }
+  z-index: 10;
 }
 
 #typed-text {
-  font-size: 1.8em;
+  font-size: 1.6em;
+  color: cyan;
   font-family: 'Courier New', monospace;
   letter-spacing: 2px;
+  text-shadow: 0 0 10px cyan;
   margin-bottom: 25px;
-  color: #00ffff;
 }
 
-/* ===== BUTTONS ===== */
 .buttons button {
   background: rgba(0, 188, 212, 0.1);
   color: #00eaff;
   border: 1px solid #00eaff;
-  padding: 12px 24px;
+  padding: 12px 28px;
   font-size: 1em;
   border-radius: 8px;
   cursor: pointer;
-  margin: 8px;
+  margin: 10px;
   transition: all 0.3s ease-in-out;
   text-shadow: 0 0 5px #00eaff;
 }
@@ -82,63 +74,118 @@ html, body {
   background: #00eaff;
   color: black;
   transform: scale(1.08);
-  box-shadow: 0 0 15px #00eaff, 0 0 30px #00eaff;
+  box-shadow: 0 0 20px #00eaff;
 }
 
-/* ===== MAIN CONTENT ===== */
+.fade-out {
+  opacity: 0;
+  transition: opacity 1s ease-out;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* === MAIN CONTENT === */
 #main-content {
   position: relative;
-  z-index: 3;
+  z-index: 10;
   text-align: center;
-  color: cyan;
+  animation: fadeIn 2s ease-in-out forwards;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
+/* === LOGO + STATUS === */
 .logo-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 80vh;
 }
-
 .glow-circle {
   width: 150px;
   height: 150px;
   border-radius: 50%;
-  background: radial-gradient(circle, #00eaff, transparent 70%);
-  animation: pulse 2.5s infinite ease-in-out;
-  filter: drop-shadow(0 0 20px #00eaff);
+  background: radial-gradient(circle, rgba(0,255,255,0.4), transparent 70%);
+  animation: pulse 2s infinite;
 }
 @keyframes pulse {
-  0%, 100% { opacity: 0.6; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.15); }
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.1); }
 }
-
 .logo-text {
-  margin-top: 25px;
-  color: #00eaff;
+  margin-top: 20px;
   font-family: 'Orbitron', sans-serif;
-  font-size: 1.3em;
-  letter-spacing: 3px;
-  text-shadow: 0 0 10px #00eaff, 0 0 30px #00eaff;
-}
-
-/* ===== STATUS LINE ===== */
-.status {
-  text-align: center;
   color: #00ffff;
-  font-family: 'Courier New', monospace;
-  font-size: 1em;
-  text-shadow: 0 0 8px #00eaff;
-  animation: blink 1s infinite;
+  letter-spacing: 2px;
+  text-shadow: 0 0 10px #00ffff;
 }
-@keyframes blink {
-  50% { opacity: 0.6; }
+.status {
+  color: cyan;
+  text-shadow: 0 0 8px cyan;
+  font-family: 'Courier New', monospace;
 }
 
-/* ===== TRANSITIONS ===== */
-.hidden { display: none; }
-.fade-out {
-  opacity: 0;
-  transition: opacity 1s ease-out;
+/* === MODULE GRID === */
+.modules {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 25px;
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.module {
+  background: rgba(0, 255, 255, 0.05);
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  border-radius: 12px;
+  padding: 25px 15px;
+  cursor: pointer;
+  text-align: center;
+  color: cyan;
+  font-family: 'Orbitron', sans-serif;
+  transition: all 0.3s ease;
+  text-shadow: 0 0 5px cyan;
+}
+.module:hover {
+  background: rgba(0, 255, 255, 0.2);
+  box-shadow: 0 0 20px cyan;
+  transform: scale(1.05);
+}
+
+/* === MODULE CONTENT === */
+.module-content {
+  text-align: center;
+  padding: 40px;
+}
+#module-title {
+  font-size: 1.8em;
+  font-family: 'Orbitron', sans-serif;
+  color: #00ffff;
+  text-shadow: 0 0 10px cyan;
+}
+#module-text {
+  color: #00eaff;
+  font-family: 'Poppins', sans-serif;
+  margin: 20px 0;
+  font-size: 1.1em;
+}
+#back-btn {
+  background: rgba(0, 255, 255, 0.1);
+  border: 1px solid cyan;
+  color: cyan;
+  padding: 10px 25px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+#back-btn:hover {
+  background: cyan;
+  color: black;
+  box-shadow: 0 0 15px cyan;
 }
