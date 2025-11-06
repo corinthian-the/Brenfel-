@@ -1,4 +1,4 @@
-/* Brenfel Elegant Theme */
+/* Brenfel Elegant Theme with Moving Background */
 
 body {
   margin: 0;
@@ -8,7 +8,9 @@ body {
   justify-content: center;
   align-items: center;
   font-family: 'Poppins', sans-serif;
-  background: radial-gradient(circle at top, #0d0d0d 0%, #1b1b1b 100%);
+  background: linear-gradient(-45deg, #0d0d0d, #1b1b1b, #222, #111);
+  background-size: 400% 400%;
+  animation: gradientMove 15s ease infinite;
   color: white;
   text-align: center;
   overflow: hidden;
@@ -36,7 +38,7 @@ body {
 
 .subtitle {
   font-size: 1.2rem;
-  color: #aaa;
+  color: #ccc;
   margin: 10px 0 30px;
 }
 
@@ -58,13 +60,27 @@ button:hover {
   box-shadow: 0 0 20px rgba(212, 175, 55, 0.8);
 }
 
-/* Animations */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+/* Background Animation */
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
+/* Floating Logo Animation */
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
   50% { transform: translateY(-10px); }
+}
+
+/* Fade In Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
