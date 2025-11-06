@@ -1,4 +1,4 @@
-/* Matrix Luxury Theme */
+/* Matrix Luxury Theme — Brenfel Edition */
 
 html, body {
   margin: 0;
@@ -10,7 +10,8 @@ html, body {
   height: 100vh;
 }
 
-#matrix-bg {
+/* ===== Matrix Canvas Background ===== */
+#matrix {
   position: fixed;
   top: 0;
   left: 0;
@@ -19,27 +20,29 @@ html, body {
   z-index: 0;
 }
 
-.center-content {
-  position: relative;
-  z-index: 10;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
+/* ===== Intro Section ===== */
+.intro {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   text-align: center;
-  color: #00eaff;
-  text-shadow: 0 0 10px #00eaff, 0 0 20px #00eaff;
+  color: cyan;
+  z-index: 10;
+  transition: opacity 1s ease-out;
 }
 
-.typing-text {
-  font-size: 1.6em;
-  margin-bottom: 30px;
+#typed-text {
+  font-size: 1.8em;
+  font-family: 'Courier New', monospace;
   letter-spacing: 2px;
+  margin-bottom: 20px;
+  text-shadow: 0 0 10px cyan;
 }
 
+/* ===== Buttons ===== */
 .buttons button {
-  background: rgba(0, 188, 212, 0.1);
+  background: rgba(0, 255, 255, 0.1);
   color: #00eaff;
   border: 1px solid #00eaff;
   padding: 12px 24px;
@@ -57,48 +60,37 @@ html, body {
   transform: scale(1.08);
   box-shadow: 0 0 15px #00eaff;
 }
-.hidden { display: none; }
 
-.intro {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  color: cyan;
+/* ===== Fade & Visibility ===== */
+.hidden {
+  display: none;
 }
 
-#typed-text {
-  font-size: 1.8em;
-  font-family: 'Courier New', monospace;
-  letter-spacing: 2px;
-  margin-bottom: 20px;
+.fade-out {
+  opacity: 0;
+  transition: opacity 1s ease-out;
 }
 
-button {
-  background: none;
-  border: 1px solid cyan;
-  color: cyan;
-  padding: 10px 25px;
-  margin: 10px;
-  border-radius: 8px;
-  font-family: inherit;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-button:hover {
-  background: cyan;
-  color: black;
-  transform: scale(1.05);
-}
-
-.logo-container {
+/* ===== Main Content Section ===== */
+#main-content {
+  position: relative;
+  z-index: 5;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100vh;
+  text-align: center;
+  color: #00eaff;
+  text-shadow: 0 0 10px #00eaff, 0 0 20px #00eaff;
+}
+
+/* ===== Logo & Glow ===== */
+.logo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .glow-circle {
@@ -121,18 +113,11 @@ button:hover {
   letter-spacing: 2px;
 }
 
+/* ===== Access Text ===== */
 .status {
+  margin-top: 15px;
   text-align: center;
   color: #00ffff;
   font-family: 'Courier New', monospace;
+  font-size: 1.2em;
 }
-.hidden {
-  display: none;
-}
-
-.fade-out {
-  opacity: 0;
-  transition: opacity 1s ease-out;
-}
-
-
