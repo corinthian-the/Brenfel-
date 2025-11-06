@@ -1,22 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Brenfel | Your Personal AI Experience</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Brenfel | The Matrix Experience</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
-  <div class="hero">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" alt="Brenfel Logo" class="logo">
+  <canvas id="matrixBackground"></canvas>
+
+  <div class="overlay">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" alt="Logo" class="logo" />
     <h1 class="title">Welcome to <span>Brenfel</span></h1>
-    <p class="subtitle">An elegant step into your creative AI journey ✨</p>
-    <button onclick="greetUser()">Launch Experience</button>
+    <p class="subtitle">Your first step into digital elegance 💫</p>
+    <button onclick="greetUser()">Click Me</button>
   </div>
 
   <script>
+    // Matrix Effect
+    const canvas = document.getElementById('matrixBackground');
+    const ctx = canvas.getContext('2d');
+
+    canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
+
+    const chars = "01";
+    const fontSize = 16;
+    const columns = canvas.width / fontSize;
+    const drops = Array(Math.floor(columns)).fill(1);
+
+    function drawMatrix() {
+      ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "#00bcd4";
+      ctx.font = fontSize + "px monospace";
+
+      for (let i = 0; i < drops.length; i++) {
+        const text = chars.charAt(Math.floor(Math.random() * chars.length));
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      }
+    }
+
+    setInterval(drawMatrix, 33);
+
+    window.addEventListener("resize", () => {
+      canvas.height = window.innerHeight;
+      canvas.width = window.innerWidth;
+    });
+
+    // Greeting
     function greetUser() {
-      alert("✨ Welcome to Brenfel — your creative AI world starts here!");
+      alert("💠 Welcome to Brenfel — where luxury meets code.");
     }
   </script>
 </body>
