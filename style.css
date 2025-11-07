@@ -1,4 +1,98 @@
-/* === FLOATING AI ORB — SOUND REACTIVE === */
+/* === BASIC PAGE STYLING === */
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-family: 'Poppins', sans-serif;
+  background: black;
+  color: #0ff;
+  overflow: hidden;
+}
+
+/* === MATRIX BACKGROUND === */
+#matrix {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+/* === BRANDING AND INTRO === */
+.branding {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  font-size: 28px;
+}
+
+.intro {
+  position: absolute;
+  top: 40%;
+  width: 100%;
+  text-align: center;
+}
+
+.buttons button {
+  margin: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  background: #0ff;
+  border: none;
+  border-radius: 5px;
+  color: black;
+  font-weight: bold;
+}
+
+/* === MAIN CONTENT === */
+#main-content.hidden {
+  display: none;
+}
+
+.logo-container {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.glow-circle {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #0ff, #000);
+  margin: 0 auto;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); box-shadow: 0 0 20px #0ff, 0 0 40px #0ff; }
+  50% { transform: scale(1.2); box-shadow: 0 0 40px #0ff, 0 0 80px #0ff; }
+  100% { transform: scale(1); box-shadow: 0 0 20px #0ff, 0 0 40px #0ff; }
+}
+
+.modules {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.modules button {
+  margin: 5px;
+  padding: 8px 15px;
+  background: #0ff;
+  border: none;
+  border-radius: 3px;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* === FLOATING AI ORB === */
 .ai-orb {
   position: fixed;
   bottom: 10%;
