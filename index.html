@@ -41,7 +41,7 @@
       left: 50%;
       transform: translate(-50%, -50%);
       text-align: center;
-      color: #0ff; /* cyan */
+      color: #0ff;
       z-index: 2;
     }
 
@@ -55,7 +55,7 @@
     }
 
     .buttons button {
-      background: #0ff; /* cyan */
+      background: #0ff;
       border: none;
       padding: 10px 20px;
       margin: 0 10px;
@@ -70,6 +70,90 @@
     .buttons button:hover {
       background: #00bbbb;
     }
+
+    /* Main Console */
+    #main-console.hidden {
+      display: none;
+    }
+
+    #main-console {
+      position: fixed;
+      top: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      max-width: 900px;
+      background: rgba(0, 0, 0, 0.85);
+      border: 2px solid #0ff;
+      padding: 20px;
+      border-radius: 10px;
+      z-index: 2;
+      color: #0ff;
+    }
+
+    .modules {
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    .module-btn {
+      background: #0ff;
+      border: none;
+      padding: 10px 15px;
+      margin: 0 5px;
+      cursor: pointer;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: bold;
+      border-radius: 5px;
+    }
+
+    .module-btn:hover {
+      background: #00bbbb;
+      color: black;
+    }
+
+    .terminal {
+      background: #000;
+      border: 1px solid #0ff;
+      height: 250px;
+      padding: 10px;
+      overflow-y: auto;
+      font-family: 'Courier New', monospace;
+      font-size: 0.95em;
+      margin-bottom: 15px;
+      color: #0ff;
+    }
+
+    .input-container {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    #user-input {
+      flex: 1;
+      padding: 8px 10px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.95em;
+      border-radius: 5px 0 0 5px;
+      border: 1px solid #0ff;
+      background: #000;
+      color: #0ff;
+    }
+
+    #send-btn {
+      padding: 8px 15px;
+      background: #0ff;
+      border: none;
+      border-radius: 0 5px 5px 0;
+      cursor: pointer;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: bold;
+    }
+
+    #send-btn:hover {
+      background: #00bbbb;
+      color: black;
+    }
   </style>
 </head>
 <body>
@@ -81,16 +165,30 @@
 
   <!-- Intro -->
   <div class="intro">
-    <h1 id="typed-text">Welcome to Brenfel</h1>
+    <h1>Welcome to Brenfel</h1>
     <div class="buttons">
       <button id="enter-btn">ENTER</button>
       <button id="sound-btn">🔊 SOUND</button>
     </div>
   </div>
 
+  <!-- Main Console -->
+  <div id="main-console" class="hidden">
+    <div class="modules">
+      <button class="module-btn" data-module="AI Core">AI CORE</button>
+      <button class="module-btn" data-module="Network">NETWORK</button>
+      <button class="module-btn" data-module="Data">DATA</button>
+      <button class="module-btn" data-module="Control">CONTROL</button>
+    </div>
+    <div id="terminal" class="terminal"></div>
+    <div class="input-container">
+      <input type="text" id="user-input" placeholder="Type a command..." autocomplete="off">
+      <button id="send-btn">Send</button>
+    </div>
+  </div>
+
   <script>
-    /* ===== JS ===== */
-    // MATRIX EFFECT (cyan)
+    // ===== MATRIX EFFECT =====
     const canvas = document.getElementById('matrix');
     const ctx = canvas.getContext('2d');
     canvas.width = window.innerWidth;
@@ -114,41 +212,4 @@
         if(drops[i] > canvas.height && Math.random() > 0.975) drops[i] = 0;
       }
     }
-    setInterval(drawMatrix, 50);
-
-    // AI voice phrases
-    const phrases = [
-      "Hello! I am Brenfel, your AI assistant.",
-      "Welcome to the system.",
-      "Brenfel is online and ready.",
-      "How can I assist you today?",
-      "The Matrix is alive and running."
-    ];
-
-    function speakAI(text){
-      const synth = window.speechSynthesis;
-      const utter = new SpeechSynthesisUtterance(text);
-      synth.speak(utter);
-    }
-
-    // AUTO-GREETING
-    window.addEventListener('load', () => {
-      const phrase = phrases[Math.floor(Math.random() * phrases.length)];
-      speakAI(phrase);
-    });
-
-    // SOUND BUTTON
-    const soundBtn = document.getElementById('sound-btn');
-    soundBtn.addEventListener('click', () => {
-      const phrase = phrases[Math.floor(Math.random() * phrases.length)];
-      speakAI(phrase);
-    });
-
-    // ENTER BUTTON
-    const enterBtn = document.getElementById('enter-btn');
-    enterBtn.addEventListener('click', () => {
-      alert("You pressed ENTER! (Replace this with your main content action)");
-    });
-  </script>
-</body>
-</html>
+    setInterval(drawMat
