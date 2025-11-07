@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Brenfel — The Silent Pulse</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
+  <!-- MATRIX CANVAS -->
   <canvas id="matrix"></canvas>
 
+  <!-- Branding -->
   <div class="branding">BRENFEL</div>
 
+  <!-- Intro -->
   <div class="intro">
     <h1 id="typed-text">Welcome to Brenfel</h1>
     <div class="buttons">
@@ -21,20 +23,19 @@
     </div>
   </div>
 
+  <!-- Main console -->
   <div id="main-content" class="hidden">
     <div class="logo-container">
       <div class="glow-circle"></div>
       <h2 class="logo-text">SYSTEM ONLINE_</h2>
     </div>
     <p class="status">Access Granted — Welcome, Architect.</p>
-
     <div class="modules">
       <button class="module-btn" data-target="ai">AI CORE</button>
       <button class="module-btn" data-target="network">NETWORK</button>
       <button class="module-btn" data-target="data">DATA</button>
       <button class="module-btn" data-target="control">CONTROL</button>
     </div>
-
     <div id="terminal" class="terminal">
       <p>Initializing system modules...</p>
     </div>
