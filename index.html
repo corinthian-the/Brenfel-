@@ -5,146 +5,50 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Brenfel — The Silent Pulse</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <!-- MATRIX CANVAS -->
-  <canvas id="matrix"></canvas>
-
-  <!-- Branding -->
-  <div class="branding">BRENFEL</div>
-
-  <!-- Intro -->
-  <div class="intro">
-    <h1 id="typed-text">Welcome to Brenfel</h1>
-    <div class="buttons">
-      <button id="enter-btn">ENTER</button>
-      <button id="sound-btn">🔊 SOUND</button>
-    </div>
-  </div>
-
-  <!-- Main console -->
-  <div id="main-content" class="hidden">
-    <div class="logo-container">
-      <div class="glow-circle"></div>
-      <h2 class="logo-text">SYSTEM ONLINE_</h2>
-    </div>
-    <p class="status">Access Granted — Welcome, Architect.</p>
-    <div class="modules">
-      <button class="module-btn" data-target="ai">AI CORE</button>
-      <button class="module-btn" data-target="network">NETWORK</button>
-      <button class="module-btn" data-target="data">DATA</button>
-      <button class="module-btn" data-target="control">CONTROL</button>
-    </div>
-    <div id="terminal" class="terminal">
-      <p>Initializing system modules...</p>
-    </div>
-  </div>
-
-  <!-- AI Orb -->
-  <div id="aiOrb" class="ai-orb">
-    <div class="orb-core"></div>
-    <div class="orb-ring"></div>
-  </div>
-
-  <!-- Audio -->
-  <audio id="ambient" src="https://cdn.pixabay.com/download/audio/2023/05/31/audio_b9c63c43c2.mp3?filename=futuristic-ambience.mp3" loop></audio>
-  <audio id="click" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c9a9d32771.mp3?filename=futuristic-click.mp3"></audio>
-
-  <!-- SCRIPT -->
-  <script>
-    // ===== MATRIX EFFECT =====
-    const canvas = document.getElementById('matrix');
-    const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-    const fontSize = 16;
-    const columns = canvas.width / fontSize;
-    const drops = [];
-    for(let x = 0; x < columns; x++) drops[x] = Math.random() * canvas.height;
-
-    function drawMatrix() {
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = '#0F0';
-      ctx.font = fontSize + 'px monospace';
-      for(let i = 0; i < drops.length; i++) {
-        const text = letters.charAt(Math.floor(Math.random() * letters.length));
-        ctx.fillText(text, i * fontSize, drops[i]);
-        drops[i] += fontSize;
-        if(drops[i] > canvas.height && Math.random() > 0.975) drops[i] = 0;
-      }
-    }
-    setInterval(drawMatrix, 50);
-
-    // ===== AI ORB =====
-    const aiOrb = document.getElementById('aiOrb');
-
-    // Sound reaction
-    navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
-      const audioCtx = new AudioContext();
-      const analyser = audioCtx.createAnalyser();
-      const source = audioCtx.createMediaStreamSource(stream);
-      source.connect(analyser);
-      analyser.fftSize = 256;
-      const dataArray = new Uint8Array(analyser.frequencyBinCount);
-
-      function animateOrb() {
-        requestAnimationFrame(animateOrb);
-        analyser.getByteFrequencyData(dataArray);
-        const avg = dataArray.reduce((a,b)=>a+b,0)/dataArray.length;
-        aiOrb.style.transform = `scale(${1 + avg/500})`;
-        aiOrb.style.boxShadow = `0 0 ${20 + avg/5}px #00ffff, 0 0 ${40 + avg/5}px #00ffff inset`;
-      }
-      animateOrb();
-    }).catch(err => console.log('Microphone access denied', err));
-
-    // Random movement
-    function moveOrbRandomly() {
-      const x = Math.random() * (window.innerWidth - 120);
-      const y = Math.random() * (window.innerHeight - 120);
-      aiOrb.style.left = x + 'px';
-      aiOrb.style.top = y + 'px';
-    }
-    setInterval(moveOrbRandomly, 3000);
-
-    // AI phrases
-    const phrases = [
-      "I am alive and watching the Matrix.",
-      "Did you see that code falling?",
-      "Hello, human! How's your day?",
-      "The AI orb pulses with your voice!",
-      "Brenfel here, ready to assist."
-    ];
-    function speakAI(text){
-      const synth = window.speechSynthesis;
-      const utter = new SpeechSynthesisUtterance(text);
-      synth.speak(utter);
+  <style>
+    /* ===== CSS ===== */
+    body, html {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: black;
+      height: 100%;
+      font-family: 'Poppins', sans-serif;
     }
 
-    // Sound button
-    const soundBtn = document.getElementById('sound-btn');
-    soundBtn.addEventListener('click', () => {
-      speakAI("Hello! I am Brenfel, your AI assistant.");
-    });
+    #matrix {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
 
-    // Orb click
-    aiOrb.addEventListener('click', () => {
-      const phrase = phrases[Math.floor(Math.random() * phrases.length)];
-      speakAI(phrase);
-      const r = Math.floor(Math.random() * 256);
-      const g = Math.floor(Math.random() * 256);
-      const b = Math.floor(Math.random() * 256);
-      aiOrb.style.background = `radial-gradient(circle, rgb(${r},${g},${b}) 0%, rgb(${Math.floor(r/2)},${Math.floor(g/2)},${Math.floor(b/2)}) 100%)`;
-      aiOrb.style.boxShadow = `0 0 20px rgb(${r},${g},${b}), 0 0 40px rgb(${r},${g},${b}) inset`;
-    });
+    .branding {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      color: #00f;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2em;
+      z-index: 2;
+    }
 
-    // Enter button
-    const enterBtn = document.getElementById('enter-btn');
-    const mainContent = document.getElementById('main-content');
-    enterBtn.addEventListener('click', () => mainContent.classList.remove('hidden'));
-  </script>
-</body>
-</html>
+    .intro {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      color: #00f;
+      z-index: 2;
+    }
+
+    .intro h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.5em;
+    }
+
+    .buttons {
+      margin-top: 20px;
