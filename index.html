@@ -29,7 +29,7 @@
       position: fixed;
       top: 20px;
       left: 20px;
-      color: #00f;
+      color: #0ff; /* cyan */
       font-family: 'Orbitron', sans-serif;
       font-size: 2em;
       z-index: 2;
@@ -41,7 +41,7 @@
       left: 50%;
       transform: translate(-50%, -50%);
       text-align: center;
-      color: #00f;
+      color: #0ff; /* cyan */
       z-index: 2;
     }
 
@@ -55,18 +55,20 @@
     }
 
     .buttons button {
-      background: #00f;
+      background: #0ff; /* cyan */
       border: none;
       padding: 10px 20px;
       margin: 0 10px;
       cursor: pointer;
       font-weight: bold;
       border-radius: 5px;
-      color: white;
+      color: black;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1em;
     }
 
     .buttons button:hover {
-      background: #0000bb;
+      background: #00bbbb;
     }
   </style>
 </head>
@@ -81,12 +83,14 @@
   <div class="intro">
     <h1 id="typed-text">Welcome to Brenfel</h1>
     <div class="buttons">
+      <button id="enter-btn">ENTER</button>
       <button id="sound-btn">🔊 SOUND</button>
     </div>
   </div>
 
   <script>
     /* ===== JS ===== */
+    // MATRIX EFFECT (cyan)
     const canvas = document.getElementById('matrix');
     const ctx = canvas.getContext('2d');
     canvas.width = window.innerWidth;
@@ -101,7 +105,7 @@
     function drawMatrix() {
       ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = '#00f'; // blue color
+      ctx.fillStyle = '#0ff'; // cyan
       ctx.font = fontSize + 'px monospace';
       for(let i = 0; i < drops.length; i++) {
         const text = letters.charAt(Math.floor(Math.random() * letters.length));
@@ -112,6 +116,7 @@
     }
     setInterval(drawMatrix, 50);
 
+    // AI voice phrases
     const phrases = [
       "Hello! I am Brenfel, your AI assistant.",
       "Welcome to the system.",
@@ -137,6 +142,12 @@
     soundBtn.addEventListener('click', () => {
       const phrase = phrases[Math.floor(Math.random() * phrases.length)];
       speakAI(phrase);
+    });
+
+    // ENTER BUTTON
+    const enterBtn = document.getElementById('enter-btn');
+    enterBtn.addEventListener('click', () => {
+      alert("You pressed ENTER! (Replace this with your main content action)");
     });
   </script>
 </body>
