@@ -38,7 +38,8 @@ const moduleBtns = document.querySelectorAll('.module-btn');
 let aiState = {
   modulesOpened: [],
   history: [],
-  lastMessageTime: Date.now()
+  lastMessageTime: Date.now(),
+  mood: "neutral"
 };
 
 // ===== FUNCTIONS =====
@@ -47,6 +48,7 @@ function speakAI(text){
   const utter = new SpeechSynthesisUtterance(text);
   synth.speak(utter);
   addTerminalLine("BRENFEL: " + text, true);
+  matrixGlowPulse();
 }
 
 function addTerminalLine(text, highlight=false){
@@ -55,6 +57,8 @@ function addTerminalLine(text, highlight=false){
   if(highlight){
     line.style.color = "#0ff";
     line.style.fontWeight = "bold";
+    line.classList.add("flicker");
+    setTimeout(() => line.classList.remove("flicker"), 400);
   }
   terminal.appendChild(line);
   terminal.scrollTop = terminal.scrollHeight;
@@ -79,7 +83,6 @@ moduleBtns.forEach(btn => {
       aiState.modulesOpened.push(moduleName);
     }
     speakAI(`Accessing module: ${moduleName}`);
-    matrixPulse(); // small effect when AI talks
   });
 });
 
@@ -96,22 +99,25 @@ function handleUserInput(){
   aiState.history.push(input);
   userInput.value = "";
   generateAIResponse(input);
-  matrixPulse();
 }
 
-// ===== DYNAMIC AI RESPONSE =====
+// ===== DYNAMIC AI RESPONSE WITH MOOD =====
 function generateAIResponse(input){
   input = input.toLowerCase();
   let response;
 
   if(input.includes("hello") || input.includes("hi")){
     response = "Hello, Architect. I am monitoring all systems.";
+    aiState.mood = "friendly";
   } else if(input.includes("status")){
     response = `Modules opened: ${aiState.modulesOpened.join(", ") || "None"}`;
+    aiState.mood = "neutral";
   } else if(input.includes("matrix")){
     response = "The Matrix pulses endlessly with cyan code streams.";
+    aiState.mood = "analytical";
   } else if(input.includes("help")){
     response = "Interact with modules or type commands. I observe everything.";
+    aiState.mood = "helpful";
   } else if(input.includes("time")){
     response = "Current system time is " + new Date().toLocaleTimeString();
   } else {
@@ -128,12 +134,11 @@ function generateAIResponse(input){
   speakAI(response);
 }
 
-// ===== MATRIX PULSE EFFECT =====
-function matrixPulse(){
-  const originalSpeed = matrixSpeed;
-  matrixSpeed = 20; // speed up briefly
+// ===== MATRIX GLOW PULSE =====
+function matrixGlowPulse(){
+  canvas.style.animation = "glowPulse 0.3s ease-in-out";
   setTimeout(() => {
-    matrixSpeed = originalSpeed;
+    canvas.style.animation = "";
   }, 300);
 }
 
@@ -141,19 +146,17 @@ function matrixPulse(){
 function autonomousAI(){
   const now = Date.now();
   if(now - aiState.lastMessageTime > 20000){ // every ~20s
-    const autonomousResponses = [
-      "Systems operating within normal parameters.",
-      "Monitoring user activity.",
-      "The Matrix never sleeps.",
-      "Modules online: " + (aiState.modulesOpened.join(", ") || "None"),
-      "I am always observing, Architect."
-    ];
-    const msg = autonomousResponses[Math.floor(Math.random() * autonomousResponses.length)];
+    let msg;
+    const rnd = Math.random();
+    if(rnd < 0.3){
+      msg = "Modules online: " + (aiState.modulesOpened.join(", ") || "None");
+    } else if(rnd < 0.6){
+      msg = "I am observing your activity, Architect.";
+    } else {
+      msg = "The Matrix continues its eternal flow.";
+    }
     speakAI(msg);
     aiState.lastMessageTime = now;
-    matrixPulse();
   }
 }
-
-// Start autonomous AI loop
 setInterval(autonomousAI, 5000);
