@@ -152,3 +152,31 @@ body, html {
   background: #00bbbb;
   color: black;
 }
+/* ===== Terminal Flicker ===== */
+@keyframes flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    opacity: 1;
+  }
+  20%, 22%, 24%, 55% {
+    opacity: 0.4;
+  }
+}
+
+.flicker {
+  animation: flicker 0.2s ease-in-out 1;
+}
+
+/* ===== Matrix Glow Pulse ===== */
+@keyframes glowPulse {
+  0% {
+    text-shadow: 0 0 5px #0ff;
+  }
+  50% {
+    text-shadow: 0 0 15px #0ff, 0 0 20px #0ff;
+  }
+  100% {
+    text-shadow: 0 0 5px #0ff;
+  }
+}
+
+
