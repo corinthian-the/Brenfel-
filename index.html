@@ -4,17 +4,19 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Brenfel — The Silent Pulse</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-  <!-- MATRIX BACKGROUND -->
   <canvas id="matrix"></canvas>
 
-  <!-- TOP-LEFT LOGO -->
-  <div class="top-logo">BRENFEL</div>
+  <!-- Top Branding -->
+  <div class="branding">
+    <h2 class="brand-name">BRENFEL</h2>
+  </div>
 
-  <!-- INTRO SECTION -->
+  <!-- Intro Section -->
   <div class="intro">
     <h1 id="typed-text"></h1>
     <div class="buttons">
@@ -23,37 +25,31 @@
     </div>
   </div>
 
-  <!-- MAIN SYSTEM PANEL -->
+  <!-- Main Console -->
   <div id="main-content" class="hidden">
     <div class="logo-container">
       <div class="glow-circle"></div>
-      <h2 class="logo-text">BRENFEL SYSTEM ONLINE_</h2>
+      <h2 class="logo-text">SYSTEM ONLINE_</h2>
     </div>
     <p class="status">Access Granted — Welcome, Architect.</p>
 
-    <!-- INTERACTIVE MODULES -->
+    <!-- Control Modules -->
     <div class="modules">
-      <div class="module" id="core">CORE SYSTEM</div>
-      <div class="module" id="security">SECURITY</div>
-      <div class="module" id="network">NETWORK</div>
-      <div class="module" id="logs">ACTIVITY LOGS</div>
-      <div class="module" id="ai">AI CONSOLE</div>
-      <div class="module" id="settings">SETTINGS</div>
+      <button class="module-btn" data-target="ai">AI CORE</button>
+      <button class="module-btn" data-target="network">NETWORK</button>
+      <button class="module-btn" data-target="data">DATA</button>
+      <button class="module-btn" data-target="control">CONTROL</button>
     </div>
 
-    <!-- MODULE CONTENT AREA -->
-    <div id="module-content" class="hidden">
-      <h3 id="module-title"></h3>
-      <p id="module-text"></p>
-      <button id="back-btn">⬅ RETURN</button>
+    <!-- Dynamic Terminal Section -->
+    <div id="terminal" class="terminal">
+      <p>Initializing system modules...</p>
     </div>
   </div>
 
-  <!-- AUDIO FILES -->
   <audio id="ambient" src="https://cdn.pixabay.com/download/audio/2023/05/31/audio_b9c63c43c2.mp3?filename=futuristic-ambience.mp3" loop></audio>
   <audio id="click" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c9a9d32771.mp3?filename=futuristic-click.mp3"></audio>
 
-  <!-- SCRIPT -->
   <script src="script.js"></script>
 </body>
 </html>
