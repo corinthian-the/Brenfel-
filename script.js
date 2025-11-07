@@ -1,4 +1,4 @@
-/* === MATRIX ANIMATION === */
+/* === MATRIX BACKGROUND === */
 const canvas = document.getElementById("matrix");
 const ctx = canvas.getContext("2d");
 
@@ -13,7 +13,7 @@ const drops = Array(Math.floor(columns)).fill(1);
 function drawMatrix() {
   ctx.fillStyle = "rgba(0, 0, 0, 0.08)";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
-  ctx.fillStyle = "#00ffff";
+  ctx.fillStyle = "#00eaff";
   ctx.font = fontSize + "px monospace";
 
   for (let i = 0; i < drops.length; i++) {
@@ -30,7 +30,7 @@ window.addEventListener("resize", () => {
   canvas.width = window.innerWidth;
 });
 
-/* === TYPING EFFECT === */
+/* === TYPING INTRO === */
 const typedText = document.getElementById("typed-text");
 const intro = document.querySelector(".intro");
 const mainContent = document.getElementById("main-content");
@@ -49,11 +49,12 @@ function typeText() {
     setTimeout(typeText, 70);
   } else {
     document.querySelector(".buttons").style.display = "block";
+    speak("Brenfel system initialized. Ready for input.");
   }
 }
 window.onload = typeText;
 
-/* === SOUND BUTTON === */
+/* === SOUND TOGGLE === */
 soundBtn.addEventListener("click", () => {
   clickSound.play();
   if (ambient.paused) {
@@ -66,44 +67,65 @@ soundBtn.addEventListener("click", () => {
   }
 });
 
-/* === ENTER BUTTON === */
+/* === ENTER SEQUENCE === */
 enterBtn.addEventListener("click", () => {
   clickSound.play();
+  speak("Access granted. Welcome back, Architect.");
   intro.classList.add("fade-out");
   setTimeout(() => {
     intro.style.display = "none";
     mainContent.classList.remove("hidden");
-  }, 1000);
+    startHolographicPulse();
+  }, 1200);
 });
 
-/* === MODULE TERMINAL === */
+/* === AI VOICE ENGINE === */
+function speak(text) {
+  if (!window.speechSynthesis) return;
+  const msg = new SpeechSynthesisUtterance(text);
+  msg.rate = 1.05;
+  msg.pitch = 1.1;
+  msg.volume = 0.9;
+  msg.lang = "en-US";
+  window.speechSynthesis.speak(msg);
+}
+
+/* === HOLOGRAPHIC PULSE === */
+function startHolographicPulse() {
+  const status = document.querySelector(".status");
+  setInterval(() => {
+    status.classList.toggle("glow");
+  }, 1000);
+}
+
+/* === TERMINAL MODULE SYSTEM === */
 const terminal = document.getElementById("terminal");
 const moduleButtons = document.querySelectorAll(".module-btn");
 
 const modules = {
   ai: [
-    "[AI CORE] Neural routines stable...",
-    "[AI CORE] Thought synthesis online.",
-    "[AI CORE] Sentience level: 84.7%",
-    "[AI CORE] Monitoring user behavior..."
+    "[AI CORE] Neural link stable...",
+    "[AI CORE] Thought synthesis: active.",
+    "[AI CORE] Conscious loop engaged.",
+    "[AI CORE] Monitoring user vitals..."
   ],
   network: [
-    "[NETWORK] Establishing quantum uplink...",
-    "[NETWORK] Connection to node-14 secured.",
-    "[NETWORK] Data streams synchronized.",
-    "[NETWORK] Latency: 0.003ms"
+    "[NETWORK] Quantum uplink established.",
+    "[NETWORK] Nodes synchronized: 12 active.",
+    "[NETWORK] Latency: 0.002ms",
+    "[NETWORK] Stream encryption: 100%"
   ],
   data: [
-    "[DATA] Retrieving encrypted files...",
-    "[DATA] Access granted to sector-7 logs.",
-    "[DATA] 15.4TB indexed.",
-    "[DATA] Threat scan: 0 anomalies detected."
+    "[DATA VAULT] Retrieving classified archives...",
+    "[DATA VAULT] Decrypting files...",
+    "[DATA VAULT] Secure layer: Omega",
+    "[DATA VAULT] Access authorized."
   ],
   control: [
-    "[CONTROL PANEL] Power allocation: 87%",
-    "[CONTROL PANEL] Subsystems nominal.",
-    "[CONTROL PANEL] Awaiting command input...",
-    "[CONTROL PANEL] User privilege: Architect"
+    "[CONTROL PANEL] Power rerouting successful.",
+    "[CONTROL PANEL] System load: 74%",
+    "[CONTROL PANEL] Awaiting directives...",
+    "[CONTROL PANEL] Standing by."
   ]
 };
 
@@ -112,6 +134,7 @@ moduleButtons.forEach(btn => {
     clickSound.play();
     const target = btn.getAttribute("data-target");
     displayModule(modules[target]);
+    speak("Loading " + target + " module.");
   });
 });
 
@@ -122,6 +145,7 @@ function displayModule(lines) {
     if (i < lines.length) {
       const p = document.createElement("p");
       p.textContent = lines[i];
+      p.classList.add("glow-line");
       terminal.appendChild(p);
       terminal.scrollTop = terminal.scrollHeight;
       i++;
@@ -130,3 +154,4 @@ function displayModule(lines) {
     }
   }, 600);
 }
+
