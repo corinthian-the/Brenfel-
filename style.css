@@ -1,4 +1,4 @@
-/* === BASIC PAGE STYLING === */
+/* ====== PAGE STYLING ====== */
 body, html {
   margin: 0;
   padding: 0;
@@ -10,7 +10,7 @@ body, html {
   overflow: hidden;
 }
 
-/* === MATRIX BACKGROUND === */
+/* MATRIX BACKGROUND */
 #matrix {
   position: fixed;
   top: 0;
@@ -20,16 +20,16 @@ body, html {
   z-index: -1;
 }
 
-/* === BRANDING AND INTRO === */
+/* BRANDING & INTRO */
 .branding {
   position: absolute;
   top: 20px;
   left: 50%;
   transform: translateX(-50%);
-  text-align: center;
   font-family: 'Orbitron', sans-serif;
   font-weight: 700;
   font-size: 28px;
+  text-align: center;
 }
 
 .intro {
@@ -51,36 +51,22 @@ body, html {
   font-weight: bold;
 }
 
-/* === MAIN CONTENT === */
-#main-content.hidden {
-  display: none;
-}
-
-.logo-container {
-  text-align: center;
-  margin-top: 50px;
-}
-
+/* MAIN CONTENT */
+#main-content.hidden { display: none; }
+.logo-container { text-align: center; margin-top: 50px; }
 .glow-circle {
-  width: 100px;
-  height: 100px;
+  width: 100px; height: 100px;
   border-radius: 50%;
   background: radial-gradient(circle, #0ff, #000);
   margin: 0 auto;
   animation: pulse 2s infinite;
 }
-
 @keyframes pulse {
   0% { transform: scale(1); box-shadow: 0 0 20px #0ff, 0 0 40px #0ff; }
   50% { transform: scale(1.2); box-shadow: 0 0 40px #0ff, 0 0 80px #0ff; }
   100% { transform: scale(1); box-shadow: 0 0 20px #0ff, 0 0 40px #0ff; }
 }
-
-.modules {
-  text-align: center;
-  margin-top: 20px;
-}
-
+.modules { text-align: center; margin-top: 20px; }
 .modules button {
   margin: 5px;
   padding: 8px 15px;
@@ -92,48 +78,37 @@ body, html {
   cursor: pointer;
 }
 
-/* === FLOATING AI ORB === */
+/* AI ORB */
 .ai-orb {
   position: fixed;
-  bottom: 10%;
-  right: 10%;
-  width: 120px;
-  height: 120px;
+  width: 120px; height: 120px;
   pointer-events: none;
   z-index: 4;
   animation: float 6s ease-in-out infinite;
   transition: all 0.2s ease-in-out;
 }
-
 @keyframes float {
   0% { transform: translateY(0) rotate(0deg); }
   50% { transform: translateY(-20px) rotate(15deg); }
   100% { transform: translateY(0) rotate(0deg); }
 }
-
 .orb-core {
-  width: 90px;
-  height: 90px;
+  width: 90px; height: 90px;
   border-radius: 50%;
-  background: radial-gradient(circle, #00ffff 20%, rgba(0, 255, 255, 0.1) 70%);
+  background: radial-gradient(circle, #00ffff 20%, rgba(0,255,255,0.1) 70%);
   box-shadow: 0 0 40px #00ffff, 0 0 100px #00eaff;
-  position: absolute;
-  top: 15px;
-  left: 15px;
+  position: absolute; top: 15px; left: 15px;
   filter: blur(1px);
   transition: all 0.1s linear;
 }
-
 .orb-ring {
   position: absolute;
-  width: 130px;
-  height: 130px;
-  border: 2px solid rgba(0, 255, 255, 0.4);
+  width: 130px; height: 130px;
+  border: 2px solid rgba(0,255,255,0.4);
   border-radius: 50%;
   animation: rotateRing 8s linear infinite;
-  box-shadow: 0 0 30px rgba(0, 255, 255, 0.2);
+  box-shadow: 0 0 30px rgba(0,255,255,0.2);
 }
-
 @keyframes rotateRing {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
