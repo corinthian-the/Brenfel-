@@ -1,115 +1,123 @@
-/* ====== PAGE STYLING ====== */
+/* General page styling */
 body, html {
   margin: 0;
   padding: 0;
-  width: 100%;
+  overflow: hidden;
+  background: black;
   height: 100%;
   font-family: 'Poppins', sans-serif;
-  background: black;
-  color: #0ff;
-  overflow: hidden;
 }
 
-/* MATRIX BACKGROUND */
+/* Matrix canvas */
 #matrix {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: -1;
+  z-index: 0;
 }
 
-/* BRANDING & INTRO */
+/* Branding */
 .branding {
-  position: absolute;
+  position: fixed;
   top: 20px;
   left: 50%;
   transform: translateX(-50%);
+  color: #0ff;
   font-family: 'Orbitron', sans-serif;
-  font-weight: 700;
-  font-size: 28px;
-  text-align: center;
+  font-size: 2em;
+  z-index: 2;
 }
 
+/* Intro section */
 .intro {
-  position: absolute;
-  top: 40%;
-  width: 100%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   text-align: center;
+  color: #0ff;
+  z-index: 2;
+}
+
+.intro h1 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2.5em;
+}
+
+.buttons {
+  margin-top: 20px;
 }
 
 .buttons button {
-  margin: 10px;
+  background: #0ff;
+  border: none;
   padding: 10px 20px;
-  font-size: 16px;
+  margin: 0 10px;
   cursor: pointer;
-  background: #0ff;
-  border: none;
+  font-weight: bold;
   border-radius: 5px;
-  color: black;
-  font-weight: bold;
 }
 
-/* MAIN CONTENT */
-#main-content.hidden { display: none; }
-.logo-container { text-align: center; margin-top: 50px; }
-.glow-circle {
-  width: 100px; height: 100px;
-  border-radius: 50%;
-  background: radial-gradient(circle, #0ff, #000);
-  margin: 0 auto;
-  animation: pulse 2s infinite;
-}
-@keyframes pulse {
-  0% { transform: scale(1); box-shadow: 0 0 20px #0ff, 0 0 40px #0ff; }
-  50% { transform: scale(1.2); box-shadow: 0 0 40px #0ff, 0 0 80px #0ff; }
-  100% { transform: scale(1); box-shadow: 0 0 20px #0ff, 0 0 40px #0ff; }
-}
-.modules { text-align: center; margin-top: 20px; }
-.modules button {
-  margin: 5px;
-  padding: 8px 15px;
-  background: #0ff;
-  border: none;
-  border-radius: 3px;
-  color: black;
-  font-weight: bold;
-  cursor: pointer;
+.buttons button:hover {
+  background: #00bbff;
 }
 
-/* AI ORB */
+/* Main content */
+#main-content.hidden {
+  display: none;
+}
+
+#main-content {
+  position: fixed;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #0ff;
+  text-align: center;
+  z-index: 2;
+}
+
+/* AI Orb */
 .ai-orb {
   position: fixed;
-  width: 120px; height: 120px;
-  pointer-events: none;
-  z-index: 4;
-  animation: float 6s ease-in-out infinite;
-  transition: all 0.2s ease-in-out;
-}
-@keyframes float {
-  0% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-20px) rotate(15deg); }
-  100% { transform: translateY(0) rotate(0deg); }
-}
-.orb-core {
-  width: 90px; height: 90px;
+  bottom: 10%;
+  right: 10%;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
-  background: radial-gradient(circle, #00ffff 20%, rgba(0,255,255,0.1) 70%);
-  box-shadow: 0 0 40px #00ffff, 0 0 100px #00eaff;
-  position: absolute; top: 15px; left: 15px;
-  filter: blur(1px);
-  transition: all 0.1s linear;
+  background: radial-gradient(circle, #00ffff 0%, #0000ff 100%);
+  box-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff inset;
+  z-index: 2;
+  pointer-events: auto;
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.1s ease, left 0.2s ease, top 0.2s ease, background 0.2s ease;
 }
-.orb-ring {
+
+.orb-core, .orb-ring {
   position: absolute;
-  width: 130px; height: 130px;
-  border: 2px solid rgba(0,255,255,0.4);
   border-radius: 50%;
-  animation: rotateRing 8s linear infinite;
-  box-shadow: 0 0 30px rgba(0,255,255,0.2);
 }
-@keyframes rotateRing {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+
+.orb-core {
+  top: 25%;
+  left: 25%;
+  width: 50%;
+  height: 50%;
+  background: rgba(0, 255, 255, 0.7);
+}
+
+.orb-ring {
+  top: -10%;
+  left: -10%;
+  width: 120%;
+  height: 120%;
+  border: 2px solid #0ff;
+  animation: ringRotate 4s linear infinite;
+}
+
+@keyframes ringRotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
