@@ -154,4 +154,3 @@ function displayModule(lines) {
     }
   }, 600);
 }
-
