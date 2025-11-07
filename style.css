@@ -1,4 +1,4 @@
-/* ===== General Styling ===== */
+/* ===== General Styles ===== */
 body, html {
   margin: 0;
   padding: 0;
@@ -8,7 +8,6 @@ body, html {
   font-family: 'Poppins', sans-serif;
 }
 
-/* Matrix Canvas */
 #matrix {
   position: fixed;
   top: 0;
@@ -23,13 +22,13 @@ body, html {
   position: fixed;
   top: 20px;
   left: 20px;
-  color: #0ff; /* cyan */
+  color: #0ff;
   font-family: 'Orbitron', sans-serif;
   font-size: 2em;
   z-index: 2;
 }
 
-/* Intro Section */
+/* Intro */
 .intro {
   position: fixed;
   top: 50%;
@@ -152,14 +151,11 @@ body, html {
   background: #00bbbb;
   color: black;
 }
+
 /* ===== Terminal Flicker ===== */
 @keyframes flicker {
-  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
-    opacity: 1;
-  }
-  20%, 22%, 24%, 55% {
-    opacity: 0.4;
-  }
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+  20%, 22%, 24%, 55% { opacity: 0.4; }
 }
 
 .flicker {
@@ -168,15 +164,7 @@ body, html {
 
 /* ===== Matrix Glow Pulse ===== */
 @keyframes glowPulse {
-  0% {
-    text-shadow: 0 0 5px #0ff;
-  }
-  50% {
-    text-shadow: 0 0 15px #0ff, 0 0 20px #0ff;
-  }
-  100% {
-    text-shadow: 0 0 5px #0ff;
-  }
+  0% { text-shadow: 0 0 5px #0ff; }
+  50% { text-shadow: 0 0 15px #0ff, 0 0 20px #0ff; }
+  100% { text-shadow: 0 0 5px #0ff; }
 }
-
-
