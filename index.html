@@ -3,11 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Our Love Frequency ♡ Ultimate Romantic Radio & Vault</title>
+  <title>Our Love Frequency ♡ Masterpiece Edition</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Sacramento&family=Quicksand:wght@500;600;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Sacramento&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg-theme: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #feada6 100%);
@@ -18,7 +17,6 @@
       --text-main: #4a2e35;
       --text-muted: #8c6b73;
       --border-color: #ffd1dc;
-      --gold-accent: #f7b731;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -34,13 +32,13 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 15px 12px 90px 12px;
+      padding: 15px;
       position: relative;
       overflow-x: hidden;
-      transition: background 0.5s ease;
+      transition: background 0.4s ease;
     }
 
-    /* Particle Canvas Overlay */
+    /* Particle Trail Canvas */
     #particleCanvas {
       position: fixed;
       top: 0;
@@ -48,31 +46,30 @@
       width: 100vw;
       height: 100vh;
       pointer-events: none;
-      z-index: 2;
+      z-index: 9999;
     }
 
-    /* Hello Kitty Tap Spawn Animation */
+    /* Hello Kitty Animation Effect */
     .hk-tap-icon {
       position: fixed;
       pointer-events: none;
-      z-index: 9999;
+      z-index: 9998;
       width: 52px;
       height: 52px;
       transform: translate(-50%, -50%) scale(0.2);
-      animation: hkPop 1.2s ease-out forwards;
+      animation: hkPop 1.4s ease-out forwards;
     }
 
     @keyframes hkPop {
       0% { opacity: 0; transform: translate(-50%, -50%) scale(0.2) rotate(0deg); }
-      30% { opacity: 1; transform: translate(-50%, -50%) scale(1.25) rotate(15deg); }
-      70% { opacity: 1; transform: translate(-50%, -80px) scale(1) rotate(-10deg); }
-      100% { opacity: 0; transform: translate(-50%, -120px) scale(0.6) rotate(0deg); }
+      30% { opacity: 1; transform: translate(-50%, -50%) scale(1.3) rotate(20deg); }
+      70% { opacity: 1; transform: translate(-50%, -90px) scale(1) rotate(-15deg); }
+      100% { opacity: 0; transform: translate(-50%, -140px) scale(0.5) rotate(0deg); }
     }
 
-    /* Floating background elements */
     .bg-heart {
-      position: fixed;
-      color: rgba(255, 255, 255, 0.45);
+      position: absolute;
+      color: rgba(255, 255, 255, 0.5);
       font-size: 22px;
       user-select: none;
       animation: floatUp 8s linear infinite;
@@ -90,7 +87,7 @@
       margin-bottom: 10px;
       width: 100%;
       max-width: 500px;
-      z-index: 3;
+      z-index: 1;
     }
 
     header h1 {
@@ -101,106 +98,75 @@
       line-height: 1;
     }
 
-    header p {
-      font-family: 'Fredoka', sans-serif;
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      margin-top: 4px;
-      letter-spacing: 0.5px;
-    }
-
-    /* Days Together Live Clock Banner */
-    .timer-banner {
-      background: rgba(255, 255, 255, 0.82);
-      backdrop-filter: blur(10px);
-      border: 2px solid #ffffff;
-      border-radius: 20px;
-      padding: 10px 16px;
-      margin-bottom: 12px;
-      width: 100%;
-      max-width: 500px;
-      box-shadow: 0 4px 15px rgba(255, 105, 135, 0.15);
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      text-align: center;
-      z-index: 3;
-    }
-
-    .timer-unit {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .timer-num {
-      font-family: 'Fredoka', sans-serif;
-      font-size: 1.25rem;
+    /* Days Together Banner */
+    .counter-banner {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(8px);
+      padding: 8px 18px;
+      border-radius: 25px;
+      font-size: 0.82rem;
       font-weight: 700;
       color: var(--accent);
-    }
-
-    .timer-label {
-      font-size: 0.65rem;
-      text-transform: uppercase;
-      font-weight: 700;
-      color: var(--text-muted);
-    }
-
-    /* Fixed Bottom Master Navigation Bar */
-    .bottom-nav {
-      position: fixed;
-      bottom: 15px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 92%;
-      max-width: 460px;
-      background: rgba(255, 255, 255, 0.92);
-      backdrop-filter: blur(16px);
-      border-radius: 30px;
       border: 2px solid #ffffff;
-      box-shadow: 0 10px 30px rgba(255, 75, 114, 0.25);
+      box-shadow: 0 4px 15px rgba(255, 105, 135, 0.2);
+      margin-bottom: 12px;
       display: flex;
-      justify-content: space-around;
-      padding: 8px 10px;
-      z-index: 999;
-    }
-
-    .nav-item {
-      font-family: 'Fredoka', sans-serif;
-      background: none;
-      border: none;
-      color: var(--text-muted);
-      font-size: 0.75rem;
-      display: flex;
-      flex-direction: column;
       align-items: center;
-      gap: 3px;
-      cursor: pointer;
-      padding: 6px 10px;
-      border-radius: 20px;
-      transition: all 0.3s ease;
+      gap: 6px;
+      z-index: 1;
     }
 
-    .nav-item span.icon { font-size: 1.2rem; }
+    /* Top Navigation Tabs */
+    .nav-tabs {
+      display: flex;
+      gap: 6px;
+      background: var(--card-bg);
+      padding: 6px;
+      border-radius: 25px;
+      margin-bottom: 15px;
+      border: 2px solid #ffffff;
+      box-shadow: 0 4px 15px rgba(255, 105, 135, 0.15);
+      z-index: 10;
+      max-width: 500px;
+      width: 100%;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .nav-tabs::-webkit-scrollbar { display: none; }
 
-    .nav-item.active {
+    .nav-btn {
+      font-family: 'Fredoka', sans-serif;
+      padding: 8px 14px;
+      border-radius: 20px;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.3s ease;
+      flex: 1;
+      text-align: center;
+    }
+
+    .nav-btn.active {
       background: var(--accent);
       color: #ffffff;
-      box-shadow: 0 4px 12px var(--accent-glow);
+      box-shadow: 0 3px 10px var(--accent-glow);
     }
 
-    /* Views Framework */
-    .page-view {
+    /* Page Views */
+    .page-section {
       width: 100%;
       max-width: 500px;
       display: none;
       opacity: 0;
-      transform: translateY(12px);
-      transition: opacity 0.35s ease, transform 0.35s ease;
-      z-index: 3;
+      transform: translateY(15px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      z-index: 1;
     }
 
-    .page-view.active {
+    .page-section.active {
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -208,19 +174,18 @@
       transform: translateY(0);
     }
 
-    /* Glassmorphism Main App Cards */
     .app-card {
       background: var(--card-bg);
-      backdrop-filter: blur(14px);
+      backdrop-filter: blur(12px);
       width: 100%;
       border-radius: 30px;
-      padding: 22px 18px;
-      box-shadow: 0 15px 35px rgba(255, 105, 135, 0.22), 0 5px 15px rgba(255, 255, 255, 0.8) inset;
+      padding: 22px;
+      box-shadow: 0 15px 35px rgba(255, 105, 135, 0.25), 0 5px 15px rgba(255, 255, 255, 0.8) inset;
       border: 3px solid #ffffff;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 15px;
+      gap: 16px;
       position: relative;
     }
 
@@ -231,33 +196,27 @@
       background: #ffe3e8;
       border: 2px solid #ffb6c1;
       color: var(--accent);
-      width: 38px;
-      height: 38px;
+      width: 36px;
+      height: 36px;
       border-radius: 50%;
       cursor: pointer;
-      font-size: 1.1rem;
+      font-size: 1.0rem;
       display: flex;
       justify-content: center;
       align-items: center;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.08);
-      z-index: 10;
-      transition: transform 0.2s ease;
     }
-    .admin-toggle:active { transform: scale(0.9); }
 
-    /* Frequency Badge Display */
     .freq-badge {
       font-family: 'Fredoka', sans-serif;
       background: var(--accent);
       color: #ffffff;
-      padding: 4px 16px;
+      padding: 4px 14px;
       border-radius: 20px;
-      font-size: 0.88rem;
+      font-size: 0.82rem;
       letter-spacing: 1px;
-      box-shadow: 0 4px 12px var(--accent-glow);
+      box-shadow: 0 3px 10px var(--accent-glow);
     }
 
-    /* Vinyl Player Styling */
     .vinyl-wrapper {
       width: 180px;
       height: 180px;
@@ -265,7 +224,6 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      margin: 4px 0;
       cursor: pointer;
     }
 
@@ -285,8 +243,8 @@
     .vinyl-record.playing { animation-play-state: running; }
 
     .album-art {
-      width: 82px;
-      height: 82px;
+      width: 80px;
+      height: 80px;
       border-radius: 50%;
       object-fit: cover;
       border: 4px solid #ffffff;
@@ -296,13 +254,12 @@
     @keyframes spin { 100% { transform: rotate(360deg); } }
 
     .track-info { text-align: center; width: 100%; }
-    .track-title { font-family: 'Fredoka', sans-serif; font-size: 1.25rem; font-weight: 600; color: var(--text-main); }
-    .track-subtitle { font-size: 0.85rem; color: var(--text-muted); margin-top: 3px; font-weight: 500; }
+    .track-title { font-family: 'Fredoka', sans-serif; font-size: 1.2rem; color: var(--text-main); }
+    .track-subtitle { font-size: 0.85rem; color: var(--text-muted); margin-top: 3px; }
 
-    /* Station Selector Horizontal Chips */
     .station-selector {
       display: flex;
-      gap: 8px;
+      gap: 10px;
       width: 100%;
       overflow-x: auto;
       padding: 4px 2px;
@@ -320,11 +277,9 @@
       cursor: pointer;
       white-space: nowrap;
       border: 2px solid #ffd1dc;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
       display: flex;
       align-items: center;
       gap: 6px;
-      transition: all 0.25s ease;
     }
 
     .station-chip.active {
@@ -334,63 +289,11 @@
       box-shadow: 0 4px 12px var(--accent-glow);
     }
 
-    /* Ambient Soundscape Mixer Box */
-    .soundscape-box {
-      width: 100%;
-      background: #fff8f9;
-      border: 2px dashed #ffd1dc;
-      border-radius: 20px;
-      padding: 12px 14px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .soundscape-title {
-      font-family: 'Fredoka', sans-serif;
-      font-size: 0.85rem;
-      color: var(--accent);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .ambient-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
-    }
-
-    .ambient-card {
-      background: #ffffff;
-      border: 1px solid #ffd1dc;
-      border-radius: 12px;
-      padding: 6px 10px;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .ambient-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.75rem;
-      font-weight: 700;
-      color: var(--text-muted);
-    }
-
-    .ambient-card input[type="range"] {
-      width: 100%;
-      accent-color: var(--accent);
-    }
-
-    /* Player Controls */
     .controls { display: flex; align-items: center; gap: 18px; }
 
     .btn-circle {
-      width: 58px;
-      height: 58px;
+      width: 56px;
+      height: 56px;
       border-radius: 50%;
       border: none;
       background: var(--accent);
@@ -401,9 +304,7 @@
       align-items: center;
       cursor: pointer;
       box-shadow: 0 6px 18px var(--accent-glow);
-      transition: transform 0.2s ease;
     }
-    .btn-circle:active { transform: scale(0.92); }
 
     .btn-secondary {
       width: 42px;
@@ -412,240 +313,224 @@
       border: 2px solid #ffd1dc;
       background: #ffffff;
       color: var(--accent);
-      font-size: 1rem;
       cursor: pointer;
       display: flex;
       justify-content: center;
       align-items: center;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.05);
     }
 
-    .btn-action-sm {
+    .btn-action-small {
       font-family: 'Fredoka', sans-serif;
       background: #fff0f3;
       color: var(--accent);
       border: 2px solid #ffd1dc;
-      padding: 8px 16px;
+      padding: 8px 14px;
       border-radius: 20px;
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
       text-decoration: none;
     }
 
-    /* Letters Vault & Envelope */
-    .envelope {
+    /* Ambient Audio Mixer Bar */
+    .ambient-bar {
       width: 100%;
-      background: #fff0f3;
-      border: 2px solid #ffb6c1;
-      border-radius: 20px;
-      padding: 16px;
-      position: relative;
-      box-shadow: 0 8px 20px rgba(255, 182, 193, 0.3);
+      background: #fff8f9;
+      border: 2px dashed #ffb6c1;
+      border-radius: 18px;
+      padding: 12px;
+      display: flex;
+      justify-content: space-around;
+      gap: 8px;
     }
 
-    .letter-paper {
+    .ambient-btn {
       background: #ffffff;
-      border-radius: 14px;
-      padding: 16px;
-      border: 1px dashed #ffd1dc;
-      font-family: 'Caveat', cursive;
-      font-size: 1.35rem;
-      line-height: 1.5;
-      color: #4a2e35;
-      max-height: 200px;
+      border: 1px solid #ffd1dc;
+      padding: 6px 10px;
+      border-radius: 12px;
+      font-size: 0.78rem;
+      color: var(--text-main);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-family: 'Fredoka', sans-serif;
+    }
+    .ambient-btn.active {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+
+    /* PAGE 2: PURE LETTERS */
+    .envelope-card {
+      width: 100%;
+      background: #ffffff;
+      border: 2px solid #ffd1dc;
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 8px 20px rgba(255, 182, 193, 0.2);
+    }
+
+    .letter-title {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.2rem;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .letter-body {
+      font-size: 0.92rem;
+      line-height: 1.6;
+      color: #5a3e45;
+      max-height: 220px;
       overflow-y: auto;
       white-space: pre-wrap;
     }
 
-    /* Voice Customization Settings */
-    .voice-settings-box {
+    /* PAGE 3: SCRAPBOOK POLAROID GALLERY */
+    .polaroid-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 12px;
       width: 100%;
-      background: #fff8f9;
-      border: 1px solid #ffd1dc;
-      border-radius: 16px;
-      padding: 10px 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      font-size: 0.78rem;
-    }
-
-    .voice-settings-box select {
-      width: 100%;
-      padding: 6px;
-      border: 1px solid #ffd1dc;
-      border-radius: 10px;
-      background: #ffffff;
-      font-family: 'Quicksand', sans-serif;
-    }
-
-    /* Memory Lane / Timeline Photo Scrapbook */
-    .timeline-container {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
+      max-height: 420px;
+      overflow-y: auto;
+      padding: 5px;
     }
 
     .polaroid-card {
       background: #ffffff;
-      padding: 12px 12px 18px 12px;
+      padding: 8px 8px 14px 8px;
       border-radius: 12px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-      border: 1px solid #eee;
-      transform: rotate(-1.5deg);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+      border: 1px solid #f0f0f0;
+      text-align: center;
       transition: transform 0.3s ease;
+      cursor: pointer;
     }
-    .polaroid-card:nth-child(even) { transform: rotate(1.5deg); }
-    .polaroid-card:hover { transform: scale(1.02) rotate(0deg); }
+    .polaroid-card:hover { transform: scale(1.04) rotate(1deg); }
 
     .polaroid-img {
       width: 100%;
-      height: 180px;
+      height: 120px;
       object-fit: cover;
       border-radius: 8px;
+      margin-bottom: 6px;
     }
 
     .polaroid-caption {
-      font-family: 'Caveat', cursive;
-      font-size: 1.3rem;
-      text-align: center;
-      margin-top: 10px;
-      color: #4a2e35;
+      font-family: 'Sacramento', cursive;
+      font-size: 1.1rem;
+      color: var(--text-main);
+      line-height: 1;
     }
 
-    .polaroid-date {
-      font-family: 'Fredoka', sans-serif;
-      font-size: 0.72rem;
-      color: var(--accent);
-      text-align: center;
-      margin-top: 2px;
-    }
-
-    /* Love Fortune Wheel / Card Drawer */
-    .fortune-box {
-      width: 100%;
-      background: linear-gradient(135deg, #fff0f3 0%, #ffe3e8 100%);
-      border: 2px solid #ffb6c1;
-      border-radius: 20px;
-      padding: 20px;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .fortune-card-display {
-      background: #ffffff;
-      border: 2px dashed var(--accent);
-      border-radius: 16px;
-      padding: 16px;
-      width: 100%;
-      min-height: 90px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Caveat', cursive;
-      font-size: 1.4rem;
-      color: var(--accent);
-      box-shadow: 0 4px 12px rgba(255, 75, 114, 0.1);
-    }
-
-    /* Proposal View */
+    /* PAGE 4: MAGICAL FLOATING PROPOSAL */
     .proposal-box {
       text-align: center;
       width: 100%;
       position: relative;
-      min-height: 360px;
+      min-height: 420px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      overflow: hidden;
+      border-radius: 25px;
+      background: radial-gradient(circle, rgba(255,255,255,0.95) 0%, rgba(255,240,243,0.9) 100%);
     }
 
     .ring-icon {
-      font-size: 4.2rem;
+      font-size: 4.8rem;
       animation: pulse 2s infinite;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
+      filter: drop-shadow(0 0 12px rgba(255,75,114,0.4));
     }
-    @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+    @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.15); } }
 
     .proposal-title {
       font-family: 'Sacramento', cursive;
       font-size: 3.2rem;
       color: var(--accent);
       line-height: 1.1;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
 
     .proposal-desc {
-      font-size: 0.92rem;
+      font-size: 0.95rem;
       color: var(--text-muted);
-      margin-bottom: 25px;
-      padding: 0 10px;
+      margin-bottom: 20px;
+      padding: 0 15px;
+      line-height: 1.5;
     }
 
+    /* Floating Area for runaway proposal button */
     .proposal-btn-area {
       position: relative;
       width: 100%;
-      height: 110px;
+      height: 180px;
       display: flex;
       justify-content: center;
       align-items: center;
     }
 
-    .btn-yes {
+    .btn-yes-floating {
       font-family: 'Fredoka', sans-serif;
-      background: #2ed573;
+      background: linear-gradient(135deg, #2ed573, #26af5f);
       color: white;
       border: none;
-      padding: 12px 28px;
+      padding: 14px 32px;
       border-radius: 30px;
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       cursor: pointer;
-      box-shadow: 0 4px 15px rgba(46, 213, 115, 0.4);
+      box-shadow: 0 6px 20px rgba(46, 213, 115, 0.5);
       position: absolute;
-      transition: all 0.15s ease-out;
-      z-index: 10;
+      transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      z-index: 20;
     }
 
-    .btn-no {
+    .btn-no-static {
       font-family: 'Fredoka', sans-serif;
       background: var(--accent);
       color: white;
       border: none;
-      padding: 12px 28px;
+      padding: 14px 32px;
       border-radius: 30px;
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       cursor: pointer;
-      box-shadow: 0 4px 15px var(--accent-glow);
+      box-shadow: 0 6px 20px var(--accent-glow);
     }
 
-    /* Modals */
-    .modal-overlay {
+    .success-modal {
       display: none;
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.6);
-      backdrop-filter: blur(8px);
+      background: rgba(0,0,0,0.65);
+      backdrop-filter: blur(10px);
       z-index: 10000;
       justify-content: center;
       align-items: center;
       padding: 20px;
     }
 
-    .modal-card {
+    .success-content {
       background: #ffffff;
-      padding: 25px 20px;
+      padding: 35px 25px;
       border-radius: 30px;
       text-align: center;
       max-width: 380px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.3);
       border: 4px solid #ffd1dc;
+    }
+
+    .success-content h2 {
+      font-family: 'Sacramento', cursive;
+      font-size: 3.5rem;
+      color: var(--accent);
     }
 
     /* Admin Panel */
@@ -653,74 +538,64 @@
       width: 100%;
       max-width: 500px;
       background: var(--card-bg);
-      backdrop-filter: blur(14px);
+      backdrop-filter: blur(12px);
       border-radius: 25px;
-      padding: 20px;
-      margin-top: 15px;
+      padding: 22px;
+      margin-top: 20px;
       border: 3px solid #ffffff;
       display: none;
-      z-index: 3;
+      z-index: 1;
     }
     .admin-panel.active { display: block; }
     .admin-panel h2 { font-family: 'Fredoka', sans-serif; font-size: 1.2rem; margin-bottom: 12px; color: var(--accent); text-align: center; }
 
-    .form-group { margin-bottom: 10px; }
-    .form-group label { display: block; font-size: 0.78rem; font-weight: 700; color: var(--text-muted); margin-bottom: 4px; }
+    .form-group { margin-bottom: 12px; }
+    .form-group label { display: block; font-size: 0.8rem; font-weight: 700; color: var(--text-muted); margin-bottom: 4px; }
     .form-group input, .form-group select, .form-group textarea {
-      width: 100%; padding: 9px; background: #ffffff; border: 2px solid #ffd1dc; color: var(--text-main); border-radius: 12px; font-size: 0.85rem; outline: none; font-family: 'Quicksand', sans-serif;
+      width: 100%; padding: 10px; background: #ffffff; border: 2px solid #ffd1dc; color: var(--text-main); border-radius: 12px; font-size: 0.88rem; outline: none; font-family: 'Quicksand', sans-serif;
     }
 
-    .btn-action { padding: 10px; border-radius: 14px; border: none; background: var(--accent); color: white; font-family: 'Fredoka', sans-serif; font-size: 0.9rem; cursor: pointer; width: 100%; box-shadow: 0 4px 12px var(--accent-glow); }
-    .section-title { font-family: 'Fredoka', sans-serif; font-size: 0.92rem; color: var(--accent); margin: 12px 0 6px 0; border-bottom: 1px solid #ffd1dc; padding-bottom: 4px; }
+    .btn-save { padding: 12px; border-radius: 16px; border: none; background: var(--accent); color: white; font-family: 'Fredoka', sans-serif; font-size: 0.95rem; cursor: pointer; width: 100%; }
+    .section-title { font-family: 'Fredoka', sans-serif; font-size: 0.95rem; color: var(--accent); margin: 12px 0 6px 0; border-bottom: 1px solid #ffd1dc; padding-bottom: 4px; }
     .list-box { max-height: 120px; overflow-y: auto; margin-bottom: 10px; }
-    .item-card { display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; background: #ffffff; border-radius: 10px; margin-bottom: 6px; font-size: 0.8rem; border: 1px solid #ffd1dc; }
+    .item-card { display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; background: #ffffff; border-radius: 10px; margin-bottom: 6px; font-size: 0.82rem; border: 1px solid #ffd1dc; }
     .btn-del { background: none; border: none; color: #ff4757; font-size: 0.95rem; cursor: pointer; }
   </style>
 </head>
 <body>
 
-  <!-- Particle Effect Canvas Overlay -->
+  <!-- Cursor Particle Canvas -->
   <canvas id="particleCanvas"></canvas>
 
-  <!-- Background Hearts -->
   <div class="bg-heart" style="left: 10%; animation-delay: 0s;">💖</div>
-  <div class="bg-heart" style="left: 30%; animation-delay: 2.5s;">💕</div>
-  <div class="bg-heart" style="left: 65%; animation-delay: 4.5s;">🌸</div>
-  <div class="bg-heart" style="left: 85%; animation-delay: 1s;">✨</div>
+  <div class="bg-heart" style="left: 25%; animation-delay: 2s;">💕</div>
+  <div class="bg-heart" style="left: 60%; animation-delay: 4s;">🌸</div>
+  <div class="bg-heart" style="left: 80%; animation-delay: 1s;">✨</div>
 
-  <!-- Header -->
   <header>
     <h1>Our Love Frequency</h1>
-    <p>♡ FM Radio, Memory Vault & Proposal ♡</p>
   </header>
 
-  <!-- Days Together Live Clock Banner -->
-  <div class="timer-banner">
-    <div class="timer-unit">
-      <span class="timer-num" id="daysCount">0</span>
-      <span class="timer-label">Days</span>
-    </div>
-    <div class="timer-unit">
-      <span class="timer-num" id="hoursCount">0</span>
-      <span class="timer-label">Hours</span>
-    </div>
-    <div class="timer-unit">
-      <span class="timer-num" id="minsCount">0</span>
-      <span class="timer-label">Mins</span>
-    </div>
-    <div class="timer-unit">
-      <span class="timer-num" id="secsCount">0</span>
-      <span class="timer-label">Secs Together</span>
-    </div>
+  <!-- Live Dating Counter Banner (Corrected to May 24) -->
+  <div class="counter-banner" id="counterBanner">
+    ⏳ Loading our love timeline...
+  </div>
+
+  <!-- Top Navigation Tabs -->
+  <div class="nav-tabs">
+    <button class="nav-btn active" onclick="switchPage('radioPage')">📻 Radio FM</button>
+    <button class="nav-btn" onclick="switchPage('lettersPage')">💌 Letters</button>
+    <button class="nav-btn" onclick="switchPage('scrapbookPage')">🖼️ Scrapbook</button>
+    <button class="nav-btn" onclick="switchPage('proposalPage')">💍 Proposal</button>
   </div>
 
   <!-- PAGE 1: RADIO & AMBIENT MIXER -->
-  <div class="page-view active" id="radioPage">
+  <div class="page-section active" id="radioPage">
     <div class="app-card">
-      <button class="admin-toggle" id="adminBtn" title="Admin Settings">⚙️</button>
+      <button class="admin-toggle" id="adminBtn">⚙️</button>
       <div class="freq-badge" id="freqBadge">107.9 FM</div>
 
-      <div class="vinyl-wrapper" id="vinylClickTarget" title="Click vinyl 5 times for a secret surprise!">
+      <div class="vinyl-wrapper" id="vinylWrapper">
         <div class="vinyl-record" id="vinyl">
           <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=300" alt="Album Art" class="album-art" id="albumArt">
         </div>
@@ -728,35 +603,17 @@
 
       <div class="track-info">
         <div class="track-title" id="trackTitle">Select a Station</div>
-        <div class="track-subtitle" id="trackSubtitle">Tune in to listen ♡</div>
+        <div class="track-subtitle" id="trackSubtitle">Tap play to listen ♡</div>
+      </div>
+
+      <!-- Ambient Soundscape Generator -->
+      <div class="ambient-bar">
+        <button class="ambient-btn" id="rainBtn" onclick="toggleAmbient('rain')">🌧️ Rain</button>
+        <button class="ambient-btn" id="fireBtn" onclick="toggleAmbient('fire')">🔥 Fireplace</button>
+        <button class="ambient-btn" id="wavesBtn" onclick="toggleAmbient('waves')">🌊 Waves</button>
       </div>
 
       <div class="station-selector" id="stationList"></div>
-
-      <!-- Ambient Soundscape Mixer -->
-      <div class="soundscape-box">
-        <div class="soundscape-title">
-          <span>🌧️ Romantic Soundscape Mixer</span>
-        </div>
-        <div class="ambient-grid">
-          <div class="ambient-card">
-            <div class="ambient-header"><span>🌧️ Rain</span><span id="rainVolVal">0%</span></div>
-            <input type="range" id="rainVol" min="0" max="100" value="0">
-          </div>
-          <div class="ambient-card">
-            <div class="ambient-header"><span>🔥 Fireplace</span><span id="fireVolVal">0%</span></div>
-            <input type="range" id="fireVol" min="0" max="100" value="0">
-          </div>
-          <div class="ambient-card">
-            <div class="ambient-header"><span>🌊 Ocean</span><span id="oceanVolVal">0%</span></div>
-            <input type="range" id="oceanVol" min="0" max="100" value="0">
-          </div>
-          <div class="ambient-card">
-            <div class="ambient-header"><span>✨ Stars</span><span id="chimeVolVal">0%</span></div>
-            <input type="range" id="chimeVol" min="0" max="100" value="0">
-          </div>
-        </div>
-      </div>
 
       <div class="controls">
         <button class="btn-secondary" id="prevBtn">⏮</button>
@@ -764,117 +621,67 @@
         <button class="btn-secondary" id="nextBtn">⏭</button>
       </div>
 
-      <a href="#" id="downloadBtn" class="btn-action-sm" download="LoveNote.mp3" style="display: none;">
+      <a href="#" id="downloadBtn" class="btn-action-small" download="voice_note.mp3" style="display: none;">
         📥 Download Track
       </a>
     </div>
   </div>
 
-  <!-- PAGE 2: LOVE LETTERS & DAILY FORTUNE -->
-  <div class="page-view" id="lettersPage">
+  <!-- PAGE 2: PURE LETTERS & VOICE READER -->
+  <div class="page-section" id="lettersPage">
     <div class="app-card">
-      <div class="envelope">
-        <div class="letter-paper" id="letterTextContent">Select a letter to open and read... ♡</div>
+      <div class="envelope-card">
+        <div class="letter-title" id="pureLetterTitle">No Letter Selected</div>
+        <div class="letter-body" id="pureLetterBody">Select a letter below to read...</div>
       </div>
 
-      <div class="track-info">
-        <div class="track-title" id="letterTitle">Love Letters Vault</div>
-        <div class="track-subtitle" id="letterSubtitle">Written straight from the heart</div>
-      </div>
+      <div class="station-selector" id="pureLetterList"></div>
 
-      <div class="station-selector" id="letterList"></div>
-
-      <div class="voice-settings-box">
-        <label style="font-weight:700; color:var(--text-muted);">🎙️ Reading Voice Accent:</label>
-        <select id="voiceSelect"><option value="">Loading system voices...</option></select>
-      </div>
-
-      <div class="controls">
-        <button class="btn-secondary" id="prevLetterBtn">⏮</button>
-        <button class="btn-circle" id="playLetterBtn" title="Read Aloud">🗣️️</button>
-        <button class="btn-secondary" id="nextLetterBtn">⏭</button>
-      </div>
-
-      <!-- Daily Love Note Drawer -->
-      <div class="fortune-box">
-        <div style="font-family:'Fredoka', sans-serif; font-size:0.95rem; color:var(--accent);">💌 Today's Sweet Love Note</div>
-        <div class="fortune-card-display" id="fortuneDisplay">Tap the button below to pick today's message! ✨</div>
-        <button class="btn-action-sm" id="drawFortuneBtn">✨ Draw Daily Love Note</button>
-      </div>
+      <button id="readPureLetterBtn" class="btn-action-small" style="width: 100%; justify-content: center;">
+        🗣️ Listen to Letter
+      </button>
     </div>
   </div>
 
-  <!-- PAGE 3: MEMORY LANE & SCRAPBOOK -->
-  <div class="page-view" id="memoryPage">
+  <!-- PAGE 3: UNLIMITED SCRAPBOOK GALLERY -->
+  <div class="page-section" id="scrapbookPage">
     <div class="app-card">
-      <div style="font-family:'Fredoka', sans-serif; font-size:1.2rem; color:var(--accent);">📸 Our Memory Scrapbook</div>
-      <p style="font-size:0.85rem; color:var(--text-muted); text-align:center;">Milestones and moments we will cherish forever ♡</p>
-      
-      <div class="timeline-container" id="timelineList"></div>
+      <div style="font-family:'Fredoka',sans-serif; color:var(--accent); font-size:1.1rem;">Our Polaroid Memories ♡</div>
+      <div class="polaroid-grid" id="polaroidGrid"></div>
     </div>
   </div>
 
-  <!-- PAGE 4: PROPOSAL PAGE WITH RUNAWAY YES BUTTON -->
-  <div class="page-view" id="proposalPage">
+  <!-- PAGE 4: MAGICAL FLOATING PROPOSAL -->
+  <div class="page-section" id="proposalPage">
     <div class="app-card">
-      <div class="proposal-box" id="proposalTapZone">
+      <div class="proposal-box" id="proposalBox">
         <div class="ring-icon">💍</div>
         <div class="proposal-title">Will You Marry Me?</div>
-        <p class="proposal-desc">In every life, in every universe... I want to spend forever with you. Will you make me the happiest person and be my wife? ♡</p>
+        <p class="proposal-desc">You are my universe, my frequency, and my home. I want to love you today, tomorrow, and for all eternity. Will you make me the happiest person and be my wife? ♡</p>
 
         <div class="proposal-btn-area" id="proposalBtnArea">
-          <button class="btn-yes" id="runawayYesBtn">YES! 💖</button>
-          <button class="btn-no" id="normalNoBtn">YES! 💕</button>
+          <button class="btn-yes-floating" id="runawayYesBtn">YES! 💖</button>
+          <button class="btn-no-static" id="normalNoBtn">YES! 💕</button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Fixed Bottom Navigation Bar -->
-  <div class="bottom-nav">
-    <button class="nav-item active" onclick="switchPage('radioPage', this)">
-      <span class="icon">📻</span><span>Radio</span>
-    </button>
-    <button class="nav-item" onclick="switchPage('lettersPage', this)">
-      <span class="icon">💌</span><span>Vault</span>
-    </button>
-    <button class="nav-item" onclick="switchPage('memoryPage', this)">
-      <span class="icon">📸</span><span>Memories</span>
-    </button>
-    <button class="nav-item" onclick="switchPage('proposalPage', this)">
-      <span class="icon">💍</span><span>Proposal</span>
-    </button>
-  </div>
-
-  <!-- Success Proposal Modal -->
-  <div class="modal-overlay" id="successModal">
-    <div class="modal-card">
-      <h2 style="font-family:'Sacramento', cursive; font-size:3.5rem; color:var(--accent);">I KNEW IT! 🎉</h2>
-      <p style="font-size: 1.1rem; color: #4a2e35; margin: 15px 0;">You said YES! I love you forever and always! 💖💍✨</p>
-      <button class="btn-action" onclick="closeModal('successModal')">Forever Yours ♡</button>
+  <!-- Success Modal -->
+  <div class="success-modal" id="successModal">
+    <div class="success-content">
+      <h2>FOREVER & ALWAYS! 🎉</h2>
+      <p style="font-size: 1.15rem; color: #4a2e35; margin: 15px 0;">You said YES! I love you endlessly! 💖💍✨</p>
+      <button class="btn-save" onclick="closeModal()">I Love You Too ♡</button>
     </div>
   </div>
 
-  <!-- Secret Easter Egg Modal -->
-  <div class="modal-overlay" id="easterEggModal">
-    <div class="modal-card">
-      <h2 style="font-family:'Sacramento', cursive; font-size:3rem; color:var(--accent);">Secret Easter Egg Unlocked! 🔑✨</h2>
-      <p style="font-size: 1rem; color: #4a2e35; margin: 15px 0;">"You found my hidden secret note! You are my absolute favorite person in the entire world, today and always!" ♡</p>
-      <button class="btn-action" onclick="closeModal('easterEggModal')">Keep Being Amazing ♡</button>
-    </div>
-  </div>
-
-  <!-- Passcode Protected Admin Panel -->
+  <!-- Admin Panel -->
   <div class="admin-panel" id="adminPanel">
-    <h2>Admin Studio & Settings ♡</h2>
+    <h2>Admin Settings ♡</h2>
 
     <div class="form-group">
-      <label>Relationship Start Date (for Live Counter)</label>
-      <input type="date" id="startDateInput">
-    </div>
-
-    <div class="form-group">
-      <label>Choose Wallpaper / Theme</label>
+      <label>Choose Theme / Custom Background</label>
       <select id="bgThemeSelect">
         <option value="sunset">Sunset Romantic</option>
         <option value="cosmic">Night Cosmic</option>
@@ -886,489 +693,134 @@
       <input type="file" id="bgFileInput" accept="image/*">
     </div>
 
-    <div class="section-title">1. Create Custom FM Stations</div>
+    <div class="section-title">1. Custom Dating Start Date</div>
+    <div class="form-group">
+      <input type="date" id="startDateInput" value="2024-05-24">
+    </div>
+
+    <div class="section-title">2. Manage Custom Stations</div>
     <div class="form-group"><input type="text" id="newStationName" placeholder="Station Name"></div>
-    <div class="form-group"><input type="text" id="newStationFreq" placeholder="Frequency (e.g. 104.5 FM)"></div>
-    <button class="btn-action" id="addStationBtn" style="background:#6c5ce7; margin-bottom:10px;">+ Add Station</button>
+    <div class="form-group"><input type="text" id="newStationFreq" placeholder="Frequency e.g. 104.5 FM"></div>
+    <button class="btn-save" id="addStationBtn" style="background:#6c5ce7; margin-bottom:10px;">+ Add Station</button>
     <div class="list-box" id="adminStationList"></div>
 
-    <div class="section-title">2. Add Audio Track / Voice Note</div>
+    <div class="section-title">3. Add Audio Memory</div>
     <div class="form-group"><select id="selectTrackStation"></select></div>
     <div class="form-group"><input type="text" id="inputTitle" placeholder="Track Title"></div>
     <div class="form-group">
-      <label>Audio File or Stream URL</label>
-      <input type="file" id="audioFileInput" accept="audio/*" style="margin-bottom:4px;">
-      <input type="url" id="audioUrlInput" placeholder="https://example.com/song.mp3">
+      <label>Audio File or URL</label>
+      <input type="file" id="inputAudioFile" accept="audio/*" style="margin-bottom: 5px;">
+      <input type="text" id="inputAudioUrl" placeholder="https://example.com/song.mp3">
     </div>
     <div class="form-group"><label>Cover Photo</label><input type="file" id="inputFile" accept="image/*"></div>
-    <button class="btn-action" id="saveTrackBtn" style="margin-bottom:12px;">Save Audio Track</button>
+    <button class="btn-save" id="saveTrackBtn" style="margin-bottom:12px;">Save Audio Track</button>
 
-    <div class="section-title">3. Add Memory Card to Scrapbook</div>
-    <div class="form-group"><input type="text" id="memTitle" placeholder="Memory Title (e.g. Our First Date)"></div>
-    <div class="form-group"><input type="date" id="memDate"></div>
-    <div class="form-group"><input type="file" id="memPhoto" accept="image/*"></div>
-    <button class="btn-action" id="saveMemBtn">Save Memory</button>
+    <div class="section-title">4. Add Scrapbook Polaroid</div>
+    <div class="form-group"><input type="text" id="inputPolaroidCaption" placeholder="Memory Caption"></div>
+    <div class="form-group"><input type="file" id="inputPolaroidFile" accept="image/*"></div>
+    <button class="btn-save" id="savePolaroidBtn" style="margin-bottom:12px; background:#00b894;">Add Polaroid Picture</button>
 
-    <div class="section-title">Existing Tracks</div>
-    <div class="list-box" id="adminTrackList"></div>
+    <div class="section-title">5. Add Written Love Letter</div>
+    <div class="form-group"><input type="text" id="inputPureLetterTitle" placeholder="Letter Title"></div>
+    <div class="form-group"><textarea id="inputPureLetterBody" rows="3" placeholder="Letter contents..."></textarea></div>
+    <button class="btn-save" id="savePureLetterBtn">Save Written Letter</button>
   </div>
 
-  <!-- JavaScript Application Logic -->
   <script>
-    /* Global Application State */
     let stations = [];
     let tracks = [];
     let pureLetters = [];
-    let memories = [];
-    let currentRadioIndex = 0;
+    let polaroids = [];
+    let datingStartDate = new Date("2024-05-24T00:00:00");
+
+    let currentTrackIndex = 0;
     let currentLetterIndex = 0;
+    let isPlaying = false;
+    let audio = new Audio();
+    let vinylClicks = 0;
 
-    let audioPlayer = new Audio();
-    let isAudioPlaying = false;
-    let speechSynth = window.speechSynthesis;
-    let isSpeechReading = false;
+    let ambientCtx = null;
+    let ambientNodes = {};
 
-    let startDate = new Date('2022-02-14T00:00:00');
-    let vinylClickCount = 0;
-
-    let uploadedAudioBase64 = null;
-    let selectedImageBase64 = null;
-    let memImageBase64 = null;
-
-    /* Fortune Card Pool */
-    const loveFortunes = [
-      "♡ You make my world feel warm and complete everyday.",
-      "♡ Promise: I will always save you the last bite of food!",
-      "♡ Looking at you still gives me butterflies like day one.",
-      "♡ You are my safest home and my favorite adventure.",
-      "♡ Quick reminder: You are insanely beautiful!",
-      "♡ Every song on this radio is secretly about you."
-    ];
-
-    /* Hello Kitty Icons for Tap Effect */
     const hkIcons = [
       `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23ffffff" stroke="%23ff4b72" stroke-width="4"/><ellipse cx="35" cy="48" rx="5" ry="7" fill="%23000"/><ellipse cx="65" cy="48" rx="5" ry="7" fill="%23000"/><ellipse cx="50" cy="58" rx="6" ry="4" fill="%23ffb6c1"/><path d="M 65 25 Q 75 15 85 25 Q 75 35 65 25 Z" fill="%23ff4b72"/><circle cx="72" cy="27" r="4" fill="%23ffffff"/></svg>`,
       `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23fff0f3" stroke="%23ff2b56" stroke-width="4"/><ellipse cx="35" cy="48" rx="5" ry="7" fill="%23000"/><ellipse cx="65" cy="48" rx="5" ry="7" fill="%23000"/><ellipse cx="50" cy="58" rx="6" ry="4" fill="%23ff4b72"/><path d="M 20 25 Q 10 15 20 5 Q 30 15 20 25 Z" fill="%23ff4b72"/></svg>`
     ];
 
-    const defaultStations = [
-      { name: "Our Memories 📸", freq: "107.9 FM" },
-      { name: "Late Night Vibes 🌙", freq: "98.5 FM" },
-      { name: "Sweet Letters 💌", freq: "101.3 FM" }
-    ];
-
     function init() {
-      const savedStations = localStorage.getItem('master_stations');
-      stations = savedStations ? JSON.parse(savedStations) : defaultStations;
+      const savedDate = localStorage.getItem('love_start_date');
+      if (savedDate) datingStartDate = new Date(savedDate);
 
-      const savedTracks = localStorage.getItem('master_tracks');
+      const savedStations = localStorage.getItem('love_stations');
+      stations = savedStations ? JSON.parse(savedStations) : [
+        { name: "Our Memories 📸", freq: "107.9 FM" },
+        { name: "Late Night 🌙", freq: "98.5 FM" },
+        { name: "Pick-Me-Up 💕", freq: "101.3 FM" }
+      ];
+
+      const savedTracks = localStorage.getItem('love_radio_tracks');
       tracks = savedTracks ? JSON.parse(savedTracks) : [{
         title: "Welcome Note ♡", station: stations[0].name, freq: stations[0].freq,
         photo: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=300", audioUrl: ""
       }];
 
-      const savedLetters = localStorage.getItem('master_letters');
-      pureLetters = savedLetters ? JSON.parse(savedLetters) : [
-        { title: "First Letter 💌", station: stations[2].name, freq: "101.3 FM", letter: "My love,\n\nI created this radio station and love vault just for you. Open this app whenever you miss me! ♡" }
+      const savedLetters = localStorage.getItem('love_pure_letters');
+      pureLetters = savedLetters ? JSON.parse(savedLetters) : [{
+        title: "My Heart For You ♡", body: "Every moment with you since May 24 feels like a dream I never want to wake up from..."
+      }];
+
+      const savedPolaroids = localStorage.getItem('love_polaroids');
+      polaroids = savedPolaroids ? JSON.parse(savedPolaroids) : [
+        { caption: "First Date 💕", url: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=400" },
+        { caption: "Sunset Walk 🌅", url: "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=400" }
       ];
 
-      const savedMemories = localStorage.getItem('master_memories');
-      memories = savedMemories ? JSON.parse(savedMemories) : [
-        { title: "The Day We First Met ✨", date: "2022-02-14", photo: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=500" }
-      ];
-
-      const savedDate = localStorage.getItem('master_start_date');
-      if (savedDate) startDate = new Date(savedDate);
-      document.getElementById('startDateInput').value = startDate.toISOString().split('T')[0];
-
-      const savedBg = localStorage.getItem('master_bg');
+      const savedBg = localStorage.getItem('love_radio_bg');
       if (savedBg) applyBackground(savedBg);
 
       renderStations();
       renderAdminStations();
-      renderAdminTracks();
-      renderLetters();
-      renderMemories();
+      renderPureLetters();
+      renderPolaroids();
       populateStationDropdown();
-      initVoices();
-      initParticleCanvas();
-      initAudioSynthesizers();
+      startCounter();
+      initParticles();
 
-      if (tracks.length > 0) loadRadioTrack(0);
-      if (pureLetters.length > 0) loadJournalLetter(0);
-
-      setInterval(updateLiveTimer, 1000);
-      updateLiveTimer();
+      if (tracks.length > 0) loadTrack(0);
+      if (pureLetters.length > 0) loadPureLetter(0);
     }
 
     function saveAll() {
-      localStorage.setItem('master_stations', JSON.stringify(stations));
-      localStorage.setItem('master_tracks', JSON.stringify(tracks));
-      localStorage.setItem('master_letters', JSON.stringify(pureLetters));
-      localStorage.setItem('master_memories', JSON.stringify(memories));
-      localStorage.setItem('master_start_date', startDate.toISOString());
+      localStorage.setItem('love_stations', JSON.stringify(stations));
+      localStorage.setItem('love_radio_tracks', JSON.stringify(tracks));
+      localStorage.setItem('love_pure_letters', JSON.stringify(pureLetters));
+      localStorage.setItem('love_polaroids', JSON.stringify(polaroids));
+      localStorage.setItem('love_start_date', datingStartDate.toISOString());
     }
 
-    /* Page Navigation System */
-    function switchPage(pageId, btnEl) {
-      document.querySelectorAll('.page-view').forEach(p => p.classList.remove('active'));
-      document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
-      
+    /* Days Together Counter starting May 24 */
+    function startCounter() {
+      setInterval(() => {
+        const now = new Date();
+        const diff = now - datingStartDate;
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const mins = Math.floor((diff / 1000 / 60) % 60);
+        const secs = Math.floor((diff / 1000) % 60);
+
+        document.getElementById('counterBanner').innerHTML = 
+          `💖 Together Since May 24: <strong>${days}</strong> Days, <strong>${hours}</strong>h <strong>${mins}</strong>m <strong>${secs}</strong>s ♡`;
+      }, 1000);
+    }
+
+    function switchPage(pageId) {
+      document.querySelectorAll('.page-section').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
       document.getElementById(pageId).classList.add('active');
-      btnEl.classList.add('active');
+      event.target.classList.add('active');
 
-      if (pageId !== 'radioPage') stopAllAudio();
+      if (pageId !== 'radioPage') pauseAudio();
     }
-
-    /* Live Time Together Clock */
-    function updateLiveTimer() {
-      const now = new Date();
-      const diff = Math.max(0, now - startDate);
-
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const mins = Math.floor((diff / (1000 * 60)) % 60);
-      const secs = Math.floor((diff / 1000) % 60);
-
-      document.getElementById('daysCount').textContent = days;
-      document.getElementById('hoursCount').textContent = hours;
-      document.getElementById('minsCount').textContent = mins;
-      document.getElementById('secsCount').textContent = secs;
-    }
-
-    document.getElementById('startDateInput').onchange = (e) => {
-      if (e.target.value) {
-        startDate = new Date(e.target.value);
-        saveAll();
-        updateLiveTimer();
-      }
-    };
-
-    /* Particle Canvas Overlay */
-    function initParticleCanvas() {
-      const canvas = document.getElementById('particleCanvas');
-      const ctx = canvas.getContext('2d');
-      let particles = [];
-
-      function resize() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-      }
-      window.addEventListener('resize', resize);
-      resize();
-
-      window.addEventListener('mousemove', (e) => addParticle(e.clientX, e.clientY));
-      window.addEventListener('touchmove', (e) => {
-        if (e.touches.length > 0) addParticle(e.touches[0].clientX, e.touches[0].clientY);
-      });
-
-      function addParticle(x, y) {
-        if (particles.length < 35) {
-          particles.push({
-            x: x, y: y,
-            size: Math.random() * 8 + 4,
-            speedX: (Math.random() - 0.5) * 1.5,
-            speedY: Math.random() * -1.5 - 0.5,
-            opacity: 1,
-            color: Math.random() > 0.5 ? '#ff4b72' : '#ffd1dc'
-          });
-        }
-      }
-
-      function animate() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        for (let i = 0; i < particles.length; i++) {
-          let p = particles[i];
-          p.x += p.speedX;
-          p.y += p.speedY;
-          p.opacity -= 0.015;
-
-          ctx.fillStyle = p.color;
-          ctx.globalAlpha = Math.max(0, p.opacity);
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-          ctx.fill();
-
-          if (p.opacity <= 0) {
-            particles.splice(i, 1);
-            i--;
-          }
-        }
-        requestAnimationFrame(animate);
-      }
-      animate();
-    }
-
-    /* Web Audio Ambient Soundscapes Synthesizer */
-    let audioCtx;
-    let ambientGainNodes = {};
-
-    function initAudioSynthesizers() {
-      const AudioContext = window.AudioContext || window.webkitAudioContext;
-      if (!AudioContext) return;
-
-      const setupContext = () => {
-        if (!audioCtx) {
-          audioCtx = new AudioContext();
-          ambientGainNodes.rain = createWhiteNoiseBuffer(audioCtx, 0.1);
-          ambientGainNodes.fire = createWhiteNoiseBuffer(audioCtx, 0.08);
-          ambientGainNodes.ocean = createWhiteNoiseBuffer(audioCtx, 0.2);
-          ambientGainNodes.chime = createWhiteNoiseBuffer(audioCtx, 0.05);
-        }
-      };
-
-      document.body.addEventListener('click', setupContext, { once: true });
-    }
-
-    function createWhiteNoiseBuffer(ctx, baseVol) {
-      const bufferSize = ctx.sampleRate * 2;
-      const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
-      const output = buffer.getChannelData(0);
-      for (let i = 0; i < bufferSize; i++) {
-        output[i] = Math.random() * 2 - 1;
-      }
-
-      const whiteNoise = ctx.createBufferSource();
-      whiteNoise.buffer = buffer;
-      whiteNoise.loop = true;
-
-      const gainNode = ctx.createGain();
-      gainNode.gain.value = 0;
-
-      whiteNoise.connect(gainNode);
-      gainNode.connect(ctx.destination);
-      whiteNoise.start();
-
-      return gainNode;
-    }
-
-    /* Soundscape Sliders Listener */
-    ['rain', 'fire', 'ocean', 'chime'].forEach(type => {
-      const slider = document.getElementById(type + 'Vol');
-      const label = document.getElementById(type + 'VolVal');
-      slider.oninput = (e) => {
-        const val = e.target.value;
-        label.textContent = val + '%';
-        if (ambientGainNodes[type] && audioCtx) {
-          if (audioCtx.state === 'suspended') audioCtx.resume();
-          ambientGainNodes[type].gain.setValueAtTime((val / 100) * 0.15, audioCtx.currentTime);
-        }
-      };
-    });
-
-    /* Hello Kitty Tap Listener in Proposal View */
-    document.getElementById('proposalPage').addEventListener('click', (e) => {
-      if (e.target.tagName === 'BUTTON') return;
-      const img = document.createElement('img');
-      img.src = hkIcons[Math.floor(Math.random() * hkIcons.length)];
-      img.className = 'hk-tap-icon';
-      img.style.left = e.clientX + 'px';
-      img.style.top = e.clientY + 'px';
-      document.body.appendChild(img);
-      setTimeout(() => img.remove(), 1200);
-    });
-
-    /* Runaway Yes Button Game */
-    const runawayBtn = document.getElementById('runawayYesBtn');
-    const normalNoBtn = document.getElementById('normalNoBtn');
-
-    function moveYesButton() {
-      const area = document.getElementById('proposalBtnArea');
-      const maxX = area.clientWidth - runawayBtn.clientWidth;
-      const maxY = area.clientHeight - runawayBtn.clientHeight;
-      const randomX = Math.max(0, Math.floor(Math.random() * maxX));
-      const randomY = Math.max(0, Math.floor(Math.random() * maxY));
-
-      runawayBtn.style.left = randomX + 'px';
-      runawayBtn.style.top = randomY + 'px';
-    }
-
-    runawayBtn.addEventListener('mouseover', moveYesButton);
-    runawayBtn.addEventListener('touchstart', moveYesButton);
-    runawayBtn.addEventListener('click', () => openModal('successModal'));
-    normalNoBtn.addEventListener('click', () => openModal('successModal'));
-
-    /* Vinyl 5-Taps Easter Egg */
-    document.getElementById('vinylClickTarget').onclick = () => {
-      vinylClickCount++;
-      if (vinylClickCount >= 5) {
-        vinylClickCount = 0;
-        openModal('easterEggModal');
-      }
-    };
-
-    function openModal(id) { document.getElementById(id).style.display = 'flex'; }
-    function closeModal(id) { document.getElementById(id).style.display = 'none'; }
-
-    /* Daily Fortune Picker */
-    document.getElementById('drawFortuneBtn').onclick = () => {
-      const note = loveFortunes[Math.floor(Math.random() * loveFortunes.length)];
-      document.getElementById('fortuneDisplay').textContent = note;
-    };
-
-    /* Radio Mode Logic */
-    function loadRadioTrack(index) {
-      if (tracks.length === 0) return;
-      currentRadioIndex = (index + tracks.length) % tracks.length;
-      const t = tracks[currentRadioIndex];
-
-      document.getElementById('trackTitle').textContent = t.title;
-      document.getElementById('trackSubtitle').textContent = "Station: " + t.station;
-      document.getElementById('freqBadge').textContent = t.freq || "107.9 FM";
-      document.getElementById('albumArt').src = t.photo || "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=300";
-
-      const dl = document.getElementById('downloadBtn');
-      if (t.audioUrl) {
-        audioPlayer.src = t.audioUrl;
-        dl.href = t.audioUrl;
-        dl.style.display = 'inline-flex';
-      } else {
-        audioPlayer.src = "";
-        dl.style.display = 'none';
-      }
-    }
-
-    function playRadioAudio() {
-      if (!audioPlayer.src) return;
-      stopAllAudio();
-      audioPlayer.play().then(() => {
-        isAudioPlaying = true;
-        document.getElementById('playBtn').textContent = '⏸';
-        document.getElementById('vinyl').classList.add('playing');
-      }).catch(() => {});
-    }
-
-    function stopAllAudio() {
-      audioPlayer.pause();
-      isAudioPlaying = false;
-      document.getElementById('playBtn').textContent = '▶';
-      document.getElementById('vinyl').classList.remove('playing');
-
-      if (speechSynth) speechSynth.cancel();
-      isSpeechReading = false;
-      document.getElementById('playLetterBtn').textContent = '🗣️';
-    }
-
-    document.getElementById('playBtn').onclick = () => isAudioPlaying ? stopAllAudio() : playRadioAudio();
-    document.getElementById('nextBtn').onclick = () => { loadRadioTrack(currentRadioIndex + 1); playRadioAudio(); };
-    document.getElementById('prevBtn').onclick = () => { loadRadioTrack(currentRadioIndex - 1); playRadioAudio(); };
-    audioPlayer.onended = () => stopAllAudio();
-
-    function renderStations() {
-      const list = document.getElementById('stationList');
-      list.innerHTML = "";
-      stations.forEach(st => {
-        const chip = document.createElement('div');
-        chip.className = 'station-chip';
-        chip.innerHTML = `<span>${st.name}</span><span style="font-size:0.75rem; opacity:0.8;">${st.freq}</span>`;
-        chip.onclick = () => {
-          const firstTrackIndex = tracks.findIndex(t => t.station === st.name);
-          if (firstTrackIndex !== -1) {
-            loadRadioTrack(firstTrackIndex);
-            playRadioAudio();
-          }
-        };
-        list.appendChild(chip);
-      });
-    }
-
-    /* Pure Letters Vault */
-    function loadJournalLetter(index) {
-      if (pureLetters.length === 0) return;
-      currentLetterIndex = (index + pureLetters.length) % pureLetters.length;
-      const item = pureLetters[currentLetterIndex];
-
-      document.getElementById('letterTitle').textContent = item.title;
-      document.getElementById('letterSubtitle').textContent = "Station: " + (item.station || "Love Vault");
-      document.getElementById('letterTextContent').textContent = item.letter;
-    }
-
-    function renderLetters() {
-      const list = document.getElementById('letterList');
-      list.innerHTML = "";
-      pureLetters.forEach((l, i) => {
-        const chip = document.createElement('div');
-        chip.className = 'station-chip' + (i === currentLetterIndex ? ' active' : '');
-        chip.textContent = l.title;
-        chip.onclick = () => {
-          loadJournalLetter(i);
-          document.querySelectorAll('#letterList .station-chip').forEach(c => c.classList.remove('active'));
-          chip.classList.add('active');
-        };
-        list.appendChild(chip);
-      });
-    }
-
-    document.getElementById('nextLetterBtn').onclick = () => { stopAllAudio(); loadJournalLetter(currentLetterIndex + 1); };
-    document.getElementById('prevLetterBtn').onclick = () => { stopAllAudio(); loadJournalLetter(currentLetterIndex - 1); };
-
-    function initVoices() {
-      if (!('speechSynthesis' in window)) return;
-      const vs = document.getElementById('voiceSelect');
-
-      function populate() {
-        const voices = speechSynth.getVoices();
-        vs.innerHTML = "";
-        voices.forEach((v, idx) => {
-          const option = document.createElement('option');
-          option.value = idx;
-          option.textContent = `${v.name} (${v.lang})`;
-          if (v.name.includes('Samantha') || v.name.includes('Natural')) option.selected = true;
-          vs.appendChild(option);
-        });
-      }
-      populate();
-      if (speechSynthesis.onvoiceschanged !== undefined) speechSynthesis.onvoiceschanged = populate;
-    }
-
-    document.getElementById('playLetterBtn').onclick = () => {
-      if (pureLetters.length === 0) return;
-      if (isSpeechReading) {
-        stopAllAudio();
-      } else {
-        stopAllAudio();
-        const letter = pureLetters[currentLetterIndex];
-        const utterance = new SpeechSynthesisUtterance(letter.letter);
-        const vs = document.getElementById('voiceSelect');
-        const voices = speechSynth.getVoices();
-        if (vs.value && voices[vs.value]) utterance.voice = voices[vs.value];
-
-        utterance.onstart = () => {
-          isSpeechReading = true;
-          document.getElementById('playLetterBtn').textContent = '⏹️';
-        };
-        utterance.onend = () => {
-          isSpeechReading = false;
-          document.getElementById('playLetterBtn').textContent = '🗣️';
-        };
-        speechSynth.speak(utterance);
-      }
-    };
-
-    /* Memory Lane Rendering */
-    function renderMemories() {
-      const container = document.getElementById('timelineList');
-      container.innerHTML = "";
-      memories.forEach(m => {
-        const card = document.createElement('div');
-        card.className = 'polaroid-card';
-        card.innerHTML = `
-          <img src="${m.photo || 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=500'}" class="polaroid-img">
-          <div class="polaroid-caption">${m.title}</div>
-          <div class="polaroid-date">📅 ${m.date}</div>
-        `;
-        container.appendChild(card);
-      });
-    }
-
-    /* Admin Options */
-    document.getElementById('adminBtn').onclick = () => {
-      if (prompt("Enter Passcode ♡:") === "1234") {
-        document.getElementById('adminPanel').classList.toggle('active');
-      } else {
-        alert("Incorrect passcode!");
-      }
-    };
 
     function applyBackground(bg) {
       if (bg.startsWith('data:image')) {
@@ -1382,26 +834,220 @@
       }
     }
 
-    document.getElementById('bgThemeSelect').onchange = (e) => {
-      const val = e.target.value;
-      if (val === 'custom') {
-        document.getElementById('customBgBox').style.display = 'block';
-      } else {
-        document.getElementById('customBgBox').style.display = 'none';
-        applyBackground(val);
-        localStorage.setItem('master_bg', val);
+    /* Proposal Section Runaway Yes Button Game & Hello Kitty Followers */
+    const runawayBtn = document.getElementById('runawayYesBtn');
+    const normalNoBtn = document.getElementById('normalNoBtn');
+
+    function floatRunawayBtn(e) {
+      const area = document.getElementById('proposalBtnArea');
+      const maxX = area.clientWidth - runawayBtn.clientWidth;
+      const maxY = area.clientHeight - runawayBtn.clientHeight;
+
+      const randomX = Math.max(10, Math.floor(Math.random() * maxX));
+      const randomY = Math.max(10, Math.floor(Math.random() * maxY));
+
+      runawayBtn.style.left = randomX + 'px';
+      runawayBtn.style.top = randomY + 'px';
+
+      // Spawn Hello Kitty animation trailing right after the runaway button moves!
+      spawnHKIcon(
+        runawayBtn.getBoundingClientRect().left + 30,
+        runawayBtn.getBoundingClientRect().top + 20
+      );
+    }
+
+    function spawnHKIcon(x, y) {
+      const img = document.createElement('img');
+      img.src = hkIcons[Math.floor(Math.random() * hkIcons.length)];
+      img.className = 'hk-tap-icon';
+      img.style.left = x + 'px';
+      img.style.top = y + 'px';
+      document.body.appendChild(img);
+      setTimeout(() => img.remove(), 1400);
+    }
+
+    runawayBtn.addEventListener('mouseover', floatRunawayBtn);
+    runawayBtn.addEventListener('touchstart', floatRunawayBtn);
+    runawayBtn.addEventListener('click', triggerSuccess);
+    normalNoBtn.addEventListener('click', triggerSuccess);
+
+    document.getElementById('proposalBox').addEventListener('click', (e) => {
+      if (e.target.tagName !== 'BUTTON') {
+        spawnHKIcon(e.clientX, e.clientY);
       }
+    });
+
+    function triggerSuccess() {
+      document.getElementById('successModal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('successModal').style.display = 'none';
+    }
+
+    /* Audio Ambient Soundscape Generator */
+    function toggleAmbient(type) {
+      if (!ambientCtx) ambientCtx = new (window.AudioContext || window.webkitAudioContext)();
+      const btn = document.getElementById(type + 'Btn');
+
+      if (ambientNodes[type]) {
+        ambientNodes[type].stop();
+        delete ambientNodes[type];
+        btn.classList.remove('active');
+      } else {
+        const bufferSize = ambientCtx.sampleRate * 2;
+        const buffer = ambientCtx.createBuffer(1, bufferSize, ambientCtx.sampleRate);
+        const data = buffer.getChannelData(0);
+
+        for (let i = 0; i < bufferSize; i++) {
+          data[i] = Math.random() * 2 - 1;
+        }
+
+        const noise = ambientCtx.createBufferSource();
+        noise.buffer = buffer;
+        noise.loop = true;
+
+        const gain = ambientCtx.createGain();
+        gain.gain.value = type === 'rain' ? 0.08 : type === 'fire' ? 0.12 : 0.05;
+
+        noise.connect(gain);
+        gain.connect(ambientCtx.destination);
+        noise.start();
+
+        ambientNodes[type] = noise;
+        btn.classList.add('active');
+      }
+    }
+
+    /* Radio Functions */
+    function loadTrack(index) {
+      if (tracks.length === 0) return;
+      currentTrackIndex = index;
+      const t = tracks[index];
+      document.getElementById('trackTitle').textContent = t.title;
+      document.getElementById('trackSubtitle').textContent = "Station: " + t.station;
+      document.getElementById('freqBadge').textContent = t.freq || "107.9 FM";
+      document.getElementById('albumArt').src = t.photo || "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=300";
+
+      const dl = document.getElementById('downloadBtn');
+      if (t.audioUrl) {
+        audio.src = t.audioUrl;
+        dl.href = t.audioUrl;
+        dl.style.display = 'inline-flex';
+      } else {
+        audio.src = "";
+        dl.style.display = 'none';
+      }
+    }
+
+    function playAudio() {
+      if (tracks[currentTrackIndex] && tracks[currentTrackIndex].audioUrl) {
+        audio.play();
+        isPlaying = true;
+        document.getElementById('playBtn').textContent = '⏸';
+        document.getElementById('vinyl').classList.add('playing');
+      }
+    }
+
+    function pauseAudio() {
+      audio.pause();
+      isPlaying = false;
+      document.getElementById('playBtn').textContent = '▶';
+      document.getElementById('vinyl').classList.remove('playing');
+      window.speechSynthesis.cancel();
+    }
+
+    document.getElementById('playBtn').onclick = () => isPlaying ? pauseAudio() : playAudio();
+    document.getElementById('nextBtn').onclick = () => { currentTrackIndex = (currentTrackIndex + 1) % tracks.length; loadTrack(currentTrackIndex); playAudio(); };
+    document.getElementById('prevBtn').onclick = () => { currentTrackIndex = (currentTrackIndex - 1 + tracks.length) % tracks.length; loadTrack(currentTrackIndex); playAudio(); };
+
+    /* Pure Letters & Voice */
+    function loadPureLetter(i) {
+      currentLetterIndex = i;
+      const l = pureLetters[i];
+      document.getElementById('pureLetterTitle').textContent = l.title;
+      document.getElementById('pureLetterBody').textContent = l.body;
+    }
+
+    function renderPureLetters() {
+      const list = document.getElementById('pureLetterList');
+      list.innerHTML = "";
+      pureLetters.forEach((l, i) => {
+        const chip = document.createElement('div');
+        chip.className = 'station-chip' + (i === currentLetterIndex ? ' active' : '');
+        chip.textContent = l.title;
+        chip.onclick = () => {
+          document.querySelectorAll('#pureLetterList .station-chip').forEach(c => c.classList.remove('active'));
+          chip.classList.add('active');
+          loadPureLetter(i);
+        };
+        list.appendChild(chip);
+      });
+    }
+
+    document.getElementById('readPureLetterBtn').onclick = () => {
+      const l = pureLetters[currentLetterIndex];
+      if (!l) return;
+      pauseAudio();
+      const utterance = new SpeechSynthesisUtterance(l.body);
+      utterance.rate = 0.9;
+      window.speechSynthesis.speak(utterance);
     };
 
-    document.getElementById('bgFileInput').onchange = (e) => {
-      const file = e.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onloadend = () => {
-          applyBackground(reader.result);
-          localStorage.setItem('master_bg', reader.result);
-        };
-        reader.readAsDataURL(file);
+    /* Unlimited Scrapbook Polaroid Gallery */
+    function renderPolaroids() {
+      const grid = document.getElementById('polaroidGrid');
+      grid.innerHTML = "";
+      polaroids.forEach((p, i) => {
+        const card = document.createElement('div');
+        card.className = 'polaroid-card';
+        card.innerHTML = `
+          <img src="${p.url}" class="polaroid-img" alt="${p.caption}">
+          <div class="polaroid-caption">${p.caption}</div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    /* Particles Trail */
+    function initParticles() {
+      const canvas = document.getElementById('particleCanvas');
+      const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      let particles = [];
+      window.addEventListener('mousemove', (e) => {
+        for (let i = 0; i < 2; i++) {
+          particles.push({
+            x: e.clientX, y: e.clientY,
+            size: Math.random() * 8 + 3,
+            color: `hsl(${Math.random() * 40 + 340}, 100%, 70%)`,
+            speedX: Math.random() * 2 - 1,
+            speedY: Math.random() * 2 - 1,
+            life: 1
+          });
+        }
+      });
+
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach((p, index) => {
+          p.x += p.speedX; p.y += p.speedY; p.life -= 0.02;
+          ctx.fillStyle = p.color;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.fill();
+          if (p.life <= 0) particles.splice(index, 1);
+        });
+        requestAnimationFrame(animate);
+      }
+      animate();
+    }
+
+    /* Admin Settings */
+    document.getElementById('adminBtn').onclick = () => {
+      if (prompt("Enter Passcode ♡:") === "1234") {
+        document.getElementById('adminPanel').classList.toggle('active');
       }
     };
 
@@ -1414,68 +1060,48 @@
       }
     };
 
-    document.getElementById('audioFileInput').onchange = (e) => {
-      const file = e.target.files[0];
+    document.getElementById('savePolaroidBtn').onclick = () => {
+      const caption = document.getElementById('inputPolaroidCaption').value.trim() || "Memory";
+      const file = document.getElementById('inputPolaroidFile').files[0];
+
       if (file) {
         const reader = new FileReader();
-        reader.onloadend = () => { uploadedAudioBase64 = reader.result; };
+        reader.onloadend = () => {
+          polaroids.push({ caption, url: reader.result });
+          saveAll(); renderPolaroids();
+          alert("New Polaroid Added to Scrapbook! 📸");
+        };
         reader.readAsDataURL(file);
       }
     };
 
-    document.getElementById('inputFile').onchange = (e) => {
-      const file = e.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onloadend = () => { selectedImageBase64 = reader.result; };
-        reader.readAsDataURL(file);
+    document.getElementById('savePureLetterBtn').onclick = () => {
+      const title = document.getElementById('inputPureLetterTitle').value.trim();
+      const body = document.getElementById('inputPureLetterBody').value.trim();
+      if (title && body) {
+        pureLetters.push({ title, body });
+        saveAll(); renderPureLetters();
       }
     };
 
-    document.getElementById('memPhoto').onchange = (e) => {
-      const file = e.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onloadend = () => { memImageBase64 = reader.result; };
-        reader.readAsDataURL(file);
-      }
-    };
-
-    document.getElementById('saveTrackBtn').onclick = () => {
-      const title = document.getElementById('inputTitle').value.trim();
-      const station = document.getElementById('selectTrackStation').value;
-      const urlAudio = document.getElementById('audioUrlInput').value.trim();
-
-      if (title) {
-        tracks.push({
-          title, station, freq: "107.9 FM",
-          audioUrl: uploadedAudioBase64 || urlAudio || "",
-          photo: selectedImageBase64 || "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=300"
-        });
-        saveAll(); renderAdminTracks();
-        alert("Track saved!");
-      }
-    };
-
-    document.getElementById('saveMemBtn').onclick = () => {
-      const title = document.getElementById('memTitle').value.trim();
-      const date = document.getElementById('memDate').value;
-      if (title) {
-        memories.push({ title, date: date || "Special Date", photo: memImageBase64 });
-        saveAll(); renderMemories();
-        alert("Memory added!");
-      }
-    };
+    function renderStations() {
+      const list = document.getElementById('stationList');
+      list.innerHTML = "";
+      stations.forEach(s => {
+        const chip = document.createElement('div');
+        chip.className = 'station-chip';
+        chip.innerHTML = `<span>${s.name}</span><span style="font-size:0.75rem; opacity:0.8;">${s.freq}</span>`;
+        chip.onclick = () => {
+          const idx = tracks.findIndex(t => t.station === s.name);
+          if (idx !== -1) { loadTrack(idx); playAudio(); }
+        };
+        list.appendChild(chip);
+      });
+    }
 
     function renderAdminStations() {
       document.getElementById('adminStationList').innerHTML = stations.map((s, i) => `
-        <div class="item-card"><span><strong>${s.name}</strong> (${s.freq})</span><button class="btn-del" onclick="stations.splice(${i},1);saveAll();renderStations();renderAdminStations();">🗑️</button></div>
-      `).join('');
-    }
-
-    function renderAdminTracks() {
-      document.getElementById('adminTrackList').innerHTML = tracks.map((t, i) => `
-        <div class="item-card"><span>${t.title} (${t.station})</span><button class="btn-del" onclick="tracks.splice(${i},1);saveAll();renderAdminTracks();">🗑️</button></div>
+        <div class="item-card"><span>${s.name} (${s.freq})</span><button class="btn-del" onclick="stations.splice(${i},1);saveAll();renderStations();renderAdminStations();">🗑️</button></div>
       `).join('');
     }
 
