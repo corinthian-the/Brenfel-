@@ -3,14 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Our Love Frequency ♡ Radio & Memories</title>
+  <title>Our Love Frequency ♡ Radio & Journal</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Sacramento&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Sacramento&family=Quicksand:wght@500;600;700&family=Caveat:wght@600&display=swap" rel="stylesheet">
+  
   <style>
     :root {
       --bg-theme: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #feada6 100%);
-      --card-bg: rgba(255, 255, 255, 0.88);
+      --card-bg: rgba(255, 255, 255, 0.90);
       --accent: #ff4b72;
       --accent-hover: #ff2b56;
       --accent-glow: rgba(255, 75, 114, 0.35);
@@ -35,9 +36,10 @@
       padding: 20px 15px;
       position: relative;
       overflow-x: hidden;
-      transition: background 0.4s ease;
+      transition: background 0.5s ease;
     }
 
+    /* Floating background elements */
     .bg-heart {
       position: absolute;
       color: rgba(255, 255, 255, 0.5);
@@ -57,13 +59,13 @@
       text-align: center;
       margin-bottom: 15px;
       width: 100%;
-      max-width: 480px;
+      max-width: 500px;
       z-index: 1;
     }
 
     header h1 {
       font-family: 'Sacramento', cursive;
-      font-size: 3.2rem;
+      font-size: 3.4rem;
       color: var(--accent);
       text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.9);
       line-height: 1.1;
@@ -77,11 +79,42 @@
       letter-spacing: 0.5px;
     }
 
-    .radio-container {
+    /* Main Container Tabs Switcher */
+    .view-mode-tabs {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 15px;
+      z-index: 1;
+    }
+
+    .tab-btn {
+      font-family: 'Fredoka', sans-serif;
+      padding: 10px 22px;
+      border-radius: 25px;
+      border: 2px solid #ffffff;
+      background: rgba(255, 255, 255, 0.7);
+      color: var(--text-main);
+      font-size: 0.9rem;
+      cursor: pointer;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .tab-btn.active {
+      background: var(--accent);
+      color: #ffffff;
+      border-color: var(--accent);
+      box-shadow: 0 6px 18px var(--accent-glow);
+      transform: translateY(-2px);
+    }
+
+    /* Main Card Layout */
+    .app-card {
       background: var(--card-bg);
-      backdrop-filter: blur(12px);
+      backdrop-filter: blur(14px);
       width: 100%;
-      max-width: 480px;
+      max-width: 500px;
       border-radius: 30px;
       padding: 24px 20px;
       box-shadow: 0 15px 35px rgba(255, 105, 135, 0.25), 0 5px 15px rgba(255, 255, 255, 0.8) inset;
@@ -92,6 +125,7 @@
       gap: 16px;
       position: relative;
       z-index: 1;
+      transition: all 0.4s ease-in-out;
     }
 
     .admin-toggle {
@@ -111,21 +145,42 @@
       align-items: center;
       box-shadow: 0 3px 8px rgba(0,0,0,0.08);
       transition: transform 0.2s ease;
+      z-index: 10;
     }
     .admin-toggle:active { transform: scale(0.9); }
 
-    /* Frequency Display Badge */
+    /* Frequency Badge Display */
     .freq-badge {
       font-family: 'Fredoka', sans-serif;
-      background: #ff4b72;
+      background: var(--accent);
       color: #ffffff;
-      padding: 4px 14px;
+      padding: 5px 16px;
       border-radius: 20px;
-      font-size: 0.85rem;
+      font-size: 0.9rem;
       letter-spacing: 1px;
-      box-shadow: 0 3px 10px var(--accent-glow);
+      box-shadow: 0 4px 12px var(--accent-glow);
+      transition: all 0.3s ease;
     }
 
+    /* Transition Animation Wrappers */
+    .mode-section {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.35s ease, transform 0.35s ease;
+    }
+
+    .mode-section.hidden {
+      display: none;
+      opacity: 0;
+      transform: translateY(15px);
+    }
+
+    /* Vinyl Player Styling */
     .vinyl-wrapper {
       width: 190px;
       height: 190px;
@@ -134,6 +189,7 @@
       justify-content: center;
       align-items: center;
       margin: 5px 0;
+      transition: transform 0.3s ease;
     }
 
     .vinyl-record {
@@ -147,6 +203,7 @@
       box-shadow: 0 8px 25px rgba(74, 46, 53, 0.3), 0 0 0 8px rgba(255, 255, 255, 0.5);
       animation: spin 5s linear infinite;
       animation-play-state: paused;
+      transition: transform 0.4s ease;
     }
 
     .vinyl-record.playing { animation-play-state: running; }
@@ -169,34 +226,70 @@
 
     .track-title {
       font-family: 'Fredoka', sans-serif;
-      font-size: 1.25rem;
+      font-size: 1.3rem;
       font-weight: 600;
       color: var(--text-main);
+      transition: color 0.3s ease;
     }
 
     .track-subtitle {
       font-size: 0.88rem;
       color: var(--text-muted);
-      margin-top: 3px;
+      margin-top: 4px;
       font-weight: 500;
     }
 
-    /* Letter Display Card */
-    .letter-box {
+    /* Pure Letters Envelope & Card Section */
+    .envelope-container {
       width: 100%;
-      background: #fff8f9;
-      border: 2px dashed #ffb6c1;
-      border-radius: 18px;
-      padding: 14px;
-      font-size: 0.92rem;
-      line-height: 1.5;
-      color: #5a3e45;
-      display: none;
-      max-height: 180px;
-      overflow-y: auto;
-      text-align: left;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
     }
 
+    .envelope {
+      width: 100%;
+      background: #fff0f3;
+      border: 2px solid #ffb6c1;
+      border-radius: 20px;
+      padding: 18px;
+      position: relative;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(255, 182, 193, 0.3);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .envelope:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 25px rgba(255, 105, 135, 0.25);
+    }
+
+    .envelope-flap {
+      text-align: center;
+      font-family: 'Sacramento', cursive;
+      font-size: 1.8rem;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    .letter-paper {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 18px;
+      border: 1px dashed #ffd1dc;
+      font-family: 'Caveat', cursive;
+      font-size: 1.35rem;
+      line-height: 1.5;
+      color: #4a2e35;
+      max-height: 220px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      box-shadow: inset 0 2px 6px rgba(0,0,0,0.02);
+      transition: all 0.3s ease;
+    }
+
+    /* Station Chips Navigation Scroll */
     .station-selector {
       display: flex;
       gap: 10px;
@@ -209,7 +302,7 @@
 
     .station-chip {
       font-family: 'Fredoka', sans-serif;
-      padding: 8px 15px;
+      padding: 9px 16px;
       border-radius: 25px;
       background: #fff0f3;
       color: var(--text-muted);
@@ -234,20 +327,21 @@
     .station-chip-freq {
       font-size: 0.75rem;
       opacity: 0.85;
-      background: rgba(0, 0, 0, 0.1);
-      padding: 2px 6px;
+      background: rgba(0, 0, 0, 0.12);
+      padding: 2px 7px;
       border-radius: 10px;
     }
 
+    /* Player Controls */
     .controls {
       display: flex;
       align-items: center;
-      gap: 18px;
+      gap: 20px;
     }
 
     .btn-circle {
-      width: 58px;
-      height: 58px;
+      width: 60px;
+      height: 60px;
       border-radius: 50%;
       border: none;
       background: var(--accent);
@@ -287,29 +381,58 @@
       flex-wrap: wrap;
     }
 
-    .btn-action-small {
+    .btn-action-sm {
       font-family: 'Fredoka', sans-serif;
       background: #fff0f3;
       color: var(--accent);
       border: 2px solid #ffd1dc;
-      padding: 8px 14px;
+      padding: 9px 16px;
       border-radius: 20px;
-      font-size: 0.82rem;
+      font-size: 0.85rem;
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 5px;
+      gap: 6px;
       text-decoration: none;
       box-shadow: 0 2px 8px rgba(0,0,0,0.04);
       transition: all 0.2s ease;
     }
-    .btn-action-small:active { transform: scale(0.95); }
+    .btn-action-sm:active { transform: scale(0.95); }
 
+    /* Voice Customization Settings Box */
+    .voice-settings-box {
+      width: 100%;
+      background: #fff8f9;
+      border: 1px solid #ffd1dc;
+      border-radius: 16px;
+      padding: 12px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .voice-settings-box label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+
+    .voice-settings-box select, .voice-settings-box input {
+      width: 100%;
+      padding: 6px 10px;
+      border: 1px solid #ffd1dc;
+      border-radius: 10px;
+      font-size: 0.82rem;
+      background: #ffffff;
+      font-family: 'Quicksand', sans-serif;
+    }
+
+    /* Admin Panel Styling */
     .admin-panel {
       width: 100%;
-      max-width: 480px;
+      max-width: 500px;
       background: var(--card-bg);
-      backdrop-filter: blur(12px);
+      backdrop-filter: blur(14px);
       border-radius: 25px;
       padding: 22px;
       margin-top: 20px;
@@ -323,8 +446,8 @@
 
     .admin-panel h2 {
       font-family: 'Fredoka', sans-serif;
-      font-size: 1.2rem;
-      margin-bottom: 12px;
+      font-size: 1.25rem;
+      margin-bottom: 14px;
       color: var(--accent);
       text-align: center;
     }
@@ -362,7 +485,7 @@
       border: 2px dashed #ffb6c1;
     }
 
-    .btn-save {
+    .btn-action {
       padding: 12px;
       border-radius: 16px;
       border: none;
@@ -390,13 +513,13 @@
       font-family: 'Fredoka', sans-serif;
       font-size: 1rem;
       color: var(--accent);
-      margin: 14px 0 8px 0;
+      margin: 16px 0 8px 0;
       border-bottom: 1px solid #ffd1dc;
       padding-bottom: 4px;
     }
 
     .list-box {
-      max-height: 150px;
+      max-height: 140px;
       overflow-y: auto;
       margin-bottom: 12px;
     }
@@ -424,6 +547,7 @@
 </head>
 <body>
 
+  <!-- Floating animated hearts -->
   <div class="bg-heart" style="left: 10%; animation-delay: 0s;">💖</div>
   <div class="bg-heart" style="left: 25%; animation-delay: 2s;">💕</div>
   <div class="bg-heart" style="left: 60%; animation-delay: 4s;">🌸</div>
@@ -431,52 +555,94 @@
 
   <header>
     <h1>Our Love Frequency</h1>
-    <p>♡ Private Radio Station & Audio Vault ♡</p>
+    <p>♡ FM Radio & Private Journal ♡</p>
   </header>
 
-  <div class="radio-container">
-    <button class="admin-toggle" id="adminBtn">⚙️</button>
+  <!-- View Switcher Tabs -->
+  <div class="view-mode-tabs">
+    <button class="tab-btn active" id="radioTabBtn">📻 Radio Station</button>
+    <button class="tab-btn" id="journalTabBtn">💌 Pure Letters</button>
+  </div>
 
+  <div class="app-card">
+    <button class="admin-toggle" id="adminBtn" title="Admin Settings">⚙️</button>
+
+    <!-- Frequency Badge -->
     <div class="freq-badge" id="freqBadge">107.9 FM</div>
 
-    <div class="vinyl-wrapper">
-      <div class="vinyl-record" id="vinyl">
-        <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=300" alt="Album Art" class="album-art" id="albumArt">
+    <!-- Mode 1: Radio Station Player -->
+    <div class="mode-section" id="radioSection">
+      <div class="vinyl-wrapper">
+        <div class="vinyl-record" id="vinyl">
+          <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=300" alt="Album Art" class="album-art" id="albumArt">
+        </div>
+      </div>
+
+      <div class="track-info">
+        <div class="track-title" id="radioTrackTitle">Select a Station</div>
+        <div class="track-subtitle" id="radioTrackSubtitle">Tune in to listen ♡</div>
+      </div>
+
+      <div class="station-selector" id="stationList"></div>
+
+      <div class="controls">
+        <button class="btn-secondary" id="prevRadioBtn">⏮</button>
+        <button class="btn-circle" id="playRadioBtn">▶</button>
+        <button class="btn-secondary" id="nextRadioBtn">⏭</button>
+      </div>
+
+      <div class="action-bar">
+        <a href="#" id="downloadAudioBtn" class="btn-action-sm" download="LoveNote.mp3" style="display: none;">
+          📥 Download Audio File
+        </a>
       </div>
     </div>
 
-    <div class="track-info">
-      <div class="track-title" id="trackTitle">Select a Station</div>
-      <div class="track-subtitle" id="trackSubtitle">Tap play to listen ♡</div>
-    </div>
+    <!-- Mode 2: Dedicated Pure Letters / Journal -->
+    <div class="mode-section hidden" id="journalSection">
+      <div class="envelope-container">
+        <div class="envelope" id="envelopeCard">
+          <div class="envelope-flap">💌 Secret Love Letter</div>
+          <div class="letter-paper" id="letterTextContent">Select a letter to open and read... ♡</div>
+        </div>
+      </div>
 
-    <!-- Letter Text Box -->
-    <div class="letter-box" id="letterBox"></div>
+      <div class="track-info">
+        <div class="track-title" id="letterTitle">Love Letters Vault</div>
+        <div class="track-subtitle" id="letterSubtitle">Written straight from the heart</div>
+      </div>
 
-    <div class="station-selector" id="stationList"></div>
+      <!-- Text to Speech Voice Selection & Controls -->
+      <div class="voice-settings-box">
+        <label>🎙️ Preferred Reading Voice (Natural / Warm Options)</label>
+        <select id="voiceSelect"><option value="">Loading system voices...</option></select>
+        
+        <div style="display: flex; gap: 10px;">
+          <div style="flex: 1;">
+            <label>Reading Speed: <span id="rateVal">0.9</span>x</label>
+            <input type="range" id="speechRate" min="0.6" max="1.3" step="0.1" value="0.9">
+          </div>
+          <div style="flex: 1;">
+            <label>Voice Pitch</label>
+            <input type="range" id="speechPitch" min="0.7" max="1.3" step="0.1" value="1.0">
+          </div>
+        </div>
+      </div>
 
-    <div class="controls">
-      <button class="btn-secondary" id="prevBtn">⏮</button>
-      <button class="btn-circle" id="playBtn">▶</button>
-      <button class="btn-secondary" id="nextBtn">⏭</button>
-    </div>
-
-    <div class="action-bar">
-      <button id="readLetterBtn" class="btn-action-small" style="display: none;">
-        🗣️ Listen to Letter
-      </button>
-      <a href="#" id="downloadBtn" class="btn-action-small" download="voice_note.mp3" style="display: none;">
-        📥 Download Voice
-      </a>
+      <div class="controls">
+        <button class="btn-secondary" id="prevLetterBtn">⏮</button>
+        <button class="btn-circle" id="playLetterBtn" title="Read Aloud">🗣️</button>
+        <button class="btn-secondary" id="nextLetterBtn">⏭</button>
+      </div>
     </div>
   </div>
 
-  <!-- Admin Panel -->
+  <!-- Admin Panel for Adding Content & Stations -->
   <div class="admin-panel" id="adminPanel">
-    <h2>Admin Management ♡</h2>
+    <h2>Admin Settings & Creator Studio ♡</h2>
 
     <div class="form-group">
-      <label>Choose Theme or Custom Background</label>
+      <label>Choose Wallpaper / Theme</label>
       <select id="bgThemeSelect">
         <option value="sunset">Sunset Romantic (Gradient)</option>
         <option value="cosmic">Night Cosmic (Dark Purple)</option>
@@ -486,139 +652,192 @@
     </div>
 
     <div class="form-group" id="customBgBox" style="display: none;">
-      <label>Upload Custom Wallpaper</label>
+      <label>Upload Custom Background Image</label>
       <input type="file" id="bgFileInput" accept="image/*">
     </div>
 
-    <!-- Station Creation Section -->
-    <div class="section-title">1. Manage Custom Stations & Frequencies</div>
+    <!-- Section 1: Unlimited Custom Stations & Frequencies -->
+    <div class="section-title">1. Create Custom FM Stations & Frequencies</div>
     <div class="form-group">
       <label>Station Name</label>
-      <input type="text" id="newStationName" placeholder="e.g. Late Night Chats 🌙">
+      <input type="text" id="newStationName" placeholder="e.g. Late Night Vibes 🌙">
     </div>
     <div class="form-group">
-      <label>Custom Frequency (e.g. 104.5 FM)</label>
-      <input type="text" id="newStationFreq" placeholder="e.g. 98.5 FM">
+      <label>Custom FM Frequency</label>
+      <input type="text" id="newStationFreq" placeholder="e.g. 104.5 FM">
     </div>
-    <button class="btn-save" id="addStationBtn" style="margin-bottom: 10px; background: #6c5ce7;">+ Add Station</button>
-
+    <button class="btn-action" id="addStationBtn" style="margin-bottom: 10px; background: #6c5ce7;">+ Add Custom Station</button>
     <div class="list-box" id="adminStationList"></div>
 
-    <!-- Content / Track Creation Section -->
-    <div class="section-title">2. Add Track, Voice Note or Written Letter</div>
+    <!-- Section 2: Upload Music, Voice Notes, or Written Letters -->
+    <div class="section-title">2. Add Track, External Music / Audio, or Letters</div>
+    
     <div class="form-group">
-      <label>Select Station Channel</label>
+      <label>Content Type</label>
+      <select id="contentTypeSelect">
+        <option value="audio">Audio / Music Track / Voice Note 🎵</option>
+        <option value="letter">Pure Written Love Letter 💌</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Target Station Channel</label>
       <select id="selectTrackStation"></select>
     </div>
 
     <div class="form-group">
-      <label>Track / Letter Title</label>
-      <input type="text" id="inputTitle" placeholder="e.g. For when you miss me">
+      <label>Title</label>
+      <input type="text" id="inputTitle" placeholder="e.g. Our Favorite Song / Letter for Bad Days">
+    </div>
+
+    <!-- Audio Input Options -->
+    <div id="audioInputGroup">
+      <div class="form-group">
+        <label>Upload External Audio / Voice Note (MP3, WAV, M4A)</label>
+        <input type="file" id="audioFileInput" accept="audio/*">
+      </div>
+
+      <div class="form-group">
+        <label>Or Paste External Audio Stream / MP3 URL</label>
+        <input type="url" id="audioUrlInput" placeholder="https://example.com/song.mp3">
+      </div>
+
+      <div class="recorder-box">
+        <button class="btn-recorder" id="recordBtn">🎙️ Record Direct Voice</button>
+        <span id="recordStatus" style="font-size:0.8rem; color:var(--text-muted); font-weight: 600;">Ready</span>
+      </div>
+    </div>
+
+    <!-- Letter Input Options -->
+    <div class="form-group" id="letterInputGroup" style="display: none;">
+      <label>Write Love Letter</label>
+      <textarea id="inputLetter" rows="4" placeholder="Write your letter here... She can read it or listen to it read aloud! ♡"></textarea>
     </div>
 
     <div class="form-group">
-      <label>Written Love Letter (Optional - She can read or listen to it)</label>
-      <textarea id="inputLetter" rows="3" placeholder="Write your letter here..."></textarea>
-    </div>
-
-    <div class="form-group">
-      <label>Pick Cover Photo from Phone</label>
+      <label>Pick Cover Photo from Device</label>
       <input type="file" id="inputFile" accept="image/*">
     </div>
 
-    <div class="recorder-box">
-      <button class="btn-recorder" id="recordBtn">🎙️ Record Voice</button>
-      <span id="recordStatus" style="font-size:0.8rem; color:var(--text-muted); font-weight: 600;">Ready</span>
-    </div>
+    <button class="btn-action" id="saveContentBtn">Save to Station ♡</button>
 
-    <button class="btn-save" id="saveTrackBtn">Save Memory ♡</button>
-
-    <div class="section-title">Existing Memories</div>
+    <div class="section-title">Existing Content Items</div>
     <div class="list-box" id="adminTrackList"></div>
   </div>
 
+  <!-- JavaScript Logic & State Management -->
   <script>
     let stations = [];
-    let tracks = [];
-    let currentTrackIndex = 0;
-    let isPlaying = false;
-    let audio = new Audio();
+    let items = [];
+    let currentRadioIndex = 0;
+    let currentLetterIndex = 0;
+    let activeMode = 'radio'; // 'radio' or 'journal'
+
+    let audioPlayer = new Audio();
+    let isAudioPlaying = false;
+
     let mediaRecorder;
     let audioChunks = [];
     let recordedAudioUrl = null;
+    let uploadedAudioBase64 = null;
     let selectedImageBase64 = null;
-    let isReadingLetter = false;
 
-    // Default Stations if empty
+    let speechSynth = window.speechSynthesis;
+    let isSpeechReading = false;
+
+    // Default seed stations
     const defaultStations = [
       { name: "Our Memories 📸", freq: "107.9 FM" },
-      { name: "Late Night 🌙", freq: "98.5 FM" },
-      { name: "Pick-Me-Up 💕", freq: "101.3 FM" }
+      { name: "Late Night Vibes 🌙", freq: "98.5 FM" },
+      { name: "Sweet Letters 💌", freq: "101.3 FM" }
     ];
 
-    const playBtn = document.getElementById('playBtn');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
+    // DOM Elements
+    const radioTabBtn = document.getElementById('radioTabBtn');
+    const journalTabBtn = document.getElementById('journalTabBtn');
+    const radioSection = document.getElementById('radioSection');
+    const journalSection = document.getElementById('journalSection');
+
     const vinyl = document.getElementById('vinyl');
     const albumArt = document.getElementById('albumArt');
-    const trackTitle = document.getElementById('trackTitle');
-    const trackSubtitle = document.getElementById('trackSubtitle');
+    const radioTrackTitle = document.getElementById('radioTrackTitle');
+    const radioTrackSubtitle = document.getElementById('radioTrackSubtitle');
     const freqBadge = document.getElementById('freqBadge');
     const stationList = document.getElementById('stationList');
-    const letterBox = document.getElementById('letterBox');
-    const readLetterBtn = document.getElementById('readLetterBtn');
-    const downloadBtn = document.getElementById('downloadBtn');
+
+    const playRadioBtn = document.getElementById('playRadioBtn');
+    const prevRadioBtn = document.getElementById('prevRadioBtn');
+    const nextRadioBtn = document.getElementById('nextRadioBtn');
+    const downloadAudioBtn = document.getElementById('downloadAudioBtn');
+
+    const envelopeCard = document.getElementById('envelopeCard');
+    const letterTextContent = document.getElementById('letterTextContent');
+    const letterTitle = document.getElementById('letterTitle');
+    const letterSubtitle = document.getElementById('letterSubtitle');
+    const playLetterBtn = document.getElementById('playLetterBtn');
+    const prevLetterBtn = document.getElementById('prevLetterBtn');
+    const nextLetterBtn = document.getElementById('nextLetterBtn');
+
+    const voiceSelect = document.getElementById('voiceSelect');
+    const speechRate = document.getElementById('speechRate');
+    const speechPitch = document.getElementById('speechPitch');
+    const rateVal = document.getElementById('rateVal');
+
     const adminBtn = document.getElementById('adminBtn');
     const adminPanel = document.getElementById('adminPanel');
-
     const bgThemeSelect = document.getElementById('bgThemeSelect');
     const customBgBox = document.getElementById('customBgBox');
     const bgFileInput = document.getElementById('bgFileInput');
 
-    // Admin Inputs
     const newStationName = document.getElementById('newStationName');
     const newStationFreq = document.getElementById('newStationFreq');
     const addStationBtn = document.getElementById('addStationBtn');
     const adminStationList = document.getElementById('adminStationList');
 
+    const contentTypeSelect = document.getElementById('contentTypeSelect');
     const selectTrackStation = document.getElementById('selectTrackStation');
     const inputTitle = document.getElementById('inputTitle');
-    const inputLetter = document.getElementById('inputLetter');
-    const inputFile = document.getElementById('inputFile');
+    const audioInputGroup = document.getElementById('audioInputGroup');
+    const letterInputGroup = document.getElementById('letterInputGroup');
+    const audioFileInput = document.getElementById('audioFileInput');
+    const audioUrlInput = document.getElementById('audioUrlInput');
     const recordBtn = document.getElementById('recordBtn');
     const recordStatus = document.getElementById('recordStatus');
-    const saveTrackBtn = document.getElementById('saveTrackBtn');
+    const inputLetter = document.getElementById('inputLetter');
+    const inputFile = document.getElementById('inputFile');
+    const saveContentBtn = document.getElementById('saveContentBtn');
     const adminTrackList = document.getElementById('adminTrackList');
 
     function init() {
-      // Load Stations
-      const savedStations = localStorage.getItem('love_stations');
-      if (savedStations) {
-        stations = JSON.parse(savedStations);
-      } else {
-        stations = defaultStations;
-        saveStations();
-      }
+      // Load saved stations & content
+      const savedStations = localStorage.getItem('love_radio_stations_v2');
+      stations = savedStations ? JSON.parse(savedStations) : defaultStations;
 
-      // Load Tracks
-      const savedTracks = localStorage.getItem('love_radio_tracks');
-      if (savedTracks) {
-        tracks = JSON.parse(savedTracks);
+      const savedItems = localStorage.getItem('love_radio_items_v2');
+      if (savedItems) {
+        items = JSON.parse(savedItems);
       } else {
-        tracks = [
+        items = [
           {
-            title: "Welcome Note ♡",
+            type: 'audio',
+            title: "Welcome Voice Note ♡",
             station: stations[0].name,
             freq: stations[0].freq,
-            letter: "Welcome to our private radio station! Switch between stations to hear voice notes or read letters.",
-            photo: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=300",
-            audioUrl: ""
+            audioUrl: "",
+            photo: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=300"
+          },
+          {
+            type: 'letter',
+            title: "First Love Letter 💌",
+            station: stations[2].name,
+            freq: stations[2].freq,
+            letter: "My love,\n\nI built this private radio station and journal for us. Tune into our custom channels to listen to our songs and voice notes, or open this journal whenever you want to read my letters. You mean the world to me! ♡",
+            photo: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=300"
           }
         ];
-        saveTracks();
       }
 
-      // Load Background
+      // Load background theme
       const savedBg = localStorage.getItem('love_radio_bg');
       if (savedBg) applyBackground(savedBg);
 
@@ -626,12 +845,51 @@
       renderAdminStations();
       renderAdminTracks();
       populateStationDropdown();
+      initVoices();
 
-      if (tracks.length > 0) loadTrack(0);
+      loadRadioTrack(0);
+      loadJournalLetter(0);
     }
 
-    function saveStations() { localStorage.setItem('love_stations', JSON.stringify(stations)); }
-    function saveTracks() { localStorage.setItem('love_radio_tracks', JSON.stringify(tracks)); }
+    function saveStations() { localStorage.setItem('love_radio_stations_v2', JSON.stringify(stations)); }
+    function saveItems() { localStorage.setItem('love_radio_items_v2', JSON.stringify(items)); }
+
+    // Mode Switching Logic
+    radioTabBtn.onclick = () => switchMode('radio');
+    journalTabBtn.onclick = () => switchMode('journal');
+
+    function switchMode(mode) {
+      if (activeMode === mode) return;
+      activeMode = mode;
+      stopAllAudio();
+
+      if (mode === 'radio') {
+        radioTabBtn.classList.add('active');
+        journalTabBtn.classList.remove('active');
+        journalSection.classList.add('hidden');
+        setTimeout(() => {
+          radioSection.classList.remove('hidden');
+        }, 200);
+      } else {
+        journalTabBtn.classList.add('active');
+        radioTabBtn.classList.remove('active');
+        radioSection.classList.add('hidden');
+        setTimeout(() => {
+          journalSection.classList.remove('hidden');
+        }, 200);
+      }
+    }
+
+    function stopAllAudio() {
+      audioPlayer.pause();
+      isAudioPlaying = false;
+      playRadioBtn.textContent = '▶';
+      vinyl.classList.remove('playing');
+
+      if (speechSynth) speechSynth.cancel();
+      isSpeechReading = false;
+      playLetterBtn.textContent = '🗣️';
+    }
 
     function applyBackground(bg) {
       if (bg.startsWith('data:image')) {
@@ -668,39 +926,35 @@
       }
     };
 
-    function loadTrack(index) {
-      if (tracks.length === 0) return;
-      currentTrackIndex = index;
-      const track = tracks[index];
+    // Radio Mode Logic
+    function getAudioTracks() {
+      return items.filter(i => i.type === 'audio');
+    }
 
-      trackTitle.textContent = track.title;
-      trackSubtitle.textContent = "Station: " + track.station;
+    function loadRadioTrack(index) {
+      const audioTracks = getAudioTracks();
+      if (audioTracks.length === 0) {
+        radioTrackTitle.textContent = "No Audio Tracks Yet";
+        radioTrackSubtitle.textContent = "Add songs or voice notes in Admin";
+        return;
+      }
+
+      currentRadioIndex = (index + audioTracks.length) % audioTracks.length;
+      const track = audioTracks[currentRadioIndex];
+
+      radioTrackTitle.textContent = track.title;
+      radioTrackSubtitle.textContent = "Station: " + track.station;
       freqBadge.textContent = track.freq || "107.9 FM";
       albumArt.src = track.photo || "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=300";
 
-      // Stop speech if running
-      window.speechSynthesis.cancel();
-      isReadingLetter = false;
-
-      // Letter Display
-      if (track.letter && track.letter.trim() !== "") {
-        letterBox.textContent = track.letter;
-        letterBox.style.display = "block";
-        readLetterBtn.style.display = "inline-flex";
-      } else {
-        letterBox.style.display = "none";
-        readLetterBtn.style.display = "none";
-      }
-
-      // Audio Display
       if (track.audioUrl) {
-        audio.src = track.audioUrl;
-        downloadBtn.href = track.audioUrl;
-        downloadBtn.style.display = 'inline-flex';
-        downloadBtn.download = `${track.title.replace(/\s+/g, '_')}_VoiceNote.mp3`;
+        audioPlayer.src = track.audioUrl;
+        downloadAudioBtn.href = track.audioUrl;
+        downloadAudioBtn.style.display = 'inline-flex';
+        downloadAudioBtn.download = `${track.title.replace(/\s+/g, '_')}.mp3`;
       } else {
-        audio.src = "";
-        downloadBtn.style.display = 'none';
+        audioPlayer.src = "";
+        downloadAudioBtn.style.display = 'none';
       }
     }
 
@@ -713,92 +967,152 @@
         chip.onclick = () => {
           document.querySelectorAll('.station-chip').forEach(c => c.classList.remove('active'));
           chip.classList.add('active');
-          const firstInStation = tracks.findIndex(t => t.station === st.name);
-          if (firstInStation !== -1) {
-            loadTrack(firstInStation);
-            playAudio();
+          
+          const audioTracks = getAudioTracks();
+          const firstTrackIndex = audioTracks.findIndex(t => t.station === st.name);
+          if (firstTrackIndex !== -1) {
+            loadRadioTrack(firstTrackIndex);
+            playRadioAudio();
           } else {
-            trackTitle.textContent = st.name;
-            trackSubtitle.textContent = "No tracks in this station yet";
+            radioTrackTitle.textContent = st.name;
+            radioTrackSubtitle.textContent = "No tracks on this station yet";
             freqBadge.textContent = st.freq;
-            letterBox.style.display = "none";
-            readLetterBtn.style.display = "none";
-            downloadBtn.style.display = "none";
-            pauseAudio();
+            stopAllAudio();
           }
         };
         stationList.appendChild(chip);
       });
     }
 
-    function playAudio() {
-      if (tracks[currentTrackIndex] && tracks[currentTrackIndex].audioUrl) {
-        audio.play();
-        isPlaying = true;
-        playBtn.textContent = '⏸';
+    function playRadioAudio() {
+      if (!audioPlayer.src) return;
+      stopAllAudio();
+      audioPlayer.play().then(() => {
+        isAudioPlaying = true;
+        playRadioBtn.textContent = '⏸';
         vinyl.classList.add('playing');
+      }).catch(err => alert("Press play again to allow audio playback."));
+    }
+
+    playRadioBtn.onclick = () => {
+      if (isAudioPlaying) {
+        stopAllAudio();
+      } else {
+        playRadioAudio();
+      }
+    };
+
+    nextRadioBtn.onclick = () => {
+      loadRadioTrack(currentRadioIndex + 1);
+      playRadioAudio();
+    };
+
+    prevRadioBtn.onclick = () => {
+      loadRadioTrack(currentRadioIndex - 1);
+      playRadioAudio();
+    };
+
+    audioPlayer.onended = () => stopAllAudio();
+
+    // Journal / Pure Letters Logic
+    function getLetterTracks() {
+      return items.filter(i => i.type === 'letter');
+    }
+
+    function loadJournalLetter(index) {
+      const letters = getLetterTracks();
+      if (letters.length === 0) {
+        letterTitle.textContent = "No Letters Written";
+        letterSubtitle.textContent = "Add love letters in Admin mode ♡";
+        letterTextContent.textContent = "Your journal is empty...";
+        return;
+      }
+
+      currentLetterIndex = (index + letters.length) % letters.length;
+      const letterItem = letters[currentLetterIndex];
+
+      letterTitle.textContent = letterItem.title;
+      letterSubtitle.textContent = "Station: " + letterItem.station + " (" + (letterItem.freq || "107.9 FM") + ")";
+      letterTextContent.textContent = letterItem.letter;
+      freqBadge.textContent = letterItem.freq || "107.9 FM";
+    }
+
+    nextLetterBtn.onclick = () => {
+      stopAllAudio();
+      loadJournalLetter(currentLetterIndex + 1);
+    };
+
+    prevLetterBtn.onclick = () => {
+      stopAllAudio();
+      loadJournalLetter(currentLetterIndex - 1);
+    };
+
+    // Text to Speech Engine & Voice Selector
+    function initVoices() {
+      if (!('speechSynthesis' in window)) return;
+
+      function populateVoiceList() {
+        const voices = speechSynth.getVoices();
+        voiceSelect.innerHTML = "";
+        
+        // Filter for English or soft sounding voices
+        voices.forEach((v, idx) => {
+          const option = document.createElement('option');
+          option.value = idx;
+          option.textContent = `${v.name} (${v.lang})`;
+          
+          // Select smooth/warm natural voices by default if available
+          if (v.name.includes('Samantha') || v.name.includes('Natural') || v.name.includes('Karen') || v.name.includes('Google US English')) {
+            option.selected = true;
+          }
+          voiceSelect.appendChild(option);
+        });
+      }
+
+      populateVoiceList();
+      if (speechSynthesis.onvoiceschanged !== undefined) {
+        speechSynthesis.onvoiceschanged = populateVoiceList;
       }
     }
 
-    function pauseAudio() {
-      audio.pause();
-      isPlaying = false;
-      playBtn.textContent = '▶';
-      vinyl.classList.remove('playing');
-      window.speechSynthesis.cancel();
-    }
+    speechRate.oninput = (e) => { rateVal.textContent = e.target.value; };
 
-    playBtn.onclick = () => {
-      if (isPlaying) pauseAudio();
-      else playAudio();
-    };
+    playLetterBtn.onclick = () => {
+      const letters = getLetterTracks();
+      if (letters.length === 0) return;
 
-    nextBtn.onclick = () => {
-      currentTrackIndex = (currentTrackIndex + 1) % tracks.length;
-      loadTrack(currentTrackIndex);
-      playAudio();
-    };
-
-    prevBtn.onclick = () => {
-      currentTrackIndex = (currentTrackIndex - 1 + tracks.length) % tracks.length;
-      loadTrack(currentTrackIndex);
-      playAudio();
-    };
-
-    audio.onended = () => pauseAudio();
-
-    // Read Aloud Text-to-Speech
-    readLetterBtn.onclick = () => {
-      const track = tracks[currentTrackIndex];
-      if (!track || !track.letter) return;
-
-      if (isReadingLetter) {
-        window.speechSynthesis.cancel();
-        isReadingLetter = false;
-        readLetterBtn.textContent = "🗣️ Listen to Letter";
-        vinyl.classList.remove('playing');
+      if (isSpeechReading) {
+        stopAllAudio();
       } else {
-        pauseAudio();
-        const utterance = new SpeechSynthesisUtterance(track.letter);
-        utterance.rate = 0.9;
-        utterance.pitch = 1.0;
+        stopAllAudio();
+        const currentLetter = letters[currentLetterIndex];
+        const utterance = new SpeechSynthesisUtterance(currentLetter.letter);
+        
+        const voices = speechSynth.getVoices();
+        if (voiceSelect.value && voices[voiceSelect.value]) {
+          utterance.voice = voices[voiceSelect.value];
+        }
 
-        utterance.onend = () => {
-          isReadingLetter = false;
-          readLetterBtn.textContent = "🗣️ Listen to Letter";
-          vinyl.classList.remove('playing');
+        utterance.rate = parseFloat(speechRate.value);
+        utterance.pitch = parseFloat(speechPitch.value);
+
+        utterance.onstart = () => {
+          isSpeechReading = true;
+          playLetterBtn.textContent = '⏹️';
         };
 
-        window.speechSynthesis.speak(utterance);
-        isReadingLetter = true;
-        readLetterBtn.textContent = "⏹️ Stop Reading";
-        vinyl.classList.add('playing');
+        utterance.onend = () => {
+          isSpeechReading = false;
+          playLetterBtn.textContent = '🗣️';
+        };
+
+        speechSynth.speak(utterance);
       }
     };
 
-    // Admin Passcode Toggle
+    // Admin Controls & Content Studio
     adminBtn.onclick = () => {
-      const pass = prompt("Enter Admin Passcode ♡:", "");
+      const pass = prompt("Enter Secret Passcode ♡:", "");
       if (pass === "1234") {
         adminPanel.classList.toggle('active');
       } else {
@@ -806,7 +1120,17 @@
       }
     };
 
-    // Add New Custom Station
+    contentTypeSelect.onchange = (e) => {
+      if (e.target.value === 'letter') {
+        letterInputGroup.style.display = 'block';
+        audioInputGroup.style.display = 'none';
+      } else {
+        letterInputGroup.style.display = 'none';
+        audioInputGroup.style.display = 'block';
+      }
+    };
+
+    // Add Custom FM Station
     addStationBtn.onclick = () => {
       const name = newStationName.value.trim();
       const freq = newStationFreq.value.trim() || "100.0 FM";
@@ -824,7 +1148,7 @@
 
       newStationName.value = "";
       newStationFreq.value = "";
-      alert("New station added!");
+      alert("New custom station added!");
     };
 
     function renderAdminStations() {
@@ -852,7 +1176,16 @@
       selectTrackStation.innerHTML = stations.map(s => `<option value="${s.name}">${s.name} (${s.freq})</option>`).join('');
     }
 
-    // File Input Base64
+    // Process File Uploads (Images and Audio Files)
+    audioFileInput.onchange = (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onloadend = () => { uploadedAudioBase64 = reader.result; };
+        reader.readAsDataURL(file);
+      }
+    };
+
     inputFile.onchange = (e) => {
       const file = e.target.files[0];
       if (file) {
@@ -862,7 +1195,7 @@
       }
     };
 
-    // Recorder Logic
+    // Voice Recorder Logic
     recordBtn.onclick = async () => {
       if (!mediaRecorder || mediaRecorder.state === "inactive") {
         try {
@@ -877,76 +1210,90 @@
             reader.readAsDataURL(blob);
             reader.onloadend = () => {
               recordedAudioUrl = reader.result;
-              recordStatus.textContent = "Voice Saved! ✨";
+              recordStatus.textContent = "Recording Ready! ✨";
             };
           };
 
           mediaRecorder.start();
           recordStatus.textContent = "Recording... 🎙️";
-          recordBtn.textContent = "⏹ Stop";
+          recordBtn.textContent = "⏹ Stop Recording";
         } catch (err) {
           alert("Microphone permission denied.");
         }
       } else {
         mediaRecorder.stop();
-        recordBtn.textContent = "🎙️ Record Voice";
+        recordBtn.textContent = "🎙️ Record Direct Voice";
       }
     };
 
-    // Save Memory Track
-    saveTrackBtn.onclick = () => {
+    // Save Content Item
+    saveContentBtn.onclick = () => {
+      const type = contentTypeSelect.value;
       const title = inputTitle.value.trim();
       const stationName = selectTrackStation.value;
-      const letter = inputLetter.value.trim();
+      const urlAudio = audioUrlInput.value.trim();
+      const letterText = inputLetter.value.trim();
 
       if (!title) {
-        alert("Please write a title for this memory!");
+        alert("Please provide a title!");
         return;
       }
 
-      const selectedStationObj = stations.find(s => s.name === stationName) || stations[0];
+      if (type === 'letter' && !letterText) {
+        alert("Please write letter content!");
+        return;
+      }
 
-      tracks.push({
+      const stationObj = stations.find(s => s.name === stationName) || stations[0];
+      let finalAudioUrl = uploadedAudioBase64 || urlAudio || recordedAudioUrl || "";
+
+      items.push({
+        type: type,
         title: title,
-        station: selectedStationObj.name,
-        freq: selectedStationObj.freq,
-        letter: letter,
-        photo: selectedImageBase64 || "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=300",
-        audioUrl: recordedAudioUrl || ""
+        station: stationObj.name,
+        freq: stationObj.freq,
+        audioUrl: finalAudioUrl,
+        letter: letterText,
+        photo: selectedImageBase64 || "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=300"
       });
 
-      saveTracks();
-      renderStations();
+      saveItems();
       renderAdminTracks();
+      loadRadioTrack(getAudioTracks().length - 1);
+      loadJournalLetter(getLetterTracks().length - 1);
 
       inputTitle.value = "";
       inputLetter.value = "";
+      audioUrlInput.value = "";
+      audioFileInput.value = "";
       inputFile.value = "";
-      selectedImageBase64 = null;
+      uploadedAudioBase64 = null;
       recordedAudioUrl = null;
+      selectedImageBase64 = null;
       recordStatus.textContent = "Ready";
-      alert("Memory saved to " + selectedStationObj.name + "!");
+
+      alert("Saved memory successfully! ♡");
     };
 
     function renderAdminTracks() {
       adminTrackList.innerHTML = "";
-      tracks.forEach((t, i) => {
-        const item = document.createElement('div');
-        item.className = 'item-card';
-        item.innerHTML = `
-          <span>${t.title} (${t.station})</span>
-          <button class="btn-del" onclick="deleteTrack(${i})">🗑️</button>
+      items.forEach((item, i) => {
+        const card = document.createElement('div');
+        card.className = 'item-card';
+        card.innerHTML = `
+          <span>${item.type === 'letter' ? '💌' : '🎵'} <strong>${item.title}</strong> (${item.station})</span>
+          <button class="btn-del" onclick="deleteItem(${i})">🗑️</button>
         `;
-        adminTrackList.appendChild(item);
+        adminTrackList.appendChild(card);
       });
     }
 
-    window.deleteTrack = function(index) {
-      tracks.splice(index, 1);
-      saveTracks();
-      renderStations();
+    window.deleteItem = function(index) {
+      items.splice(index, 1);
+      saveItems();
       renderAdminTracks();
-      if (tracks.length > 0) loadTrack(0);
+      loadRadioTrack(0);
+      loadJournalLetter(0);
     };
 
     init();
