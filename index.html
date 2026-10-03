@@ -3,15 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Our Love Frequency ♡ Radio & Letters</title>
+  <title>Our Love Frequency ♡ Radio & Memories</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Sacramento&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
-  
   <style>
     :root {
       --bg-theme: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #feada6 100%);
-      --card-bg: rgba(255, 255, 255, 0.90);
+      --card-bg: rgba(255, 255, 255, 0.88);
       --accent: #ff4b72;
       --accent-hover: #ff2b56;
       --accent-glow: rgba(255, 75, 114, 0.35);
@@ -56,7 +55,7 @@
 
     header {
       text-align: center;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
       width: 100%;
       max-width: 480px;
       z-index: 1;
@@ -64,7 +63,7 @@
 
     header h1 {
       font-family: 'Sacramento', cursive;
-      font-size: 3.4rem;
+      font-size: 3.2rem;
       color: var(--accent);
       text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.9);
       line-height: 1.1;
@@ -84,13 +83,13 @@
       width: 100%;
       max-width: 480px;
       border-radius: 30px;
-      padding: 28px 20px;
+      padding: 24px 20px;
       box-shadow: 0 15px 35px rgba(255, 105, 135, 0.25), 0 5px 15px rgba(255, 255, 255, 0.8) inset;
       border: 3px solid #ffffff;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 18px;
+      gap: 16px;
       position: relative;
       z-index: 1;
     }
@@ -114,6 +113,18 @@
       transition: transform 0.2s ease;
     }
     .admin-toggle:active { transform: scale(0.9); }
+
+    /* Frequency Display Badge */
+    .freq-badge {
+      font-family: 'Fredoka', sans-serif;
+      background: #ff4b72;
+      color: #ffffff;
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      box-shadow: 0 3px 10px var(--accent-glow);
+    }
 
     .vinyl-wrapper {
       width: 190px;
@@ -158,7 +169,7 @@
 
     .track-title {
       font-family: 'Fredoka', sans-serif;
-      font-size: 1.3rem;
+      font-size: 1.25rem;
       font-weight: 600;
       color: var(--text-main);
     }
@@ -166,33 +177,24 @@
     .track-subtitle {
       font-size: 0.88rem;
       color: var(--text-muted);
-      margin-top: 4px;
+      margin-top: 3px;
       font-weight: 500;
     }
 
-    /* Love Letter View Box */
-    .letter-card {
+    /* Letter Display Card */
+    .letter-box {
       width: 100%;
       background: #fff8f9;
       border: 2px dashed #ffb6c1;
-      border-radius: 20px;
-      padding: 16px;
-      margin-top: 8px;
-      display: none;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .letter-card.active { display: flex; }
-
-    .letter-text {
-      font-size: 0.95rem;
+      border-radius: 18px;
+      padding: 14px;
+      font-size: 0.92rem;
       line-height: 1.5;
-      color: #5c323e;
-      white-space: pre-wrap;
-      max-height: 160px;
+      color: #5a3e45;
+      display: none;
+      max-height: 180px;
       overflow-y: auto;
-      padding-right: 5px;
+      text-align: left;
     }
 
     .station-selector {
@@ -207,16 +209,19 @@
 
     .station-chip {
       font-family: 'Fredoka', sans-serif;
-      padding: 9px 16px;
+      padding: 8px 15px;
       border-radius: 25px;
       background: #fff0f3;
       color: var(--text-muted);
-      font-size: 0.88rem;
+      font-size: 0.85rem;
       cursor: pointer;
       white-space: nowrap;
       border: 2px solid #ffd1dc;
       box-shadow: 0 2px 6px rgba(0,0,0,0.03);
       transition: all 0.25s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
 
     .station-chip.active {
@@ -226,15 +231,23 @@
       box-shadow: 0 4px 12px var(--accent-glow);
     }
 
+    .station-chip-freq {
+      font-size: 0.75rem;
+      opacity: 0.85;
+      background: rgba(0, 0, 0, 0.1);
+      padding: 2px 6px;
+      border-radius: 10px;
+    }
+
     .controls {
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 18px;
     }
 
     .btn-circle {
-      width: 60px;
-      height: 60px;
+      width: 58px;
+      height: 58px;
       border-radius: 50%;
       border: none;
       background: var(--accent);
@@ -266,31 +279,31 @@
     }
     .btn-secondary:active { transform: scale(0.9); }
 
-    .download-bar {
+    .action-bar {
       width: 100%;
       display: flex;
-      justify-content: center;
       gap: 10px;
-      margin-top: 5px;
+      justify-content: center;
+      flex-wrap: wrap;
     }
 
-    .btn-action-sm {
+    .btn-action-small {
       font-family: 'Fredoka', sans-serif;
       background: #fff0f3;
       color: var(--accent);
       border: 2px solid #ffd1dc;
-      padding: 10px 18px;
+      padding: 8px 14px;
       border-radius: 20px;
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
       text-decoration: none;
       box-shadow: 0 2px 8px rgba(0,0,0,0.04);
       transition: all 0.2s ease;
     }
-    .btn-action-sm:active { transform: scale(0.95); }
+    .btn-action-small:active { transform: scale(0.95); }
 
     .admin-panel {
       width: 100%;
@@ -310,48 +323,48 @@
 
     .admin-panel h2 {
       font-family: 'Fredoka', sans-serif;
-      font-size: 1.25rem;
-      margin-bottom: 15px;
+      font-size: 1.2rem;
+      margin-bottom: 12px;
       color: var(--accent);
       text-align: center;
     }
 
-    .form-group { margin-bottom: 14px; }
+    .form-group { margin-bottom: 12px; }
 
     .form-group label {
       display: block;
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       font-weight: 700;
       color: var(--text-muted);
-      margin-bottom: 5px;
+      margin-bottom: 4px;
     }
 
     .form-group input, .form-group select, .form-group textarea {
       width: 100%;
-      padding: 11px;
+      padding: 10px;
       background: #ffffff;
       border: 2px solid #ffd1dc;
       color: var(--text-main);
-      border-radius: 14px;
-      font-size: 0.9rem;
+      border-radius: 12px;
+      font-size: 0.88rem;
       outline: none;
       font-family: 'Quicksand', sans-serif;
     }
 
     .recorder-box {
       display: flex;
-      gap: 12px;
+      gap: 10px;
       align-items: center;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
       background: #fff0f3;
-      padding: 12px;
-      border-radius: 14px;
+      padding: 10px;
+      border-radius: 12px;
       border: 2px dashed #ffb6c1;
     }
 
-    .btn-action {
-      padding: 13px;
-      border-radius: 18px;
+    .btn-save {
+      padding: 12px;
+      border-radius: 16px;
       border: none;
       background: var(--accent);
       color: white;
@@ -363,7 +376,7 @@
     }
 
     .btn-recorder {
-      padding: 9px 15px;
+      padding: 8px 14px;
       border-radius: 12px;
       border: 2px solid var(--accent);
       background: #ffffff;
@@ -373,17 +386,30 @@
       font-family: 'Fredoka', sans-serif;
     }
 
-    .track-list { margin-top: 18px; }
+    .section-title {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1rem;
+      color: var(--accent);
+      margin: 14px 0 8px 0;
+      border-bottom: 1px solid #ffd1dc;
+      padding-bottom: 4px;
+    }
 
-    .track-item {
+    .list-box {
+      max-height: 150px;
+      overflow-y: auto;
+      margin-bottom: 12px;
+    }
+
+    .item-card {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 10px 14px;
+      padding: 8px 12px;
       background: #ffffff;
-      border-radius: 12px;
-      margin-bottom: 8px;
-      font-size: 0.85rem;
+      border-radius: 10px;
+      margin-bottom: 6px;
+      font-size: 0.82rem;
       border: 1px solid #ffd1dc;
     }
 
@@ -391,14 +417,13 @@
       background: none;
       border: none;
       color: #ff4757;
-      font-size: 1rem;
+      font-size: 0.95rem;
       cursor: pointer;
     }
   </style>
 </head>
 <body>
 
-  <!-- Floating hearts -->
   <div class="bg-heart" style="left: 10%; animation-delay: 0s;">💖</div>
   <div class="bg-heart" style="left: 25%; animation-delay: 2s;">💕</div>
   <div class="bg-heart" style="left: 60%; animation-delay: 4s;">🌸</div>
@@ -406,11 +431,13 @@
 
   <header>
     <h1>Our Love Frequency</h1>
-    <p>♡ Radio Station & Audio Letters ♡</p>
+    <p>♡ Private Radio Station & Audio Vault ♡</p>
   </header>
 
   <div class="radio-container">
-    <button class="admin-toggle" id="adminBtn" title="Admin Mode">⚙️</button>
+    <button class="admin-toggle" id="adminBtn">⚙️</button>
+
+    <div class="freq-badge" id="freqBadge">107.9 FM</div>
 
     <div class="vinyl-wrapper">
       <div class="vinyl-record" id="vinyl">
@@ -423,13 +450,8 @@
       <div class="track-subtitle" id="trackSubtitle">Tap play to listen ♡</div>
     </div>
 
-    <!-- Letter View -->
-    <div class="letter-card" id="letterCard">
-      <div class="letter-text" id="letterText"></div>
-      <button class="btn-action-sm" id="speakLetterBtn" style="justify-content: center; width: 100%;">
-        🎧 Listen to Letter Read Aloud
-      </button>
-    </div>
+    <!-- Letter Text Box -->
+    <div class="letter-box" id="letterBox"></div>
 
     <div class="station-selector" id="stationList"></div>
 
@@ -439,18 +461,22 @@
       <button class="btn-secondary" id="nextBtn">⏭</button>
     </div>
 
-    <div class="download-bar">
-      <a href="#" id="downloadBtn" class="btn-action-sm" download="voice_note.mp3" style="display: none;">
-        📥 Download Voice Note
+    <div class="action-bar">
+      <button id="readLetterBtn" class="btn-action-small" style="display: none;">
+        🗣️ Listen to Letter
+      </button>
+      <a href="#" id="downloadBtn" class="btn-action-small" download="voice_note.mp3" style="display: none;">
+        📥 Download Voice
       </a>
     </div>
   </div>
 
+  <!-- Admin Panel -->
   <div class="admin-panel" id="adminPanel">
-    <h2>Admin Settings & Add Content ♡</h2>
+    <h2>Admin Management ♡</h2>
 
     <div class="form-group">
-      <label>Choose Background Theme / Custom Wallpaper</label>
+      <label>Choose Theme or Custom Background</label>
       <select id="bgThemeSelect">
         <option value="sunset">Sunset Romantic (Gradient)</option>
         <option value="cosmic">Night Cosmic (Dark Purple)</option>
@@ -460,54 +486,60 @@
     </div>
 
     <div class="form-group" id="customBgBox" style="display: none;">
-      <label>Upload Custom Background Image</label>
+      <label>Upload Custom Wallpaper</label>
       <input type="file" id="bgFileInput" accept="image/*">
     </div>
 
-    <hr style="border: 0; border-top: 1px dashed #ffd1dc; margin: 15px 0;">
-    
+    <!-- Station Creation Section -->
+    <div class="section-title">1. Manage Custom Stations & Frequencies</div>
     <div class="form-group">
-      <label>Track or Letter Title</label>
-      <input type="text" id="inputTitle" placeholder="e.g. A letter for when you miss me">
+      <label>Station Name</label>
+      <input type="text" id="newStationName" placeholder="e.g. Late Night Chats 🌙">
+    </div>
+    <div class="form-group">
+      <label>Custom Frequency (e.g. 104.5 FM)</label>
+      <input type="text" id="newStationFreq" placeholder="e.g. 98.5 FM">
+    </div>
+    <button class="btn-save" id="addStationBtn" style="margin-bottom: 10px; background: #6c5ce7;">+ Add Station</button>
+
+    <div class="list-box" id="adminStationList"></div>
+
+    <!-- Content / Track Creation Section -->
+    <div class="section-title">2. Add Track, Voice Note or Written Letter</div>
+    <div class="form-group">
+      <label>Select Station Channel</label>
+      <select id="selectTrackStation"></select>
     </div>
 
     <div class="form-group">
-      <label>Content Type</label>
-      <select id="contentType">
-        <option value="voice">Audio / Voice Recording 🎙️</option>
-        <option value="letter">Written Love Letter 💌 (Read Aloud Enabled)</option>
-      </select>
-    </div>
-
-    <div class="form-group" id="letterInputGroup" style="display: none;">
-      <label>Write Your Love Letter</label>
-      <textarea id="inputLetter" rows="4" placeholder="Write your romantic letter here... She can read it or click 'Listen to Letter' to hear it read aloud! ♡"></textarea>
+      <label>Track / Letter Title</label>
+      <input type="text" id="inputTitle" placeholder="e.g. For when you miss me">
     </div>
 
     <div class="form-group">
-      <label>Station Category</label>
-      <select id="inputStation"></select>
-      <input type="text" id="newStationInput" placeholder="+ Or type new station name (e.g. Late Night 🌙)" style="margin-top: 6px;">
+      <label>Written Love Letter (Optional - She can read or listen to it)</label>
+      <textarea id="inputLetter" rows="3" placeholder="Write your letter here..."></textarea>
     </div>
 
     <div class="form-group">
-      <label>Pick Cover Photo from Device</label>
+      <label>Pick Cover Photo from Phone</label>
       <input type="file" id="inputFile" accept="image/*">
     </div>
 
-    <div class="recorder-box" id="recorderBox">
+    <div class="recorder-box">
       <button class="btn-recorder" id="recordBtn">🎙️ Record Voice</button>
-      <span id="recordStatus" style="font-size:0.85rem; color:var(--text-muted); font-weight: 600;">Ready to record</span>
+      <span id="recordStatus" style="font-size:0.8rem; color:var(--text-muted); font-weight: 600;">Ready</span>
     </div>
 
-    <button class="btn-action" id="saveTrackBtn">Save Memory / Letter ♡</button>
+    <button class="btn-save" id="saveTrackBtn">Save Memory ♡</button>
 
-    <div class="track-list" id="adminTrackList"></div>
+    <div class="section-title">Existing Memories</div>
+    <div class="list-box" id="adminTrackList"></div>
   </div>
 
   <script>
+    let stations = [];
     let tracks = [];
-    let stations = ["Our Memories 📸", "Love Letters 💌", "Late Night Thoughts 🌙"];
     let currentTrackIndex = 0;
     let isPlaying = false;
     let audio = new Audio();
@@ -515,10 +547,15 @@
     let audioChunks = [];
     let recordedAudioUrl = null;
     let selectedImageBase64 = null;
-    let speechSynth = window.speechSynthesis;
-    let currentUtterance = null;
+    let isReadingLetter = false;
 
-    // UI Elements
+    // Default Stations if empty
+    const defaultStations = [
+      { name: "Our Memories 📸", freq: "107.9 FM" },
+      { name: "Late Night 🌙", freq: "98.5 FM" },
+      { name: "Pick-Me-Up 💕", freq: "101.3 FM" }
+    ];
+
     const playBtn = document.getElementById('playBtn');
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
@@ -526,62 +563,75 @@
     const albumArt = document.getElementById('albumArt');
     const trackTitle = document.getElementById('trackTitle');
     const trackSubtitle = document.getElementById('trackSubtitle');
+    const freqBadge = document.getElementById('freqBadge');
     const stationList = document.getElementById('stationList');
+    const letterBox = document.getElementById('letterBox');
+    const readLetterBtn = document.getElementById('readLetterBtn');
     const downloadBtn = document.getElementById('downloadBtn');
     const adminBtn = document.getElementById('adminBtn');
     const adminPanel = document.getElementById('adminPanel');
-
-    const letterCard = document.getElementById('letterCard');
-    const letterText = document.getElementById('letterText');
-    const speakLetterBtn = document.getElementById('speakLetterBtn');
 
     const bgThemeSelect = document.getElementById('bgThemeSelect');
     const customBgBox = document.getElementById('customBgBox');
     const bgFileInput = document.getElementById('bgFileInput');
 
-    const contentType = document.getElementById('contentType');
-    const letterInputGroup = document.getElementById('letterInputGroup');
-    const recorderBox = document.getElementById('recorderBox');
+    // Admin Inputs
+    const newStationName = document.getElementById('newStationName');
+    const newStationFreq = document.getElementById('newStationFreq');
+    const addStationBtn = document.getElementById('addStationBtn');
+    const adminStationList = document.getElementById('adminStationList');
 
+    const selectTrackStation = document.getElementById('selectTrackStation');
+    const inputTitle = document.getElementById('inputTitle');
+    const inputLetter = document.getElementById('inputLetter');
+    const inputFile = document.getElementById('inputFile');
     const recordBtn = document.getElementById('recordBtn');
     const recordStatus = document.getElementById('recordStatus');
     const saveTrackBtn = document.getElementById('saveTrackBtn');
-    const inputTitle = document.getElementById('inputTitle');
-    const inputLetter = document.getElementById('inputLetter');
-    const inputStation = document.getElementById('inputStation');
-    const newStationInput = document.getElementById('newStationInput');
-    const inputFile = document.getElementById('inputFile');
     const adminTrackList = document.getElementById('adminTrackList');
 
-    function loadTracks() {
-      const saved = localStorage.getItem('love_radio_tracks');
-      if (saved) {
-        tracks = JSON.parse(saved);
+    function init() {
+      // Load Stations
+      const savedStations = localStorage.getItem('love_stations');
+      if (savedStations) {
+        stations = JSON.parse(savedStations);
+      } else {
+        stations = defaultStations;
+        saveStations();
+      }
+
+      // Load Tracks
+      const savedTracks = localStorage.getItem('love_radio_tracks');
+      if (savedTracks) {
+        tracks = JSON.parse(savedTracks);
       } else {
         tracks = [
           {
-            type: "letter",
-            title: "First Love Letter 💌",
-            station: "Love Letters 💌",
+            title: "Welcome Note ♡",
+            station: stations[0].name,
+            freq: stations[0].freq,
+            letter: "Welcome to our private radio station! Switch between stations to hear voice notes or read letters.",
             photo: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=300",
-            letter: "My love,\n\nI created this radio station just for you. Whenever you miss me, you can tune into these stations, listen to my voice notes, and read or listen to my letters read aloud. You mean the world to me! ♡",
             audioUrl: ""
           }
         ];
+        saveTracks();
       }
-      
+
+      // Load Background
       const savedBg = localStorage.getItem('love_radio_bg');
       if (savedBg) applyBackground(savedBg);
 
-      renderStationSelectorOptions();
       renderStations();
-      renderAdminList();
+      renderAdminStations();
+      renderAdminTracks();
+      populateStationDropdown();
+
       if (tracks.length > 0) loadTrack(0);
     }
 
-    function saveToStorage() {
-      localStorage.setItem('love_radio_tracks', JSON.stringify(tracks));
-    }
+    function saveStations() { localStorage.setItem('love_stations', JSON.stringify(stations)); }
+    function saveTracks() { localStorage.setItem('love_radio_tracks', JSON.stringify(tracks)); }
 
     function applyBackground(bg) {
       if (bg.startsWith('data:image')) {
@@ -618,175 +668,137 @@
       }
     };
 
-    contentType.onchange = (e) => {
-      if (e.target.value === 'letter') {
-        letterInputGroup.style.display = 'block';
-        recorderBox.style.display = 'none';
-      } else {
-        letterInputGroup.style.display = 'none';
-        recorderBox.style.display = 'flex';
-      }
-    };
-
-    function stopSpeech() {
-      if (speechSynth && speechSynth.speaking) {
-        speechSynth.cancel();
-      }
-    }
-
     function loadTrack(index) {
       if (tracks.length === 0) return;
-      stopSpeech();
-      pauseAudio();
-
       currentTrackIndex = index;
       const track = tracks[index];
+
       trackTitle.textContent = track.title;
       trackSubtitle.textContent = "Station: " + track.station;
+      freqBadge.textContent = track.freq || "107.9 FM";
       albumArt.src = track.photo || "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=300";
 
-      if (track.type === 'letter') {
-        letterCard.classList.add('active');
-        letterText.textContent = track.letter || "";
-        downloadBtn.style.display = 'none';
-        audio.src = "";
-      } else {
-        letterCard.classList.remove('active');
-        if (track.audioUrl) {
-          audio.src = track.audioUrl;
-          downloadBtn.href = track.audioUrl;
-          downloadBtn.style.display = 'inline-flex';
-          downloadBtn.download = `${track.title.replace(/\s+/g, '_')}_VoiceNote.mp3`;
-        } else {
-          audio.src = "";
-          downloadBtn.style.display = 'none';
-        }
-      }
-    }
+      // Stop speech if running
+      window.speechSynthesis.cancel();
+      isReadingLetter = false;
 
-    function renderStationSelectorOptions() {
-      const allStations = [...new Set([...stations, ...tracks.map(t => t.station)])];
-      inputStation.innerHTML = allStations.map(st => `<option value="${st}">${st}</option>`).join('');
+      // Letter Display
+      if (track.letter && track.letter.trim() !== "") {
+        letterBox.textContent = track.letter;
+        letterBox.style.display = "block";
+        readLetterBtn.style.display = "inline-flex";
+      } else {
+        letterBox.style.display = "none";
+        readLetterBtn.style.display = "none";
+      }
+
+      // Audio Display
+      if (track.audioUrl) {
+        audio.src = track.audioUrl;
+        downloadBtn.href = track.audioUrl;
+        downloadBtn.style.display = 'inline-flex';
+        downloadBtn.download = `${track.title.replace(/\s+/g, '_')}_VoiceNote.mp3`;
+      } else {
+        audio.src = "";
+        downloadBtn.style.display = 'none';
+      }
     }
 
     function renderStations() {
-      const activeStations = [...new Set(tracks.map(t => t.station))];
       stationList.innerHTML = "";
-      activeStations.forEach(st => {
+      stations.forEach(st => {
         const chip = document.createElement('div');
         chip.className = 'station-chip';
-        chip.textContent = st;
+        chip.innerHTML = `<span>${st.name}</span><span class="station-chip-freq">${st.freq}</span>`;
         chip.onclick = () => {
           document.querySelectorAll('.station-chip').forEach(c => c.classList.remove('active'));
           chip.classList.add('active');
-          const firstInStation = tracks.findIndex(t => t.station === st);
+          const firstInStation = tracks.findIndex(t => t.station === st.name);
           if (firstInStation !== -1) {
             loadTrack(firstInStation);
-            playCurrentContent();
+            playAudio();
+          } else {
+            trackTitle.textContent = st.name;
+            trackSubtitle.textContent = "No tracks in this station yet";
+            freqBadge.textContent = st.freq;
+            letterBox.style.display = "none";
+            readLetterBtn.style.display = "none";
+            downloadBtn.style.display = "none";
+            pauseAudio();
           }
         };
         stationList.appendChild(chip);
       });
     }
 
-    function playCurrentContent() {
-      const track = tracks[currentTrackIndex];
-      if (!track) return;
-
-      if (track.type === 'letter') {
-        speakLetter(track.letter);
-      } else if (audio.src) {
-        playAudio();
-      }
-    }
-
-    function speakLetter(text) {
-      if (!('speechSynthesis' in window)) {
-        alert("Text-to-speech is not supported on this browser.");
-        return;
-      }
-
-      stopSpeech();
-      currentUtterance = new SpeechSynthesisUtterance(text);
-      currentUtterance.rate = 0.9; // Slightly slower, romantic pace
-      currentUtterance.pitch = 1.0;
-
-      // Select a nice voice if available
-      const voices = speechSynth.getVoices();
-      const preferredVoice = voices.find(v => v.lang.includes('en') && (v.name.includes('Natural') || v.name.includes('Samantha') || v.name.includes('Karen') || v.name.includes('Google')));
-      if (preferredVoice) currentUtterance.voice = preferredVoice;
-
-      currentUtterance.onstart = () => {
+    function playAudio() {
+      if (tracks[currentTrackIndex] && tracks[currentTrackIndex].audioUrl) {
+        audio.play();
         isPlaying = true;
         playBtn.textContent = '⏸';
         vinyl.classList.add('playing');
-        speakLetterBtn.textContent = '⏹ Stop Reading';
-      };
-
-      currentUtterance.onend = () => {
-        isPlaying = false;
-        playBtn.textContent = '▶';
-        vinyl.classList.remove('playing');
-        speakLetterBtn.textContent = '🎧 Listen to Letter Read Aloud';
-      };
-
-      speechSynth.speak(currentUtterance);
-    }
-
-    speakLetterBtn.onclick = () => {
-      const track = tracks[currentTrackIndex];
-      if (speechSynth.speaking) {
-        stopSpeech();
-        isPlaying = false;
-        playBtn.textContent = '▶';
-        vinyl.classList.remove('playing');
-        speakLetterBtn.textContent = '🎧 Listen to Letter Read Aloud';
-      } else if (track && track.letter) {
-        speakLetter(track.letter);
       }
-    };
-
-    function playAudio() {
-      if (!audio.src) return;
-      stopSpeech();
-      audio.play();
-      isPlaying = true;
-      playBtn.textContent = '⏸';
-      vinyl.classList.add('playing');
     }
 
     function pauseAudio() {
-      if (audio.src) audio.pause();
-      stopSpeech();
+      audio.pause();
       isPlaying = false;
       playBtn.textContent = '▶';
       vinyl.classList.remove('playing');
+      window.speechSynthesis.cancel();
     }
 
     playBtn.onclick = () => {
-      if (isPlaying) {
-        pauseAudio();
-      } else {
-        playCurrentContent();
-      }
+      if (isPlaying) pauseAudio();
+      else playAudio();
     };
 
     nextBtn.onclick = () => {
       currentTrackIndex = (currentTrackIndex + 1) % tracks.length;
       loadTrack(currentTrackIndex);
-      playCurrentContent();
+      playAudio();
     };
 
     prevBtn.onclick = () => {
       currentTrackIndex = (currentTrackIndex - 1 + tracks.length) % tracks.length;
       loadTrack(currentTrackIndex);
-      playCurrentContent();
+      playAudio();
     };
 
     audio.onended = () => pauseAudio();
 
+    // Read Aloud Text-to-Speech
+    readLetterBtn.onclick = () => {
+      const track = tracks[currentTrackIndex];
+      if (!track || !track.letter) return;
+
+      if (isReadingLetter) {
+        window.speechSynthesis.cancel();
+        isReadingLetter = false;
+        readLetterBtn.textContent = "🗣️ Listen to Letter";
+        vinyl.classList.remove('playing');
+      } else {
+        pauseAudio();
+        const utterance = new SpeechSynthesisUtterance(track.letter);
+        utterance.rate = 0.9;
+        utterance.pitch = 1.0;
+
+        utterance.onend = () => {
+          isReadingLetter = false;
+          readLetterBtn.textContent = "🗣️ Listen to Letter";
+          vinyl.classList.remove('playing');
+        };
+
+        window.speechSynthesis.speak(utterance);
+        isReadingLetter = true;
+        readLetterBtn.textContent = "⏹️ Stop Reading";
+        vinyl.classList.add('playing');
+      }
+    };
+
+    // Admin Passcode Toggle
     adminBtn.onclick = () => {
-      const pass = prompt("Enter Secret Passcode ♡:", "");
+      const pass = prompt("Enter Admin Passcode ♡:", "");
       if (pass === "1234") {
         adminPanel.classList.toggle('active');
       } else {
@@ -794,24 +806,70 @@
       }
     };
 
+    // Add New Custom Station
+    addStationBtn.onclick = () => {
+      const name = newStationName.value.trim();
+      const freq = newStationFreq.value.trim() || "100.0 FM";
+
+      if (!name) {
+        alert("Please enter a station name");
+        return;
+      }
+
+      stations.push({ name: name, freq: freq });
+      saveStations();
+      renderStations();
+      renderAdminStations();
+      populateStationDropdown();
+
+      newStationName.value = "";
+      newStationFreq.value = "";
+      alert("New station added!");
+    };
+
+    function renderAdminStations() {
+      adminStationList.innerHTML = "";
+      stations.forEach((s, index) => {
+        const item = document.createElement('div');
+        item.className = 'item-card';
+        item.innerHTML = `
+          <span><strong>${s.name}</strong> (${s.freq})</span>
+          <button class="btn-del" onclick="deleteStation(${index})">🗑️</button>
+        `;
+        adminStationList.appendChild(item);
+      });
+    }
+
+    window.deleteStation = function(index) {
+      stations.splice(index, 1);
+      saveStations();
+      renderStations();
+      renderAdminStations();
+      populateStationDropdown();
+    };
+
+    function populateStationDropdown() {
+      selectTrackStation.innerHTML = stations.map(s => `<option value="${s.name}">${s.name} (${s.freq})</option>`).join('');
+    }
+
+    // File Input Base64
     inputFile.onchange = (e) => {
       const file = e.target.files[0];
       if (file) {
         const reader = new FileReader();
-        reader.onloadend = () => {
-          selectedImageBase64 = reader.result;
-        };
+        reader.onloadend = () => { selectedImageBase64 = reader.result; };
         reader.readAsDataURL(file);
       }
     };
 
+    // Recorder Logic
     recordBtn.onclick = async () => {
       if (!mediaRecorder || mediaRecorder.state === "inactive") {
         try {
           const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
           mediaRecorder = new MediaRecorder(stream);
           audioChunks = [];
-          
+
           mediaRecorder.ondataavailable = e => audioChunks.push(e.data);
           mediaRecorder.onstop = () => {
             const blob = new Blob(audioChunks, { type: 'audio/mp3' });
@@ -819,7 +877,7 @@
             reader.readAsDataURL(blob);
             reader.onloadend = () => {
               recordedAudioUrl = reader.result;
-              recordStatus.textContent = "Recording Saved! ✨";
+              recordStatus.textContent = "Voice Saved! ✨";
             };
           };
 
@@ -827,7 +885,7 @@
           recordStatus.textContent = "Recording... 🎙️";
           recordBtn.textContent = "⏹ Stop";
         } catch (err) {
-          alert("Microphone access denied or not supported.");
+          alert("Microphone permission denied.");
         }
       } else {
         mediaRecorder.stop();
@@ -835,54 +893,48 @@
       }
     };
 
+    // Save Memory Track
     saveTrackBtn.onclick = () => {
       const title = inputTitle.value.trim();
-      const customSt = newStationInput.value.trim();
-      const station = customSt ? customSt : inputStation.value;
-      const type = contentType.value;
-      const letterContent = inputLetter.value.trim();
+      const stationName = selectTrackStation.value;
+      const letter = inputLetter.value.trim();
 
       if (!title) {
-        alert("Please write a title!");
+        alert("Please write a title for this memory!");
         return;
       }
 
-      if (type === 'letter' && !letterContent) {
-        alert("Please write letter text!");
-        return;
-      }
+      const selectedStationObj = stations.find(s => s.name === stationName) || stations[0];
 
       tracks.push({
-        type: type,
         title: title,
-        station: station,
+        station: selectedStationObj.name,
+        freq: selectedStationObj.freq,
+        letter: letter,
         photo: selectedImageBase64 || "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=300",
-        letter: type === 'letter' ? letterContent : "",
-        audioUrl: type === 'voice' ? (recordedAudioUrl || "") : ""
+        audioUrl: recordedAudioUrl || ""
       });
 
-      saveToStorage();
-      renderStationSelectorOptions();
+      saveTracks();
       renderStations();
-      renderAdminList();
+      renderAdminTracks();
 
       inputTitle.value = "";
       inputLetter.value = "";
-      newStationInput.value = "";
       inputFile.value = "";
       selectedImageBase64 = null;
       recordedAudioUrl = null;
-      recordStatus.textContent = "Ready to record";
-      alert("Saved to radio station! ♡");
+      recordStatus.textContent = "Ready";
+      alert("Memory saved to " + selectedStationObj.name + "!");
     };
 
-    function renderAdminList() {
+    function renderAdminTracks() {
       adminTrackList.innerHTML = "";
       tracks.forEach((t, i) => {
         const item = document.createElement('div');
-        item.className = 'track-item';
+        item.className = 'item-card';
         item.innerHTML = `
-          <span>${t.type === 'letter' ? '💌' : '🎙️'} ${t.title} (${t.station})</span>
+          <span>${t.title} (${t.station})</span>
           <button class="btn-del" onclick="deleteTrack(${i})">🗑️</button>
         `;
         adminTrackList.appendChild(item);
@@ -891,17 +943,13 @@
 
     window.deleteTrack = function(index) {
       tracks.splice(index, 1);
-      saveToStorage();
+      saveTracks();
       renderStations();
-      renderAdminList();
+      renderAdminTracks();
       if (tracks.length > 0) loadTrack(0);
     };
 
-    window.speechSynthesis.onvoiceschanged = () => {
-      // Warm up TTS engine voices
-    };
-
-    loadTracks();
+    init();
   </script>
 </body>
 </html>
